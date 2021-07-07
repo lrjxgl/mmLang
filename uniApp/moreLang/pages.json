@@ -1,0 +1,243 @@
+{
+	"pages": [
+
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "福鼎生活网",
+				"onReachBottomDistance": 60,
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path":"pages/web/index",
+			"style":{
+				"navigationBarTitleText":"Web浏览"
+			}
+		},
+		 {
+			"path": "pages/article/index",
+			"style": {
+				"navigationBarTitleText": "资讯中心"
+			}
+		}, {
+			"path": "pages/article/list",
+			"style": {
+				"navigationBarTitleText": "资讯列表"
+			}
+		}, {
+			"path": "pages/article/show",
+			"style": {
+				"navigationBarTitleText": "资讯详情"
+			}
+		},
+		{
+			"path": "pages/bankcard/index",
+			"style": {
+				"navigationBarTitleText": "银行卡"
+			}
+		}, {
+			"path": "pages/city/index",
+			"style": {
+				"navigationBarTitleText": "城市"
+			}
+		},
+		{
+			"path": "pages/comment/my",
+			"style": {
+				"navigationBarTitleText": "我的评论",
+				"onReachBottomDistance": 60,
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path": "pages/coupon/index",
+			"style": {
+				"navigationBarTitleText": "领取优惠券"
+			}
+		},
+		{
+			"path": "pages/coupon_user/index", 
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		},
+		{
+			"path": "pages/fav/my",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+			}
+		}, {
+			"path": "pages/follow/index",
+			"style": {
+				"navigationBarTitleText": "我的好友"
+			}
+		},{
+			"path":"pages/gold_log/my",
+			"style":{
+				"navigationBarTitleText":"金币日志"
+			}
+		},
+		{
+			"path": "pages/html/aboutus",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},{
+			"path":"pages/invite/my",
+			"style":{
+				"navigationBarTitleText":"邀请好友"
+			}
+		},{
+			"path":"pages/invite_account_log/index",
+			"style":{
+				"navigationBarTitleText":"邀请收益"
+			}
+		},
+		{
+			"path": "pages/kefu/index",
+			"style": {
+				"navigationBarTitleText": "客服"
+			}
+		}, {
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登陆"
+			}
+		},
+		{
+			"path": "pages/login/findpwd",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		},
+		{
+			"path": "pages/notice/my",
+			"style": {
+				"navigationBarTitleText": "通知"
+			}
+		},
+		{
+			"path": "pages/pay_log/my",
+			"style": {
+				"navigationBarTitleText": "消费记录"
+			}
+		}, {
+			"path": "pages/pm/index",
+			"style": {
+				"navigationBarTitleText": "我的私信"
+			}
+		}, {
+			"path": "pages/pm/detail",
+			"style": {
+				"navigationBarTitleText": "私信"
+			}
+		},
+		{
+			"path": "pages/recharge/my",
+			"style": {
+				"navigationBarTitleText": "支付记录"
+			}
+		},
+		{
+			"path": "pages/recharge/index",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},
+		{
+			"path": "pages/recharge/order",
+			"style": {
+				"navigationBarTitleText": "订单支付"
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}
+		
+		
+		
+		
+		
+		, {
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/info",
+			"style": {
+				"navigationBarTitleText": "资料编辑"
+			}
+		},
+		{
+			"path": "pages/user/user_head",
+			"style": {
+				"navigationBarTitleText": "头像编辑"
+			}
+		},
+		{
+			"path": "pages/user/password",
+			"style": {
+				"navigationBarTitleText": "密码修改"
+			}
+		},
+		{
+			"path": "pages/user/paypwd",
+			"style": {
+				"navigationBarTitleText": "支付密码"
+			}
+		},
+		{
+			"path": "pages/user_address/my",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
+		},
+		{
+			"path": "pages/user_address/add",
+			"style": {
+				"navigationBarTitleText": "收货地址添加"
+			}
+		},
+		{
+			"path": "pages/user_address/edit",
+			"style": {
+				"navigationBarTitleText": "收货地址编辑"
+			}
+		},
+		{
+			"path": "pages/user_address/orderadd",
+			"style": {
+				"navigationBarTitleText": "收货地址添加"
+			}
+		},
+
+		{
+			"path": "pages/user/set",
+			"style": {
+				"navigationBarTitleText": "用户设置"
+			}
+		}
+	],
+	"subPackages":[{
+		"root":"forum",
+		"pages":[
+			{
+				"path":"forum/index",
+				"style":{
+					"navigationBarTitleText":"论坛"
+				}
+			}
+		]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
