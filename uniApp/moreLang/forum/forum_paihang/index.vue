@@ -7,31 +7,7 @@
 				
 			</div>
 			<div v-if="tab=='a'" >
-				<view @click="goForum(item.id)" class="flist-item" v-for="(item,fkey) in wzList" :key="fkey">
-					<view class="flist-user">
-						<image :src="item.user_head+'.100x100.jpg'" class="flist-head"></image>
-						<view class="flex-1">
-							<view class="flist-nick">{{item.nickname}}</view>
-							<view class="flist-time">{{item.timeago}}</view>
-						</view>
-					</view>
-					<div class="flex mgb-5">
-						<div v-if="item.videourl" class="iconfont cl-red mgr-5 icon-video"></div>
-						<div class="flex-1">{{item.title}}</div>
-					</div>		
-					<view class="flist-imgs" v-if="item.imgslist">                   
-						<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="flist-imgs-img"  mode="widthFix" ></image>
-					</view>
-					
-					<view class="flex flist-ft">
-						<view class="flist-ft-love">
-							{{item.love_num}} </view>
-						<view class="flist-ft-cm">
-							{{item.comment_num}} </view>
-						<view class="flist-ft-view">
-							{{item.view_num}} </view>
-					</view>
-				</view> 
+				<list-item :dlist="wzList"></list-item>  
 				 
 			</div>
 			<div  v-if="tab=='b'" class="row-box">
@@ -58,7 +34,11 @@
 	</div>
 </template>
 <script>
+	import listItem from "../list-item.vue";
 	export default {
+		components:{
+			listItem
+		},
 		data: function() {
 			return {
 				fsList: [],
@@ -84,10 +64,10 @@
 			getPage: function() {
 				let that=this;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?m=forum_paihang&ajax=1",
+					url:that.app.apiHost+"/forum_paihang/index",
 					success:function(res){
-						that.wzList=res.data.wzList;
-						that.fsList=res.data.fsList;
+						that.wzList=res.wzList;
+						that.fsList=res.fsList;
 						that.pageLoad=true;
 					}
 				})

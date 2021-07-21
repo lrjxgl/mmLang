@@ -29,9 +29,9 @@
 			<div class="sglist">
 				<view  class="sglist-item" v-for="(item,fkey) in  list" :key="fkey">
 					<view @click="goUser(item.userid)"  class="flex mgb-5">
-						<image :src="item.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
+						<image :src="item.user.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
 						<view class="flex-1">
-							<view class="f14 mgb-5">{{item.nickname}}</view>
+							<view class="f14 mgb-5">{{item.user.nickname}}</view>
 							<view class="f12 cl3">{{item.timeago}}</view>
 						</view>
 					</view>

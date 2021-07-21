@@ -44,6 +44,23 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.25</version>
         </dependency>
+        <!-- 图片 -->
+        <dependency>
+		  <groupId>net.coobird</groupId>
+		  <artifactId>thumbnailator</artifactId>
+		  <version>[0.4, 0.5)</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.squareup.okhttp3</groupId>
+		  <artifactId>okhttp</artifactId>
+		  <version>4.9.1</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.squareup.okio</groupId>
+	      <artifactId>okio</artifactId>
+	      <version>2.8.0</version>
+	      <scope>compile</scope>
+	    </dependency>
         <!-- 热更新 -->
         <dependency>
 		        <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,7 @@
 <template>
 	<view v-if="pageLoad">
 	<view class="flexlist">
-		<view class="flexlist-item bg-fff" v-for="(item,key) in pageData.list" :key="key">
+		<view class="flexlist-item bg-fff" v-for="(item,key) in list" :key="key">
 			<navigator class="flexlist-imgbox" :url="'../forum/list?gid='+item.gid">
 				<img class="flexlist-img" :src="item.imgurl+'.100x100.jpg'">
 			</navigator>
@@ -33,7 +33,7 @@
  
 
 <script>
-	var app = require("../../common/common.js");
+	 
 	import mtFooter from "../forumfooter.vue";
 	export default {
 		components: {
@@ -43,7 +43,7 @@
 			return {
 				pageLoad:false, 
 				pageHide:false,
-				pageData:{},
+				list:[],
 			}
 			
 		},
@@ -78,11 +78,11 @@
 		methods: {
 			getPage: function () {
 				var that = this;
-				uni.request({
-					url: app.apiHost + "/module.php?m=forum_group&ajax=1&fromapp=" + app.fromapp(),
-					success: function (data) {
+				that.app.get({
+					url: that.app.apiHost + "/forum_group/index",
+					success: function (res) {
 						that.pageLoad = true;
-						that.pageData = data.data.data;
+						that.list = res.list;
 						uni.hideNavigationBarLoading();
 					}
 				})

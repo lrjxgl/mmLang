@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	var app = require("../common/common.js"); 
+	 
 	export default {
 		name:"upimg-box",
 		props:{
@@ -24,11 +24,18 @@
 		},
 		data:function(){
 			return {
-				imgsData:this.defaultImgsData,
-				imgsList:this.defaultImgsList,
+				imgsData:"",
+				imgsList:[],
 			}
 		},
 		created:function(){
+			if(this.defaultImgsData!=undefined){
+				this.imgsData=this.defaultImgsData;
+			}
+			if(this.defaultImgsList!=undefined){
+				this.imgsList=this.defaultImgsList;
+			}
+			
 			console.log(this.defaultImgsList)
 		},
 		
@@ -43,24 +50,24 @@
 						const len=tempFilePaths.length;
 						for(var i=0;i<len;i++){
 							uni.uploadFile({
-								url: app.apiHost+'/index.php?m=upload&a=img&ajax=1&authcode='+app.getAuthCode(), //仅为示例，非真实的接口地址
+								url: that.app.apiHost+'/upload/img?token='+that.app.getToken(),  
 								filePath: tempFilePaths[i],
 								name: 'upimg',
 								dataType:"json",
-								success: function (res) {
-									
-									if(!res.data.error){
-										var rs=JSON.parse(res.data);
+								success: function (rs) {
+									var res=JSON.parse(rs.data);
+									if(!res.error){
 										
-										var json=[{
-											imgurl:rs.data.imgurl,
-											trueimgurl:rs.data.trueimgurl
-										}];
-										that.imgsList=app.json_add(that.imgsList,json);
+										var json={
+											imgurl:res.imgurl,
+											trueimgurl:res.trueimgurl
+										};
+										console.log(json)
+										that.imgsList.push(json);
 										if(that.imgsData=="" || that.imgsData==undefined ){
-											that.imgsData=rs.data.imgurl;											
+											that.imgsData=res.imgurl;											
 										}else{
-											that.imgsData=that.imgsData+","+rs.data.imgurl;
+											that.imgsData=that.imgsData+","+res.imgurl;
 										}
 										that.$emit("call-parent",that.imgsData);
 									}

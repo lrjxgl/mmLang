@@ -225,11 +225,86 @@
 	],
 	"subPackages":[{
 		"root":"forum",
-		"pages":[
-			{
-				"path":"forum/index",
+		"pages": [{
+				"path": "forum/show",
+				"style": {
+					"navigationBarTitleText": "帖子详情",
+					"onReachBottomDistance": 60,
+					"enablePullDownRefresh": true
+				}
+			}, {
+				"path": "forum/my",
 				"style":{
-					"navigationBarTitleText":"论坛"
+					"navigationBarTitleText":"我的"
+				}
+			}, {
+				"path": "forum/add",
+				"style":{
+					"navigationBarTitleText":"发布"
+				}
+			}, {
+				"path": "forum/edit",
+				"style":{
+					"navigationBarTitleText":"编辑"
+				}
+			}, {
+				"path": "forum/index",
+				"style":{
+					"navigationBarTitleText":"论坛",
+					"enablePullDownRefresh": true
+				}
+			}, {
+				"path": "forum/list",
+				"style":{
+					"navigationBarTitleText":"帖子列表",
+					"onReachBottomDistance": 60,
+					"enablePullDownRefresh": true
+				}
+			}, {
+				"path": "forum/myfav",
+				"style": {
+					"navigationBarTitleText": "我的收藏"
+				}
+			}, {
+				"path": "forum_group/index",
+				"style":{
+					"navigationBarTitleText":"板块"
+				}
+			}, {
+				"path": "forum/new",
+				"style": {
+					"navigationBarTitleText": "新贴子"
+				}
+			}, {
+				"path": "forum_feeds/index",
+				"style": {
+					"navigationBarTitleText": "关注的帖子"
+				}
+			},
+			{
+				"path": "forum/search",
+				"style":{
+					"navigationBarTitleText":"搜一下"
+				}
+			}, {
+				"path": "forum_paihang/index",
+				"style": {
+					"navigationBarTitleText": "名人榜"
+				}
+			}, {
+				"path": "forum_home/index",
+				"style": {
+					"navigationBarTitleText": "个人主页"
+				}
+			}, {
+				"path": "forum/user",
+				"style": {
+					"navigationBarTitleText": "我的"
+				}
+			}, {
+				"path": "forum_comment/my",
+				"style": {
+					"navigationBarTitleText": "我的评论"
 				}
 			}
 		]

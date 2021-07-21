@@ -28,7 +28,7 @@
 					</div>
 					<div :class="tab=='video'?'none':''">
 						<input maxlength="-1" type="text" class="none" name="imgsdata" :value="imgsData" />
-						<upimg-box @call-parent="callImgsData" :defaultImgsList="pageData.imgsdata" :defaultImgsData="imgsData" name="imgsdata"></upimg-box>
+						<upimg-box @call-parent="callImgsData" :defaultImgsList="pageData.imgList" :defaultImgsData="imgsData" name="imgsdata"></upimg-box>
 					</div>
 					<div  :class="tab==''?'none':''">
 						<input  maxlength="-1" type="text" class="none" name="videourl" :value="mp4url" />
@@ -91,16 +91,16 @@
 			getPage: function () {
 				var that = this;
 				that.app.get({
-					url: that.app.apiHost + "/module.php?fromapp=wxapp&m=forum&ajax=1&a=add",
+					url: that.app.apiHost + "/forum/add",
 					data:{
 						id:id
 					},
 					success: function (res) {
-						that.pageData = res.data;
+						that.pageData = res;
 						
-						that.imgsData=res.data.data.imgsdata;
-						that.mp4url=res.data.data.videourl;
-						that.truemp4url=res.data.videourl;
+						that.imgsData=res.data.imgsdata;
+						that.mp4url=res.data.videourl;
+						that.truemp4url=res.data.true_videourl;
 						that.pageLoad = true;
 					}
 				})
@@ -109,7 +109,7 @@
 			formSubmit:function(e){
 				var that=this;
 				that.app.post({
-					url:that.app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=save&ajax=1",
+					url:that.app.apiHost+"/forum/save",
 					data:e.detail.value,
 					
 					success:function(res){

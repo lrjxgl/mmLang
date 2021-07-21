@@ -27,7 +27,7 @@ public class UserController {
 			return Login.unLogin();
 		}
 		UserModel userModel=new UserModel();
-		Map<String,Object> user=userModel.get(userid);
+		Map<String,Object> user=userModel.get(userid,"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
 		return JSON.toJSONString(redata);
@@ -40,7 +40,7 @@ public class UserController {
 			return Login.unLogin();
 		}
 		UserModel userModel=new UserModel();
-		Map<String,Object> user=userModel.get(userid);
+		Map<String,Object> user=userModel.get(userid,"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
 		return JSON.toJSONString(redata);
@@ -53,7 +53,7 @@ public class UserController {
 			return Login.unLogin();
 		}
 		UserModel userModel=new UserModel();
-		Map<String,Object> user=userModel.get(userid);
+		Map<String,Object> user=userModel.get(userid,"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
 		return JSON.toJSONString(redata);
@@ -164,7 +164,7 @@ public class UserController {
 			return Login.unLogin();
 		}
 		UserModel userModel=new UserModel();
-		Map<String,Object> user=userModel.get(userid);
+		Map<String,Object> user=userModel.get(userid,"");
 		String telephone=user.get("telephone")+"";
 		Map<String,Object> redata=new HashMap<String,Object>();
 		int yzm=(int)(Math.random()*10000);

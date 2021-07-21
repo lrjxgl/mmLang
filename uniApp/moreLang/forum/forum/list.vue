@@ -9,9 +9,9 @@
 			<view class="emptyData" v-if="Object.keys(list).length==0">暂无帖子</view>
 			<view  class="sglist-item" v-for="(item,fkey) in list" :key="fkey">
 				<view @click="goUser(item.userid)"  class="flex mgb-5">
-					<image :src="item.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
+					<image :src="item.user.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
 					<view class="flex-1">
-						<view class="f14 mgb-5">{{item.nickname}}</view>
+						<view class="f14 mgb-5">{{item.user.nickname}}</view>
 						<view class="f12 cl3">{{item.timeago}}</view>
 					</view>
 				</view>
@@ -87,7 +87,7 @@
 			getPage:function(){
 				var that=this;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?m=forum&a=list&ajax=1",
+					url:that.app.apiHost+"/forum/list",
 					data:{
 						gid:this.gid,
 						catid:this.catid
@@ -99,15 +99,15 @@
 								url:"/pages/login/index",
 							})
 						}else{
-							that.catList=res.data.catlist;
-							that.group=res.data.group;
+							that.catList=res.catList;
+							that.group=res.group;
 							that.isFirst=false;
 							that.pageLoad=true;
-							that.list=res.data.list;
-							that.per_page=res.data.per_page;
+							that.list=res.list;
+							that.per_page=res.per_page;
 							 
 							uni.setNavigationBarTitle({
-								title: res.data.group.title
+								title: res.group.title
 							});
 						}
 						 
@@ -124,7 +124,7 @@
 				var that=this;
 				if(!that.isFirst && that.per_page==0) return false;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?m=forum&a=list&ajax=1",
+					url:that.app.apiHost+"/forum/list",
 					data:{
 						per_page:that.per_page,
 						catid:that.catid,
@@ -134,13 +134,13 @@
 						if(res.error){
 							return false;
 						}
-						that.per_page=res.data.per_page; 
+						that.per_page=res.per_page; 
 						if(that.isFirst){
-							that.list=res.data.list;
+							that.list=res.list;
 							that.isFirst=false;
 						}else{
-							for(var i in res.data.list){
-								that.list.push(res.data.list[i])
+							for(var i in res.list){
+								that.list.push(res.list[i])
 							}
 							
 						}

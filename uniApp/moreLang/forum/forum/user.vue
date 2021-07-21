@@ -24,7 +24,7 @@
 				</div>
 
 				<div class="row-box mgb-5">
-					<div  @click="gourl('../../pageforum/forum/my')"  class="row-item">
+					<div  @click="gourl('../../forum/forum/my')"  class="row-item">
 						<div class="row-item-icon icon-news  cl-u"></div>
 						<div class="row-item-title">我的贴子</div>
 					</div>
@@ -33,11 +33,11 @@
 						<div class="row-item-title">我的私信</div>
 					</div>
 					
-					<div  @click="gourl('../../pageforum/forum_comment/my')" class="row-item">
+					<div  @click="gourl('../../forum/forum_comment/my')" class="row-item">
 						<div class="row-item-icon icon-comment  cl-u"></div>
 						<div class="row-item-title">我的评论</div>
 					</div>
-					<div  @click="gourl('../../pageforum/forum/myfav')" class="row-item">
+					<div  @click="gourl('../../forum/forum/myfav')" class="row-item">
 						<div class="row-item-icon icon-favor  cl-u"></div>
 						<div class="row-item-title">我的收藏</div>
 					</div>
@@ -111,16 +111,16 @@
 			getPage: function() {
 				var that = this;
 				that.app.get({
-					url: that.app.apiHost + "/module.php?m=forum&a=user",
+					url: that.app.apiHost + "/forum/user",
 					unLogin:true,
 					success: function(res) {
 						if(res.error){
 							that.unLogin=true;
 						}else{
 							that.unLogin=false;
-							that.user = res.data.user;
-							that.topic_num=res.data.topic_num;
-							that.comment_num=res.data.comment_num;
+							that.user = res.user;
+							that.topic_num=res.topic_num;
+							that.comment_num=res.comment_num;
 						}
 						that.pageLoad = true;
 						

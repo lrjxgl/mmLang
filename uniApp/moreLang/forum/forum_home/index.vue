@@ -28,9 +28,9 @@
 		<div v-for="(item,index) in list" :key="index" @click="goBlog(item.id)" class="sglist-item">
 			<div class="sglist-title">{{item.title}}</div>
 			<div class="sglist-desc">{{item.description}}</div>
-			<div v-if="item.imgslist" class="sglist-imglist">
+			<div v-if="item.imgList.length>0" class="sglist-imglist">
 				 
-				<img v-for="(cc,ii) in item.imgslist" :key="ii" :src="cc+'.100x100.jpg'" class="sglist-imglist-img" />
+				<img v-for="(cc,ii) in item.imgList" :key="ii" :src="cc+'.100x100.jpg'" class="sglist-imglist-img" />
 				 
 			</div>
 			<div class="sglist-ft">
@@ -78,15 +78,15 @@
 			getPage:function(){
 				var that=this;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?m=forum_home&a=api&ajax=1",
+					url:that.app.apiHost+"/forum_home/index",
 					data:{
 						userid:this.userid
 					},
 					dataType:"json",
 					success:function(res){
 						that.pageLoad=true;
-						that.list=res.data.list;
-						that.user=res.data.user;
+						that.list=res.list;
+						that.user=res.user;
 					}
 				})
 			},

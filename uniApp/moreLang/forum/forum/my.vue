@@ -1,8 +1,8 @@
 <template>
 	<view v-if="pageLoad">
-		<div v-if="pageData.list.length==0" class="emptyData">暂无发帖</div>
+		<div v-if="list.length==0" class="emptyData">暂无发帖</div>
 		<view class="sglist" v-else>
-			<view  class="sglist-item" v-for="(item,fkey) in pageData.list" :key="fkey">
+			<view  class="sglist-item" v-for="(item,fkey) in  list" :key="fkey">
 			 
 				<div @click="goForum(item.id)" class="flex mgb-5">
 					<div v-if="item.videourl" class="iconfont cl-red mgr-5 icon-video"></div>
@@ -34,27 +34,23 @@
 </template>
 
 <script> 
-	var app= require("../../common/common.js"); 
-	var per_page=0;
-	var isfirst=true;
-	var catid=0;
-	var gid=0;
+ 
+	 
 	export default{
 	
 		data:function(){
 			return {
 				pageLoad:false, 
 				pageHide:false,
-				pageData:{},
+				list:[],
+				isFirst:true,
+				catid:0,
+				gid:0,
+				per_page:0
 			}
 			
 		},
 		onLoad:function(option){
-			gid=option.gid;
-			catid=option.catid;
-			uni.setNavigationBarTitle({
-				title: '我的帖子'
-			});
 			this.getPage();
 		},
 		 
@@ -76,74 +72,36 @@
 		methods:{
 			getPage:function(){
 				var that=this;
-				uni.request({
-					url:app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=my&ajax=1",
-					data:{
-						gid:gid,
-						catid:catid,
-						authcode:app.getAuthCode()
-					},
+				that.app.get({
+					url:that.app.apiHost+"/forum/my",
 					success:function(res){
-						//登录
-						if(res.data.error==1000){
-							uni.navigateTo({
-								url:"/pages/login/index",
-							})
-						}else{
-							isfirst=false;
-							that.pageLoad=true;
-							that.pageData=res.data.data;
-							per_page=res.data.data.per_page;
-						}
+						that.isFirst=false;
+						that.pageLoad=true;
+						that.list=res.list;
+						that.per_page=res.per_page;
 						 
 					}
 				})
 			},
-			setCat:function(cid){
-				catid=cid;
-				isfirst=true;
-				per_page=0;
-				if(catid==0){
-					this.defaultActive=activeClass;
-				}else{
-					this.defaultActive="";
-				}
-				var catlist=this.pageData.catlist;
-				for(var i in catlist){
-					if(catlist[i].catid==catid){
-						catlist[i].isactive=1;
-					}else{
-						catlist[i].isactive=0;
-					}
-				}
-				this.pageData.catlist=catlist;
-				this.getList();
-			 },
+			 
 			getList:function(){
 				var that=this;
-				if(!isfirst && per_page==0) return false;
-				uni.request({
-					url:app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=my&ajax=1",data:{
-						per_page:per_page,
-						catid:catid,
-						gid:gid,
-						authcode:app.getAuthCode()
-					},
+				if(!that.isFirst && that.per_page==0) return false;
+				that.app.get({
+					url:that.app.apiHost+"/forum/my",
 					success:function(res){
-						
-						if(!res.data.error){
-							if(isfirst){
-								that.pageData.list=res.data.data.list;
-								isfirst=false;
-							}else{
-								
-								that.pageData.list=app.json_add(that.pageData.list,res.data.data.list);
+						if(that.isFirst){
+							that.list=res.list;
+						}else{
+							for(var i in res.list){
+								that.list.push(res.list[i])
 							}
-							per_page=res.data.data.per_page;  
-							
 						}
+						that.isFirst=false;
+						that.pageLoad=true;
 						
-						
+						that.per_page=res.per_page;
+						 
 					}
 				})
 			},
@@ -168,16 +126,13 @@
 					content: '删除后不可恢复，确认删除？',
 					success: function (res) {
 						if (res.confirm) {
-							uni.request({
-								url:app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=delete&ajax=1&id="+id,
-								data:{
-									authcode:app.getAuthCode()
-								},
+							that.app.get({
+								url:that.app.apiHost+"/forum/delete?id="+id,
 								success:function(res){
 									uni.showToast({
-										title:res.data.message
+										title:res.message
 									});
-									if(!res.data.error){
+									if(!res.error){
 										that.getPage();
 									}
 								}

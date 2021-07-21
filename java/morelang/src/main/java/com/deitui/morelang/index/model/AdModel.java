@@ -26,7 +26,7 @@ public class AdModel extends Model {
         }
         for(int i=0;i<len;i++){
             Object obj=list.get(i);
-            JSONObject json= JSONObject.parseObject(JSONObject.toJSONString(obj));
+            JSONObject json= (JSONObject) JSONObject.toJSON(obj);
             json.put("imgurl", AppConfig.IMAGES_SITE +json.get("imgurl"));
             if(json.get("imgurl2")!=""){
                 json.put("imgurl2", AppConfig.IMAGES_SITE +json.get("imgurl2"));

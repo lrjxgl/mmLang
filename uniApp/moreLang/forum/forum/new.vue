@@ -4,9 +4,9 @@
 		<view class="sglist" v-else>
 			<view  class="sglist-item" v-for="(item,fkey) in  list" :key="fkey">
 				<view @click="goUser(item.userid)"  class="flex mgb-5">
-					<image :src="item.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
+					<image :src="item.user.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
 					<view class="flex-1">
-						<view class="f14 mgb-5">{{item.nickname}}</view>
+						<view class="f14 mgb-5">{{item.user.nickname}}</view>
 						<view class="f12 cl3">{{item.timeago}}</view>
 					</view>
 				</view>
@@ -14,8 +14,8 @@
 					<div v-if="item.videourl" class="iconfont cl-red mgr-5 icon-video"></div>
 					<div class="flex-1">{{item.title}}</div>
 				</div>		
-				<view @click="goForum(item.id)" class="sglist-imglist" v-if="item.imgslist">                   
-					<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="sglist-imglist-img"  mode="widthFix" ></image>
+				<view @click="goForum(item.id)" class="sglist-imglist" v-if="item.imgList.length>0">                   
+					<image v-for="(img,imgIndex) in item.imgList" :key="imgIndex" :src="img+'.100x100.jpg'" class="sglist-imglist-img"  mode="widthFix" ></image>
 				</view>
 				
 				<view class="flex sglist-ft">
@@ -77,15 +77,15 @@
 			getPage:function(){
 				var that=this;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=new&ajax=1",
+					url:that.app.apiHost+"/forum/new",
 					success:function(res){
 						if(res.error){
 							return false;
 						}
 						that.isFirst=false;
 						that.pageLoad=true;
-						that.list=res.data.list;
-						that.per_page=res.data.per_page;
+						that.list=res.list;
+						that.per_page=res.per_page;
 						 
 					}
 				})
@@ -95,7 +95,7 @@
 				var that=this;
 				if(!that.isFIrst && that.per_page==0) return false;
 				that.app.get({
-					url:that.app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=new&ajax=1",
+					url:that.app.apiHost+"/forum/new",
 					data:{
 						per_page:that.per_page
 					},
@@ -105,14 +105,14 @@
 						}
 						if(that.isFirst){
 							that.isFirst=false;
-							that.list=res.data.list;
+							that.list=res.list;
 						}else{
-							for(var i in res.data.list){
-								that.list.push(res.data.list[i]);
+							for(var i in res.list){
+								that.list.push(res.list[i]);
 							}
 						}
 						 
-						that.per_page=res.data.per_page;
+						that.per_page=res.per_page;
 						 
 					}
 				})

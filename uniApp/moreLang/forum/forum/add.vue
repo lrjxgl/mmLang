@@ -13,7 +13,7 @@
 					</view>
 					<view class="input-flex">
 						<view class="input-flex-label">选择板块</view> 							
-						<pickergroup @call-parent="setCat" class="flex flex-1" placeholder="请选择"   :defaultGid="gid" :defaultCatid="catid"   :data="pageData.grouplist"></pickergroup>						 
+						<pickergroup @call-parent="setCat" class="flex flex-1" placeholder="请选择"   :defaultGid="gid" :defaultCatid="catid"   :data="grouplist"></pickergroup>						 
 					</view>
 
 					<view class="textarea-flex">
@@ -63,7 +63,8 @@
 				loginBack:false,
 				gid:0,
 				catid:0,
-				unLogin:true
+				unLogin:true,
+				grouplist:[]
 			}
 			
 		},
@@ -107,7 +108,7 @@
 			getPage: function () {
 				var that = this;
 				that.app.get({
-					url: that.app.apiHost + "/module.php?fromapp=wxapp&m=forum&ajax=1&a=add",
+					url: that.app.apiHost + "/forum/add",
 					data:{
 						catid:this.catid,
 						gid:this.gid
@@ -122,7 +123,7 @@
 						}
 						that.unLogin=false;
 						that.pageLoad = true;
-						that.pageData = res.data;
+						that.grouplist = res.grouplist;
 						
 					}
 				})
@@ -131,14 +132,16 @@
 			formSubmit:function(e){
 				var that=this;
 				that.app.post({
-					url:that.app.apiHost+"/module.php?fromapp=wxapp&m=forum&a=save&ajax=1",
+					url:that.app.apiHost+"/forum/save",
 					data:e.detail.value,
 					
 					success:function(res){
 						uni.showToast({
 							title: res.message,
-							duration: 2000
+							duration: 2000,
+							icon:"none"
 						});
+						return false;
 						if(!res.error){
 							setTimeout(function(){
 								uni.navigateBack({

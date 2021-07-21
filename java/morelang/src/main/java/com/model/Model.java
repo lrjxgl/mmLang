@@ -35,7 +35,7 @@ public class Model {
     public  Boolean  setHost(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql:///www.fd175.com");
+        dataSource.setUrl("jdbc:mysql:///mmLang");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         try {
@@ -108,7 +108,12 @@ public class Model {
         Object[] objs = new Object[]{};
         PreparedStatementCreator psc = pscFactory.newPreparedStatementCreator(objs);
         this.DB.update(psc,keyHolder);
-        return keyHolder.getKey().intValue();
+        if(keyHolder.getKey()==null) {
+        	return 0;
+        }else {
+        	return keyHolder.getKey().intValue();
+        }
+       
     }
     public  Boolean update(Map<String,Object> map,String where){
         String sql="update  "+ this.preTable +" set ";
@@ -201,6 +206,7 @@ public class Model {
             if(row.size()==0){
                 return "";
             }
+           
             return row.get("ct")+"";
         }catch (Exception e){
             return "";
@@ -232,5 +238,10 @@ public class Model {
     public List Dselect(){
         return new ArrayList();
     }
-
+    
+    public Map postData() {
+    	
+    	return new HashMap();
+    }
+    
 }

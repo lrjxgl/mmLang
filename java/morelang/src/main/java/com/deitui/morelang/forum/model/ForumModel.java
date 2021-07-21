@@ -1,9 +1,13 @@
 package com.deitui.morelang.forum.model;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.deitui.morelang.index.model.UserModel;
 import com.model.AppConfig;
+import com.model.Help;
 import com.model.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +20,33 @@ public class ForumModel extends  Model {
 
         List list=this.select();
         int len=list.size();
+        if(len==0) {
+        	return list;
+        }
+        ArrayList uids=new ArrayList(); 
+        for(int i=0;i<len;i++){
+        	Object obj=list.get(i);
+            JSONObject json= (JSONObject) JSONObject.toJSON(obj);
+            uids.add(json.getIntValue("userid"));
+        }
+        UserModel userModel=new UserModel();
+        List us=userModel.getListByIds(uids);
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         for(int i=0;i<len;i++){
             Object obj=list.get(i);
-            JSONObject json= JSONObject.parseObject(JSONObject.toJSONString(obj));
+            JSONObject json= (JSONObject) JSONObject.toJSON(obj);
+            
             json.put("imgurl", AppConfig.IMAGES_SITE +json.get("imgurl"));
             String imgsdata=json.get("imgsdata")+"";
             String imgList[]=imgsdata.split(",");
             for(int ii=0;ii<imgList.length;ii++){
                 imgList[ii]=AppConfig.IMAGES_SITE+imgList[ii];
             }
+            json.put("timeago", sdf.format(json.getSqlDate("createtime")));
             json.put("imgList",imgList);
+           
+            json.put("user",Help.getObjectByKey(us, "userid", json.get("userid")+"" ) );
             list.set(i,json);
         }
         return list;

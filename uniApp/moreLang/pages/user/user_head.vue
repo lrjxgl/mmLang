@@ -47,7 +47,13 @@
 							
 							success: function(res){
 								var data=JSON.parse(res.data);
-								
+								if(data.error){
+									uni.showToast({
+										title:data.message,
+										icon:"none"
+									})
+									return false;
+								}
 								uni.request({
 									url:that.app.apiHost+"/user/headsave?token="+that.app.getToken(),
 									data:{

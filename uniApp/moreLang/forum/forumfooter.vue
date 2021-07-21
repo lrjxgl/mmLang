@@ -25,29 +25,29 @@
 		methods:{
 			goSearch:function(){
 				uni.reLaunch({
-					url:"../../pageforum/forum/search"
+					url:"../../forum/forum/search"
 				})
 			},
 			goHome:function(){
 				uni.reLaunch({
-					url:"../../pageforum/forum/index"
+					url:"../../forum/forum/index"
 				})
 			},
 			 
 			goFenlei:function(){
 				uni.reLaunch({
-					url:"../../pageforum/forum_group/index"
+					url:"../../forum/forum_group/index"
 				})
 			},
 			 
 			goAdd:function(){
 				uni.navigateTo({
-					url:"../../pageforum/forum/add"
+					url:"../../forum/forum/add"
 				})
 			},
 			goUser:function(){
 				uni.reLaunch({
-					url:"../../pageforum/forum/user"
+					url:"../../forum/forum/user"
 				})
 			}
 		}
