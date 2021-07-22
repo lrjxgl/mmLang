@@ -32,10 +32,12 @@ public class UserModel extends Model {
 		}
 		return list;
 	}
-	public List getListByIds(ArrayList ids) {
-		
+	public List getListByIds(ArrayList ids,String fields) {
+		if(fields=="") {
+			fields="userid,user_head,nickname,description";
+		}
 		String idStr=Help._implode(ids); 
-		List list=this.where(" userid in("+idStr+") ").Dselect();
+		List list=this.fields(fields).where(" userid in("+idStr+") ").Dselect();
 		return list;
 	}
 }

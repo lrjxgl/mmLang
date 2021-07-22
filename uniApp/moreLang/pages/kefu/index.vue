@@ -58,13 +58,12 @@
 			getPage:function(){
 				var that=this;
 				this.app.get({
-					url:this.app.apiHost+"/index.php?m=kefu&a=data&ajax=1",
+					url:this.app.apiHost+"/kefu/index",
 					
 					dataType:"json",
 					success:function(res){
 						that.pageLoad=true;
-						that.pageData=res.data
-						console.log(res.data);
+						that.pageData=res;
 					}
 				})
 			},
@@ -72,7 +71,7 @@
 				var that=this;
 				if(this.content=="") return false;
 				that.app.post({
-					url:that.app.apiHost+"/index.php?m=kefu&a=save&ajax=1",
+					url:that.app.apiHost+"/kefu/save",
 					data:{
 						content:this.content
 					},

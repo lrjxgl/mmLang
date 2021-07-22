@@ -1,4 +1,7 @@
 package com.deitui.morelang.index.index;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +12,9 @@ import com.model.Model;
 public class IndexController {
 	@RequestMapping("/")
 	public String Index() {
-		return "hello Index aa ss";
+		Map<String,Object> redata=new HashMap<String,Object>();
+		redata.put("error", 0);
+		redata.put("message", "success");
+		return JSON.toJSONString(redata);
 	}
 }

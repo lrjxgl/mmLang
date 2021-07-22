@@ -30,7 +30,7 @@ public class ForumModel extends  Model {
             uids.add(json.getIntValue("userid"));
         }
         UserModel userModel=new UserModel();
-        List us=userModel.getListByIds(uids);
+        List us=userModel.getListByIds(uids,"");
         String strDateFormat = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         for(int i=0;i<len;i++){
@@ -50,5 +50,14 @@ public class ForumModel extends  Model {
             list.set(i,json);
         }
         return list;
+    }
+    
+    public List getListByIds(ArrayList ids,String fields) {
+    	if(fields=="") {
+			fields="*";
+		}
+		String idStr=Help._implode(ids); 
+		List list=this.fields(fields).where(" id in("+idStr+") ").Dselect();
+		return list;
     }
 }

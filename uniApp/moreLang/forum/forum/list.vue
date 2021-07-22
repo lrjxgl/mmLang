@@ -7,32 +7,7 @@
 		</view>
 		<view class="sglist">
 			<view class="emptyData" v-if="Object.keys(list).length==0">暂无帖子</view>
-			<view  class="sglist-item" v-for="(item,fkey) in list" :key="fkey">
-				<view @click="goUser(item.userid)"  class="flex mgb-5">
-					<image :src="item.user.user_head+'.100x100.jpg'" class="wh-40 mgr-5 bd-radius-50"></image>
-					<view class="flex-1">
-						<view class="f14 mgb-5">{{item.user.nickname}}</view>
-						<view class="f12 cl3">{{item.timeago}}</view>
-					</view>
-				</view>
-				<div @click="goForum(item.id)" class="flex mgb-5">
-					<div v-if="item.videourl" class="iconfont cl-red mgr-5 icon-video"></div>
-					<div class="flex-1">{{item.title}}</div>
-				</div>		
-				<view @click="goForum(item.id)" class="sglist-imglist" v-if="item.imgslist">                   
-					<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="sglist-imglist-img"  mode="widthFix" ></image>
-				</view>
-				
-				<view class="flex sglist-ft">
-					<view class="sglist-ft-love">
-						{{item.love_num}} </view>
-					<view class="sglist-ft-cm">
-						{{item.comment_num}} </view>
-					<view class="sglist-ft-view">
-						{{item.view_num}} </view>
-				</view>
-			</view>
-			
+			<list-item :dlist="list"></list-item>
 		</view>
 		<go-top></go-top>
 		<navigator :url="'../forum/add?gid='+gid+'&catid='+catid" class="fixedAdd">发布</navigator>
@@ -40,8 +15,11 @@
 </template>
 
 <script> 
+	import listItem from "../list-item.vue";
 	export default{
-	
+		components:{
+			listItem
+		},
 		data:function(){
 			return {
 				pageLoad:false, 

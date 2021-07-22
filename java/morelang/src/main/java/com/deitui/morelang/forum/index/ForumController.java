@@ -6,6 +6,7 @@ import com.deitui.morelang.forum.model.ForumGroupModel;
 import com.deitui.morelang.forum.model.ForumModel;
 import com.deitui.morelang.forum.model.ForumTagsModel;
 import com.deitui.morelang.index.model.AdModel;
+import com.deitui.morelang.index.model.FollowModel;
 import com.deitui.morelang.index.model.UserModel;
 import com.model.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -94,11 +95,16 @@ public class ForumController {
     		@RequestParam(value="token",defaultValue="") String token,
     		@RequestParam(value="id",defaultValue="") int id
     ){
-    	int userid=Login.isLogin(token);
+    	int ssuserid=Login.isLogin(token);
     	ForumModel forumModel=new ForumModel();
     	Map data=forumModel.where("id="+id).selectRow();
     	UserModel u=new UserModel();
     	Map author=u.get(Integer.parseInt(data.get("userid")+""),"");
+    	//判断是否关注
+    	int userid= Integer.parseInt(data.get("userid")+"");
+    	FollowModel fm=new FollowModel();
+    	author.put("isFollow", fm.isFollow(ssuserid, userid));
+    
     	Map<String,Object> redata=new HashMap<String,Object>();
         redata.put("error",0);
         redata.put("message","succcess");

@@ -12,8 +12,8 @@
 				<div v-if="item.videourl" class="iconfont cl-red mgr-5 icon-video"></div>
 				<div class="flex-1">{{item.title}}</div>
 			</div>		
-			<view @click="goForum(item.id)" class="sglist-imglist" v-if="item.imgslist">                   
-				<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="sglist-imglist-img"  mode="widthFix" ></image>
+			<view @click="goForum(item.id)" class="sglist-imglist" v-if="item.imgList">                   
+				<image v-for="(img,imgIndex) in item.imgList" :key="imgIndex" :src="img+'.100x100.jpg'" class="sglist-imglist-img"  mode="widthFix" ></image>
 			</view>
 			
 			<view class="flex sglist-ft">

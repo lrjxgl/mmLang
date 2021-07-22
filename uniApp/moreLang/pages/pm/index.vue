@@ -8,11 +8,11 @@
 			<view v-else class="pmList">
 				<view @click="goPm(item.t_userid)" class="row-box mgb-5" v-for="(item,index) in list" :key="index">
 					<view class="flex flex-ai-center" v-if="item.isme">
-						<image class="pm-head mgr-5" :src="item.t_user_head+'.100x100.jpg'" mode="widthFix" ></image>
+						<image class="pm-head mgr-5" :src="item.user.user_head+'.100x100.jpg'" mode="widthFix" ></image>
 						<div class="flex-1">
 							<div class="flex mgb-5">
 								<text v-if="item.status==0" class="badge badge-mini"></text>
-								<div class="mgr-5 f12 cl3 mgr-10 ">{{item.t_nickname}} </div>
+								<div class="mgr-5 f12 cl3 mgr-10 ">{{item.user.nickname}} </div>
 
 								<div class="f12 cl3">{{item.timeago}}</div>
 								<div class="flex-1"></div>
@@ -26,11 +26,11 @@
 						<img class="pm-head mgl-5" :src="item.user_head+'.100x100.jpg'" />
 					</view>
 					<view class="flex flex-ai-center" v-else>
-						<image class="pm-head mgr-5" :src="item.t_user_head+'.100x100.jpg'" mode="widthFix"></image>
+						<image class="pm-head mgr-5" :src="item.user.user_head+'.100x100.jpg'" mode="widthFix"></image>
 						<div class="flex-1">
 							<div class="flex">
 								<text v-if="item.status==0" class="badge badge-mini"></text>
-								<div class="mgb-5 f12 cl3">{{item.t_nickname}}</div>
+								<div class="mgb-5 f12 cl3">{{item.user.nickname}}</div>
 								<div class="flex-1"></div>
 								<div class="f12 cl3">{{item.timeago}}</div>
 
@@ -94,7 +94,7 @@
 			getPage: function() {
 				var that = this;
 				that.app.get({
-					url: that.app.apiHost + "/index.php?m=pm&ajax=1",
+					url: that.app.apiHost + "/pm/index",
 					unLogin: true,
 					success: function(res) {
 						if (res.error == 1000) {
@@ -102,7 +102,7 @@
 							 
 						}else{
 							that.unLogin = false;
-							that.list = res.data.msglist;
+							that.list = res.msgList;
 							uni.pageScrollTo({
 								scrollTop:10000
 							})
@@ -118,19 +118,19 @@
 					return false;
 				}
 				that.app.get({
-					url: that.app.apiHost + "/index.php?m=pm&ajax=1",
+					url: that.app.apiHost + "/pm/index",
 					data: {
 						per_page: that.per_page
 					},
 					success: function(res) {
-						that.per_page = res.data.per_page;
+						that.per_page = res.per_page;
 						if (that.isFirst) {
-							for (var i in res.data.msglist) {
-								that.list.push(res.data.msglist[i]);
+							for (var i in res.msgList) {
+								that.list.push(res.msgList[i]);
 							}
 							that.isFirst = false;
 						} else {
-							that.list = res.data.msglist;
+							that.list = res.msgList;
 						}
 						uni.pageScrollTo({
 							scrollTop:10000

@@ -16,13 +16,13 @@
 						</div>
 						
 					</div>
-					<img class="pm-head mgl-5" :src="item.user_head+'.100x100.jpg'" />
+					<img class="pm-head mgl-5" :src="ssuser.user_head+'.100x100.jpg'" />
 				</view>
 				<view class="flex flex-ai-center" v-else>
-					<img class="pm-head mgr-5" :src="item.t_user_head+'.100x100.jpg'" />
+					<img class="pm-head mgr-5" :src="user.user_head+'.100x100.jpg'" />
 					<div class="flex-1">
 						<div class="flex mgb-5">
-							<div class="mgb-5 f12 cl3">{{item.t_nickname}}</div>
+							<div class="mgb-5 f12 cl3">{{user.nickname}}</div>
 							<div class="flex-1"></div>
 							<div class="f12 cl3">{{item.timeago}}</div>
 						</div>
@@ -61,7 +61,9 @@
 				oldsch: 0,
 				scrollTop: 10000,
 				time:0,
-				timer:0
+				timer:0,
+				ssuser:{},
+				user:{}
 			}
 		},
 		onLoad:function(ops){
@@ -119,7 +121,7 @@
 			getNew:function(){
 				var that=this;
 				that.app.get({
-					url:that.app.apiHost+"/index.php?m=pm&a=getnew&ajax=1",
+					url:that.app.apiHost+"/pm/getnew",
 					data:{
 						t_userid:that.t_userid
 					},
@@ -132,18 +134,20 @@
 			getPage:function(){
 				var that=this;
 				that.app.get({
-					url:that.app.apiHost+"/index.php?m=pm&a=detail&ajax=1",
+					url:that.app.apiHost+"/pm/detail",
 					data:{
 						t_userid:that.t_userid
 					},
 					success:function(res){
 						that.setTimer();
 						that.isFirst=false;
+						that.user=res.user;
+						that.ssuser=res.ssuser;
 						that.hasNew=0;
-						that.list=res.data.pmlist;
-						that.per_page=res.data.per_page;
+						that.list=res.pmList;
+						that.per_page=res.per_page;
 						uni.setNavigationBarTitle({
-							title:res.data.t_nickname
+							title:res.t_nickname
 						})
 						var it=setTimeout(function(){
 							const query = uni.createSelectorQuery().in(that);
@@ -165,7 +169,7 @@
 					return false;
 				}
 				that.app.get({
-					url:that.app.apiHost+"/index.php?m=pm&a=detail&ajax=1",
+					url:that.app.apiHost+"/pm/detail",
 					data:{
 						t_userid:that.t_userid,
 						per_page:that.per_page
@@ -173,10 +177,10 @@
 					success:function(res){
 						that.setTimer();
 						that.hasNew=0;
-						that.per_page=res.data.per_page;
+						that.per_page=res.per_page;
 						var list = that.list;
-						for (var i in res.data.pmlist) {
-							list.unshift(res.data.pmlist[i]);
+						for (var i in res.pmList) {
+							list.unshift(res.pmList[i]);
 						}						
 						that.list =list;
 						setTimeout(function() {
@@ -206,7 +210,7 @@
 			sendPm:function(){
 				var that=this;
 				that.app.post({
-					url:that.app.apiHost+"/index.php?m=pm&a=sendSave&ajax=1",
+					url:that.app.apiHost+"/pm/sendSave",
 					data:{
 						t_userid:that.t_userid,
 						content:that.content

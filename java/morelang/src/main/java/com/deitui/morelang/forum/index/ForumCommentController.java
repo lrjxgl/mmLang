@@ -56,4 +56,40 @@ public class ForumCommentController {
         return JSON.toJSONString(redata);
 	}
 	
+	@RequestMapping("/forum_comment/my")
+	public String My(
+			@RequestParam(value="token",defaultValue="") String token
+	) {
+		int userid=Login.isLogin(token);
+		if(userid==0) {
+			return Login.unLogin();
+		}
+		ForumCommentModel fc=new ForumCommentModel();
+		List list=fc.where("userid="+userid+" AND status in(0,1) ").Dselect();
+		Map<String,Object> redata=new HashMap<String,Object>();
+        redata.put("error",0);
+        redata.put("message","succcess");
+        redata.put("list", list);
+        return JSON.toJSONString(redata);
+	}
+	@RequestMapping("/forum_comment/delete")
+	public String Delete(
+			@RequestParam(value="token",defaultValue="") String token,
+			@RequestParam(value="id",defaultValue="0") int id
+	) {
+		int userid=Login.isLogin(token);
+		if(userid==0) {
+			return Login.unLogin();
+		}
+		ForumCommentModel fc=new ForumCommentModel();
+		Map indata=new HashMap();
+		indata.put("status", 11);
+		fc.update(indata, "id="+id);
+		Map<String,Object> redata=new HashMap<String,Object>();
+        redata.put("error",0);
+        redata.put("message","succcess");
+      
+        return JSON.toJSONString(redata);
+	}
+	
 }

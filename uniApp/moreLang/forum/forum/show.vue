@@ -22,12 +22,10 @@
 			</rich-text>
 
 			<view class="flex flex-center mgb-10">
-				<view class="btn-love  mgr-10" @click="loveToggle(data.id)" v-bind:class="isLove?'btn-love-active':''">
-					喜欢
-				</view>
 				 
-				<view class="btn-fav mgr-10" @click="favToggle(data.id)" v-bind:class="isFav?'btn-fav-active':''">收藏</view>
-
+				<love dtable="mod_forum" :dobjectid="data.id"></love> 
+				<fav dtable="mod_forum" :dobjectid="data.id"></fav> 
+				 
 			</view>
 		</view>
 		<view class="comment-hd">跟帖列表</view>
@@ -41,12 +39,15 @@
 <script>
 	import dUserbox from "../d-userbox.vue";
 	import cmform from "../../components/cmform.vue";
-	 
+	import love from "../../components/love.vue";
+	import fav from "../../components/fav.vue"; 
 	var id;
 	export default {
 		components: {
 			dUserbox,
-			cmform
+			cmform,
+			love,
+			fav
 		},
 		data:function(){
 			return {
@@ -129,43 +130,8 @@
 						})
 					}
 				})
-			},
-			favToggle:function(id){
-				var that=this;
-				that.app.get({
-					url:that.app.apiHost+"/fav/toggle",
-					data:{
-						objectid:id,
-						tablename:"mod_forum"  
-					},
-					success:function(res){
-						if(res.data=='delete'){
-							that.isFav=false;
-						}else{
-							that.isFav=true;
-						}
-						 
-					}
-				})
-			},
-			loveToggle:function(id){
-				var that=this;
-				that.app.get({
-					url:that.app.apiHost+"/love/toggle",
-					data:{
-						objectid:id,
-						tablename:"mod_forum"
-					},
-					success:function(res){
-						if(res.data=='delete'){
-							that.isLove=false;
-						}else{
-							that.isLove=true;
-						}
-						
-					}
-				})
 			}
+			 
 			
 		},
 	}

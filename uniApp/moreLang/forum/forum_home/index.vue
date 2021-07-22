@@ -25,25 +25,16 @@
 			<div v-else class="uBox-desc">{{user.description}}</div>
 		</div>
 		<div class="emptyData" v-if="!list || Object.keys(list).length==0">暂无帖子</div>
-		<div v-for="(item,index) in list" :key="index" @click="goBlog(item.id)" class="sglist-item">
-			<div class="sglist-title">{{item.title}}</div>
-			<div class="sglist-desc">{{item.description}}</div>
-			<div v-if="item.imgList.length>0" class="sglist-imglist">
-				 
-				<img v-for="(cc,ii) in item.imgList" :key="ii" :src="cc+'.100x100.jpg'" class="sglist-imglist-img" />
-				 
-			</div>
-			<div class="sglist-ft">
-				<div class="sglist-ft-love">{{item.love_num}}</div>
-				<div class="sglist-ft-cm">{{item.comment_num}}</div>
-				<div class="sglist-ft-view">{{item.view_num}}</div>
-			</div> 
-		</div>
+		<list-item v-else :dlist="list"></list-item>
 	</div>
 </template>
 
 <script>
+	import listItem from "../list-item.vue";
 	export default{
+		components:{
+			listItem
+		},
 	 
 		data:function(){
 			return {
