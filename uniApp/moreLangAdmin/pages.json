@@ -1,0 +1,1196 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "moreLangAdmin"
+		}
+	}, {
+		"path": "pages/ad/ad-nav",
+		"style": {
+			"navigationBarTitleText": "ad-ad-nav"
+		}
+	}, {
+		"path": "pages/ad/add",
+		"style": {
+			"navigationBarTitleText": "ad-add"
+		}
+	}, {
+		"path": "pages/ad/index",
+		"style": {
+			"navigationBarTitleText": "ad-index"
+		}
+	}, {
+		"path": "pages/ad/nav",
+		"style": {
+			"navigationBarTitleText": "ad-nav"
+		}
+	}, {
+		"path": "pages/admin/add",
+		"style": {
+			"navigationBarTitleText": "admin-add"
+		}
+	}, {
+		"path": "pages/admin/index",
+		"style": {
+			"navigationBarTitleText": "admin-index"
+		}
+	}, {
+		"path": "pages/admin_group/add",
+		"style": {
+			"navigationBarTitleText": "admin_group-add"
+		}
+	}, {
+		"path": "pages/admin_group/index",
+		"style": {
+			"navigationBarTitleText": "admin_group-index"
+		}
+	}, {
+		"path": "pages/ad_tags/add",
+		"style": {
+			"navigationBarTitleText": "ad_tags-add"
+		}
+	}, {
+		"path": "pages/ad_tags/index",
+		"style": {
+			"navigationBarTitleText": "ad_tags-index"
+		}
+	}, {
+		"path": "pages/apppush/add",
+		"style": {
+			"navigationBarTitleText": "apppush-add"
+		}
+	}, {
+		"path": "pages/apppush/index",
+		"style": {
+			"navigationBarTitleText": "apppush-index"
+		}
+	}, {
+		"path": "pages/apppush_plan/add",
+		"style": {
+			"navigationBarTitleText": "apppush_plan-add"
+		}
+	}, {
+		"path": "pages/apppush_plan/index",
+		"style": {
+			"navigationBarTitleText": "apppush_plan-index"
+		}
+	}, {
+		"path": "pages/article/add",
+		"style": {
+			"navigationBarTitleText": "article-add"
+		}
+	}, {
+		"path": "pages/article/index",
+		"style": {
+			"navigationBarTitleText": "article-index"
+		}
+	}, {
+		"path": "pages/article/tpl-add",
+		"style": {
+			"navigationBarTitleText": "article-tpl-add"
+		}
+	}, {
+		"path": "pages/article/tpl-list",
+		"style": {
+			"navigationBarTitleText": "article-tpl-list"
+		}
+	}, {
+		"path": "pages/article_comment/add",
+		"style": {
+			"navigationBarTitleText": "article_comment-add"
+		}
+	}, {
+		"path": "pages/article_comment/index",
+		"style": {
+			"navigationBarTitleText": "article_comment-index"
+		}
+	}, {
+		"path": "pages/article_data/add",
+		"style": {
+			"navigationBarTitleText": "article_data-add"
+		}
+	}, {
+		"path": "pages/article_data/index",
+		"style": {
+			"navigationBarTitleText": "article_data-index"
+		}
+	}, {
+		"path": "pages/attach/add",
+		"style": {
+			"navigationBarTitleText": "attach-add"
+		}
+	}, {
+		"path": "pages/attach/index",
+		"style": {
+			"navigationBarTitleText": "attach-index"
+		}
+	}, {
+		"path": "pages/badip/add",
+		"style": {
+			"navigationBarTitleText": "badip-add"
+		}
+	}, {
+		"path": "pages/badip/index",
+		"style": {
+			"navigationBarTitleText": "badip-index"
+		}
+	}, {
+		"path": "pages/badphone/add",
+		"style": {
+			"navigationBarTitleText": "badphone-add"
+		}
+	}, {
+		"path": "pages/badphone/index",
+		"style": {
+			"navigationBarTitleText": "badphone-index"
+		}
+	}, {
+		"path": "pages/bankcard/add",
+		"style": {
+			"navigationBarTitleText": "bankcard-add"
+		}
+	}, {
+		"path": "pages/bankcard/index",
+		"style": {
+			"navigationBarTitleText": "bankcard-index"
+		}
+	}, {
+		"path": "pages/blacklist/add",
+		"style": {
+			"navigationBarTitleText": "blacklist-add"
+		}
+	}, {
+		"path": "pages/blacklist/index",
+		"style": {
+			"navigationBarTitleText": "blacklist-index"
+		}
+	}, {
+		"path": "pages/blacklist_post/add",
+		"style": {
+			"navigationBarTitleText": "blacklist_post-add"
+		}
+	}, {
+		"path": "pages/blacklist_post/index",
+		"style": {
+			"navigationBarTitleText": "blacklist_post-index"
+		}
+	}, {
+		"path": "pages/category/add",
+		"style": {
+			"navigationBarTitleText": "category-add"
+		}
+	}, {
+		"path": "pages/category/index",
+		"style": {
+			"navigationBarTitleText": "category-index"
+		}
+	}, {
+		"path": "pages/checkin/add",
+		"style": {
+			"navigationBarTitleText": "checkin-add"
+		}
+	}, {
+		"path": "pages/checkin/index",
+		"style": {
+			"navigationBarTitleText": "checkin-index"
+		}
+	}, {
+		"path": "pages/checkin_index/add",
+		"style": {
+			"navigationBarTitleText": "checkin_index-add"
+		}
+	}, {
+		"path": "pages/checkin_index/index",
+		"style": {
+			"navigationBarTitleText": "checkin_index-index"
+		}
+	}, {
+		"path": "pages/city/add",
+		"style": {
+			"navigationBarTitleText": "city-add"
+		}
+	}, {
+		"path": "pages/city/index",
+		"style": {
+			"navigationBarTitleText": "city-index"
+		}
+	},  {
+		"path": "pages/config/index",
+		"style": {
+			"navigationBarTitleText": "config-index"
+		}
+	}, {
+		"path": "pages/coupon/add",
+		"style": {
+			"navigationBarTitleText": "coupon-add"
+		}
+	}, {
+		"path": "pages/coupon/index",
+		"style": {
+			"navigationBarTitleText": "coupon-index"
+		}
+	}, {
+		"path": "pages/coupon_user/add",
+		"style": {
+			"navigationBarTitleText": "coupon_user-add"
+		}
+	}, {
+		"path": "pages/coupon_user/index",
+		"style": {
+			"navigationBarTitleText": "coupon_user-index"
+		}
+	}, {
+		"path": "pages/crontab/add",
+		"style": {
+			"navigationBarTitleText": "crontab-add"
+		}
+	}, {
+		"path": "pages/crontab/index",
+		"style": {
+			"navigationBarTitleText": "crontab-index"
+		}
+	}, {
+		"path": "pages/dataapi/add",
+		"style": {
+			"navigationBarTitleText": "dataapi-add"
+		}
+	}, {
+		"path": "pages/dataapi/index",
+		"style": {
+			"navigationBarTitleText": "dataapi-index"
+		}
+	}, {
+		"path": "pages/daysn/add",
+		"style": {
+			"navigationBarTitleText": "daysn-add"
+		}
+	}, {
+		"path": "pages/daysn/index",
+		"style": {
+			"navigationBarTitleText": "daysn-index"
+		}
+	}, {
+		"path": "pages/dbcache/add",
+		"style": {
+			"navigationBarTitleText": "dbcache-add"
+		}
+	}, {
+		"path": "pages/dbcache/index",
+		"style": {
+			"navigationBarTitleText": "dbcache-index"
+		}
+	}, {
+		"path": "pages/dbsession/add",
+		"style": {
+			"navigationBarTitleText": "dbsession-add"
+		}
+	}, {
+		"path": "pages/dbsession/index",
+		"style": {
+			"navigationBarTitleText": "dbsession-index"
+		}
+	}, {
+		"path": "pages/district/add",
+		"style": {
+			"navigationBarTitleText": "district-add"
+		}
+	}, {
+		"path": "pages/district/index",
+		"style": {
+			"navigationBarTitleText": "district-index"
+		}
+	}, {
+		"path": "pages/express_fee/add",
+		"style": {
+			"navigationBarTitleText": "express_fee-add"
+		}
+	}, {
+		"path": "pages/express_fee/index",
+		"style": {
+			"navigationBarTitleText": "express_fee-index"
+		}
+	}, {
+		"path": "pages/express_fee_city/add",
+		"style": {
+			"navigationBarTitleText": "express_fee_city-add"
+		}
+	}, {
+		"path": "pages/express_fee_city/index",
+		"style": {
+			"navigationBarTitleText": "express_fee_city-index"
+		}
+	}, {
+		"path": "pages/fav/add",
+		"style": {
+			"navigationBarTitleText": "fav-add"
+		}
+	}, {
+		"path": "pages/fav/index",
+		"style": {
+			"navigationBarTitleText": "fav-index"
+		}
+	}, {
+		"path": "pages/follow/add",
+		"style": {
+			"navigationBarTitleText": "follow-add"
+		}
+	}, {
+		"path": "pages/follow/index",
+		"style": {
+			"navigationBarTitleText": "follow-index"
+		}
+	}, {
+		"path": "pages/followed/add",
+		"style": {
+			"navigationBarTitleText": "followed-add"
+		}
+	}, {
+		"path": "pages/followed/index",
+		"style": {
+			"navigationBarTitleText": "followed-index"
+		}
+	}, {
+		"path": "pages/friend/add",
+		"style": {
+			"navigationBarTitleText": "friend-add"
+		}
+	}, {
+		"path": "pages/friend/index",
+		"style": {
+			"navigationBarTitleText": "friend-index"
+		}
+	}, {
+		"path": "pages/friend_apply/add",
+		"style": {
+			"navigationBarTitleText": "friend_apply-add"
+		}
+	}, {
+		"path": "pages/friend_apply/index",
+		"style": {
+			"navigationBarTitleText": "friend_apply-index"
+		}
+	}, {
+		"path": "pages/gold_log/add",
+		"style": {
+			"navigationBarTitleText": "gold_log-add"
+		}
+	}, {
+		"path": "pages/gold_log/index",
+		"style": {
+			"navigationBarTitleText": "gold_log-index"
+		}
+	}, {
+		"path": "pages/grade_log/add",
+		"style": {
+			"navigationBarTitleText": "grade_log-add"
+		}
+	}, {
+		"path": "pages/grade_log/index",
+		"style": {
+			"navigationBarTitleText": "grade_log-index"
+		}
+	}, {
+		"path": "pages/guest/add",
+		"style": {
+			"navigationBarTitleText": "guest-add"
+		}
+	}, {
+		"path": "pages/guest/index",
+		"style": {
+			"navigationBarTitleText": "guest-index"
+		}
+	}, {
+		"path": "pages/imgs/add",
+		"style": {
+			"navigationBarTitleText": "imgs-add"
+		}
+	}, {
+		"path": "pages/imgs/index",
+		"style": {
+			"navigationBarTitleText": "imgs-index"
+		}
+	}, {
+		"path": "pages/invite/add",
+		"style": {
+			"navigationBarTitleText": "invite-add"
+		}
+	}, {
+		"path": "pages/invite/index",
+		"style": {
+			"navigationBarTitleText": "invite-index"
+		}
+	}, {
+		"path": "pages/invite_account/add",
+		"style": {
+			"navigationBarTitleText": "invite_account-add"
+		}
+	}, {
+		"path": "pages/invite_account/index",
+		"style": {
+			"navigationBarTitleText": "invite_account-index"
+		}
+	}, {
+		"path": "pages/invite_account_log/add",
+		"style": {
+			"navigationBarTitleText": "invite_account_log-add"
+		}
+	}, {
+		"path": "pages/invite_account_log/index",
+		"style": {
+			"navigationBarTitleText": "invite_account_log-index"
+		}
+	}, {
+		"path": "pages/kefu_msg/add",
+		"style": {
+			"navigationBarTitleText": "kefu_msg-add"
+		}
+	}, {
+		"path": "pages/kefu_msg/index",
+		"style": {
+			"navigationBarTitleText": "kefu_msg-index"
+		}
+	}, {
+		"path": "pages/kefu_msgindex/add",
+		"style": {
+			"navigationBarTitleText": "kefu_msgindex-add"
+		}
+	}, {
+		"path": "pages/kefu_msgindex/index",
+		"style": {
+			"navigationBarTitleText": "kefu_msgindex-index"
+		}
+	}, {
+		"path": "pages/love/add",
+		"style": {
+			"navigationBarTitleText": "love-add"
+		}
+	}, {
+		"path": "pages/love/index",
+		"style": {
+			"navigationBarTitleText": "love-index"
+		}
+	}, {
+		"path": "pages/maxid/add",
+		"style": {
+			"navigationBarTitleText": "maxid-add"
+		}
+	}, {
+		"path": "pages/maxid/index",
+		"style": {
+			"navigationBarTitleText": "maxid-index"
+		}
+	}, {
+		"path": "pages/model/add",
+		"style": {
+			"navigationBarTitleText": "model-add"
+		}
+	}, {
+		"path": "pages/model/index",
+		"style": {
+			"navigationBarTitleText": "model-index"
+		}
+	}, {
+		"path": "pages/model_index/add",
+		"style": {
+			"navigationBarTitleText": "model_index-add"
+		}
+	}, {
+		"path": "pages/model_index/index",
+		"style": {
+			"navigationBarTitleText": "model_index-index"
+		}
+	}, {
+		"path": "pages/module/add",
+		"style": {
+			"navigationBarTitleText": "module-add"
+		}
+	}, {
+		"path": "pages/module/index",
+		"style": {
+			"navigationBarTitleText": "module-index"
+		}
+	}, {
+		"path": "pages/navbar/add",
+		"style": {
+			"navigationBarTitleText": "navbar-add"
+		}
+	}, {
+		"path": "pages/navbar/index",
+		"style": {
+			"navigationBarTitleText": "navbar-index"
+		}
+	}, {
+		"path": "pages/navbar/nav-tab",
+		"style": {
+			"navigationBarTitleText": "navbar-nav-tab"
+		}
+	}, {
+		"path": "pages/notice/add",
+		"style": {
+			"navigationBarTitleText": "notice-add"
+		}
+	}, {
+		"path": "pages/notice/index",
+		"style": {
+			"navigationBarTitleText": "notice-index"
+		}
+	}, {
+		"path": "pages/openlogin/add",
+		"style": {
+			"navigationBarTitleText": "openlogin-add"
+		}
+	}, {
+		"path": "pages/openlogin/index",
+		"style": {
+			"navigationBarTitleText": "openlogin-index"
+		}
+	}, {
+		"path": "pages/open_alioss/add",
+		"style": {
+			"navigationBarTitleText": "open_alioss-add"
+		}
+	}, {
+		"path": "pages/open_alioss/index",
+		"style": {
+			"navigationBarTitleText": "open_alioss-index"
+		}
+	}, {
+		"path": "pages/open_alipay/add",
+		"style": {
+			"navigationBarTitleText": "open_alipay-add"
+		}
+	}, {
+		"path": "pages/open_alipay/index",
+		"style": {
+			"navigationBarTitleText": "open_alipay-index"
+		}
+	}, {
+		"path": "pages/open_alipay_app/add",
+		"style": {
+			"navigationBarTitleText": "open_alipay_app-add"
+		}
+	}, {
+		"path": "pages/open_alipay_app/index",
+		"style": {
+			"navigationBarTitleText": "open_alipay_app-index"
+		}
+	}, {
+		"path": "pages/open_alipay_mini/add",
+		"style": {
+			"navigationBarTitleText": "open_alipay_mini-add"
+		}
+	}, {
+		"path": "pages/open_alipay_mini/index",
+		"style": {
+			"navigationBarTitleText": "open_alipay_mini-index"
+		}
+	}, {
+		"path": "pages/open_baidu/add",
+		"style": {
+			"navigationBarTitleText": "open_baidu-add"
+		}
+	}, {
+		"path": "pages/open_baidu/index",
+		"style": {
+			"navigationBarTitleText": "open_baidu-index"
+		}
+	}, {
+		"path": "pages/open_qq/add",
+		"style": {
+			"navigationBarTitleText": "open_qq-add"
+		}
+	}, {
+		"path": "pages/open_qq/index",
+		"style": {
+			"navigationBarTitleText": "open_qq-index"
+		}
+	}, {
+		"path": "pages/open_toutiao/add",
+		"style": {
+			"navigationBarTitleText": "open_toutiao-add"
+		}
+	}, {
+		"path": "pages/open_toutiao/index",
+		"style": {
+			"navigationBarTitleText": "open_toutiao-index"
+		}
+	}, {
+		"path": "pages/open_wxapp/add",
+		"style": {
+			"navigationBarTitleText": "open_wxapp-add"
+		}
+	}, {
+		"path": "pages/open_wxapp/index",
+		"style": {
+			"navigationBarTitleText": "open_wxapp-index"
+		}
+	}, {
+		"path": "pages/open_wxnative/add",
+		"style": {
+			"navigationBarTitleText": "open_wxnative-add"
+		}
+	}, {
+		"path": "pages/open_wxnative/index",
+		"style": {
+			"navigationBarTitleText": "open_wxnative-index"
+		}
+	}, {
+		"path": "pages/pagetpl/add",
+		"style": {
+			"navigationBarTitleText": "pagetpl-add"
+		}
+	}, {
+		"path": "pages/pagetpl/index",
+		"style": {
+			"navigationBarTitleText": "pagetpl-index"
+		}
+	}, {
+		"path": "pages/pay_log/add",
+		"style": {
+			"navigationBarTitleText": "pay_log-add"
+		}
+	}, {
+		"path": "pages/pay_log/index",
+		"style": {
+			"navigationBarTitleText": "pay_log-index"
+		}
+	}, {
+		"path": "pages/permission/add",
+		"style": {
+			"navigationBarTitleText": "permission-add"
+		}
+	}, {
+		"path": "pages/permission/index",
+		"style": {
+			"navigationBarTitleText": "permission-index"
+		}
+	}, {
+		"path": "pages/pm/add",
+		"style": {
+			"navigationBarTitleText": "pm-add"
+		}
+	}, {
+		"path": "pages/pm/index",
+		"style": {
+			"navigationBarTitleText": "pm-index"
+		}
+	}, {
+		"path": "pages/pm_index/add",
+		"style": {
+			"navigationBarTitleText": "pm_index-add"
+		}
+	}, {
+		"path": "pages/pm_index/index",
+		"style": {
+			"navigationBarTitleText": "pm_index-index"
+		}
+	}, {
+		"path": "pages/pv/add",
+		"style": {
+			"navigationBarTitleText": "pv-add"
+		}
+	}, {
+		"path": "pages/pv/index",
+		"style": {
+			"navigationBarTitleText": "pv-index"
+		}
+	}, {
+		"path": "pages/pv_day/add",
+		"style": {
+			"navigationBarTitleText": "pv_day-add"
+		}
+	}, {
+		"path": "pages/pv_day/index",
+		"style": {
+			"navigationBarTitleText": "pv_day-index"
+		}
+	}, {
+		"path": "pages/pv_ip/add",
+		"style": {
+			"navigationBarTitleText": "pv_ip-add"
+		}
+	}, {
+		"path": "pages/pv_ip/index",
+		"style": {
+			"navigationBarTitleText": "pv_ip-index"
+		}
+	}, {
+		"path": "pages/pv_uv/add",
+		"style": {
+			"navigationBarTitleText": "pv_uv-add"
+		}
+	}, {
+		"path": "pages/pv_uv/index",
+		"style": {
+			"navigationBarTitleText": "pv_uv-index"
+		}
+	}, {
+		"path": "pages/queue/add",
+		"style": {
+			"navigationBarTitleText": "queue-add"
+		}
+	}, {
+		"path": "pages/queue/index",
+		"style": {
+			"navigationBarTitleText": "queue-index"
+		}
+	}, {
+		"path": "pages/recharge/add",
+		"style": {
+			"navigationBarTitleText": "recharge-add"
+		}
+	}, {
+		"path": "pages/recharge/index",
+		"style": {
+			"navigationBarTitleText": "recharge-index"
+		}
+	}, {
+		"path": "pages/refund/add",
+		"style": {
+			"navigationBarTitleText": "refund-add"
+		}
+	}, {
+		"path": "pages/refund/index",
+		"style": {
+			"navigationBarTitleText": "refund-index"
+		}
+	}, {
+		"path": "pages/refund_apply/add",
+		"style": {
+			"navigationBarTitleText": "refund_apply-add"
+		}
+	}, {
+		"path": "pages/refund_apply/index",
+		"style": {
+			"navigationBarTitleText": "refund_apply-index"
+		}
+	}, {
+		"path": "pages/seo/add",
+		"style": {
+			"navigationBarTitleText": "seo-add"
+		}
+	}, {
+		"path": "pages/seo/index",
+		"style": {
+			"navigationBarTitleText": "seo-index"
+		}
+	}, {
+		"path": "pages/sgpay/add",
+		"style": {
+			"navigationBarTitleText": "sgpay-add"
+		}
+	}, {
+		"path": "pages/sgpay/index",
+		"style": {
+			"navigationBarTitleText": "sgpay-index"
+		}
+	}, {
+		"path": "pages/site/add",
+		"style": {
+			"navigationBarTitleText": "site-add"
+		}
+	}, {
+		"path": "pages/site/index",
+		"style": {
+			"navigationBarTitleText": "site-index"
+		}
+	}, {
+		"path": "pages/site_city/add",
+		"style": {
+			"navigationBarTitleText": "site_city-add"
+		}
+	}, {
+		"path": "pages/site_city/index",
+		"style": {
+			"navigationBarTitleText": "site_city-index"
+		}
+	}, {
+		"path": "pages/sms_log/add",
+		"style": {
+			"navigationBarTitleText": "sms_log-add"
+		}
+	}, {
+		"path": "pages/sms_log/index",
+		"style": {
+			"navigationBarTitleText": "sms_log-index"
+		}
+	}, {
+		"path": "pages/table/add",
+		"style": {
+			"navigationBarTitleText": "table-add"
+		}
+	}, {
+		"path": "pages/table/index",
+		"style": {
+			"navigationBarTitleText": "table-index"
+		}
+	}, {
+		"path": "pages/table_data/add",
+		"style": {
+			"navigationBarTitleText": "table_data-add"
+		}
+	}, {
+		"path": "pages/table_data/index",
+		"style": {
+			"navigationBarTitleText": "table_data-index"
+		}
+	}, {
+		"path": "pages/table_data_comment/add",
+		"style": {
+			"navigationBarTitleText": "table_data_comment-add"
+		}
+	}, {
+		"path": "pages/table_data_comment/index",
+		"style": {
+			"navigationBarTitleText": "table_data_comment-index"
+		}
+	}, {
+		"path": "pages/table_fields/add",
+		"style": {
+			"navigationBarTitleText": "table_fields-add"
+		}
+	}, {
+		"path": "pages/table_fields/index",
+		"style": {
+			"navigationBarTitleText": "table_fields-index"
+		}
+	}, {
+		"path": "pages/tixian/add",
+		"style": {
+			"navigationBarTitleText": "tixian-add"
+		}
+	}, {
+		"path": "pages/tixian/index",
+		"style": {
+			"navigationBarTitleText": "tixian-index"
+		}
+	}, {
+		"path": "pages/tixian_log/add",
+		"style": {
+			"navigationBarTitleText": "tixian_log-add"
+		}
+	}, {
+		"path": "pages/tixian_log/index",
+		"style": {
+			"navigationBarTitleText": "tixian_log-index"
+		}
+	}, {
+		"path": "pages/user/add",
+		"style": {
+			"navigationBarTitleText": "user-add"
+		}
+	}, {
+		"path": "pages/user/index",
+		"style": {
+			"navigationBarTitleText": "user-index"
+		}
+	}, {
+		"path": "pages/user_address/add",
+		"style": {
+			"navigationBarTitleText": "user_address-add"
+		}
+	}, {
+		"path": "pages/user_address/index",
+		"style": {
+			"navigationBarTitleText": "user_address-index"
+		}
+	}, {
+		"path": "pages/user_auth/add",
+		"style": {
+			"navigationBarTitleText": "user_auth-add"
+		}
+	}, {
+		"path": "pages/user_auth/index",
+		"style": {
+			"navigationBarTitleText": "user_auth-index"
+		}
+	}, {
+		"path": "pages/user_auth_new/add",
+		"style": {
+			"navigationBarTitleText": "user_auth_new-add"
+		}
+	}, {
+		"path": "pages/user_auth_new/index",
+		"style": {
+			"navigationBarTitleText": "user_auth_new-index"
+		}
+	}, {
+		"path": "pages/user_black/add",
+		"style": {
+			"navigationBarTitleText": "user_black-add"
+		}
+	}, {
+		"path": "pages/user_black/index",
+		"style": {
+			"navigationBarTitleText": "user_black-index"
+		}
+	}, {
+		"path": "pages/user_expand/add",
+		"style": {
+			"navigationBarTitleText": "user_expand-add"
+		}
+	}, {
+		"path": "pages/user_expand/index",
+		"style": {
+			"navigationBarTitleText": "user_expand-index"
+		}
+	}, {
+		"path": "pages/user_group/add",
+		"style": {
+			"navigationBarTitleText": "user_group-add"
+		}
+	}, {
+		"path": "pages/user_group/index",
+		"style": {
+			"navigationBarTitleText": "user_group-index"
+		}
+	}, {
+		"path": "pages/user_group_people/add",
+		"style": {
+			"navigationBarTitleText": "user_group_people-add"
+		}
+	}, {
+		"path": "pages/user_group_people/index",
+		"style": {
+			"navigationBarTitleText": "user_group_people-index"
+		}
+	}, {
+		"path": "pages/user_invitecode/add",
+		"style": {
+			"navigationBarTitleText": "user_invitecode-add"
+		}
+	}, {
+		"path": "pages/user_invitecode/index",
+		"style": {
+			"navigationBarTitleText": "user_invitecode-index"
+		}
+	}, {
+		"path": "pages/user_lastaddr/add",
+		"style": {
+			"navigationBarTitleText": "user_lastaddr-add"
+		}
+	}, {
+		"path": "pages/user_lastaddr/index",
+		"style": {
+			"navigationBarTitleText": "user_lastaddr-index"
+		}
+	}, {
+		"path": "pages/user_password/add",
+		"style": {
+			"navigationBarTitleText": "user_password-add"
+		}
+	}, {
+		"path": "pages/user_password/index",
+		"style": {
+			"navigationBarTitleText": "user_password-index"
+		}
+	}, {
+		"path": "pages/user_rank/add",
+		"style": {
+			"navigationBarTitleText": "user_rank-add"
+		}
+	}, {
+		"path": "pages/user_rank/index",
+		"style": {
+			"navigationBarTitleText": "user_rank-index"
+		}
+	}, {
+		"path": "pages/user_vip/add",
+		"style": {
+			"navigationBarTitleText": "user_vip-add"
+		}
+	}, {
+		"path": "pages/user_vip/index",
+		"style": {
+			"navigationBarTitleText": "user_vip-index"
+		}
+	}, {
+		"path": "pages/weixin/add",
+		"style": {
+			"navigationBarTitleText": "weixin-add"
+		}
+	}, {
+		"path": "pages/weixin/index",
+		"style": {
+			"navigationBarTitleText": "weixin-index"
+		}
+	}, {
+		"path": "pages/weixin_command/add",
+		"style": {
+			"navigationBarTitleText": "weixin_command-add"
+		}
+	}, {
+		"path": "pages/weixin_command/index",
+		"style": {
+			"navigationBarTitleText": "weixin_command-index"
+		}
+	}, {
+		"path": "pages/weixin_menu/add",
+		"style": {
+			"navigationBarTitleText": "weixin_menu-add"
+		}
+	}, {
+		"path": "pages/weixin_menu/index",
+		"style": {
+			"navigationBarTitleText": "weixin_menu-index"
+		}
+	}, {
+		"path": "pages/weixin_reply/add",
+		"style": {
+			"navigationBarTitleText": "weixin_reply-add"
+		}
+	}, {
+		"path": "pages/weixin_reply/index",
+		"style": {
+			"navigationBarTitleText": "weixin_reply-index"
+		}
+	}, {
+		"path": "pages/weixin_sucai/add",
+		"style": {
+			"navigationBarTitleText": "weixin_sucai-add"
+		}
+	}, {
+		"path": "pages/weixin_sucai/index",
+		"style": {
+			"navigationBarTitleText": "weixin_sucai-index"
+		}
+	}, {
+		"path": "pages/weixin_user/add",
+		"style": {
+			"navigationBarTitleText": "weixin_user-add"
+		}
+	}, {
+		"path": "pages/weixin_user/index",
+		"style": {
+			"navigationBarTitleText": "weixin_user-index"
+		}
+	}],
+	"subPackages":[
+		{
+			"root":"forum",
+			"pages":[{
+			"path":"forum/add",
+			"style":{
+				"navigationBarTitleText":"forum-add"
+			}
+		},{
+			"path":"forum/index",
+			"style":{
+				"navigationBarTitleText":"forum-index"
+			}
+		},{
+			"path":"forum_category/add",
+			"style":{
+				"navigationBarTitleText":"forum_category-add"
+			}
+		},{
+			"path":"forum_category/index",
+			"style":{
+				"navigationBarTitleText":"forum_category-index"
+			}
+		},{
+			"path":"forum_comment/add",
+			"style":{
+				"navigationBarTitleText":"forum_comment-add"
+			}
+		},{
+			"path":"forum_comment/index",
+			"style":{
+				"navigationBarTitleText":"forum_comment-index"
+			}
+		},{
+			"path":"forum_data/add",
+			"style":{
+				"navigationBarTitleText":"forum_data-add"
+			}
+		},{
+			"path":"forum_data/index",
+			"style":{
+				"navigationBarTitleText":"forum_data-index"
+			}
+		},{
+			"path":"forum_feeds/add",
+			"style":{
+				"navigationBarTitleText":"forum_feeds-add"
+			}
+		},{
+			"path":"forum_feeds/index",
+			"style":{
+				"navigationBarTitleText":"forum_feeds-index"
+			}
+		},{
+			"path":"forum_group/add",
+			"style":{
+				"navigationBarTitleText":"forum_group-add"
+			}
+		},{
+			"path":"forum_group/index",
+			"style":{
+				"navigationBarTitleText":"forum_group-index"
+			}
+		},{
+			"path":"forum_group_admin/add",
+			"style":{
+				"navigationBarTitleText":"forum_group_admin-add"
+			}
+		},{
+			"path":"forum_group_admin/index",
+			"style":{
+				"navigationBarTitleText":"forum_group_admin-index"
+			}
+		},{
+			"path":"forum_img/add",
+			"style":{
+				"navigationBarTitleText":"forum_img-add"
+			}
+		},{
+			"path":"forum_img/index",
+			"style":{
+				"navigationBarTitleText":"forum_img-index"
+			}
+		},{
+			"path":"forum_tags/add",
+			"style":{
+				"navigationBarTitleText":"forum_tags-add"
+			}
+		},{
+			"path":"forum_tags/index",
+			"style":{
+				"navigationBarTitleText":"forum_tags-index"
+			}
+		},{
+			"path":"forum_tags_index/add",
+			"style":{
+				"navigationBarTitleText":"forum_tags_index-add"
+			}
+		},{
+			"path":"forum_tags_index/index",
+			"style":{
+				"navigationBarTitleText":"forum_tags_index-index"
+			}
+		}]
+		}
+		
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"topWindow": {
+		"path": "responsive/top-window.vue",
+		"style": {
+			"height": "60px",
+			"position": "fixed"
+		}
+	},
+	"leftWindow": {
+		"path": "responsive/left-window.vue",
+		"style": {
+			"width": "200px",
+			"backgroundColor": "#212529"
+		}
+	}
+}

@@ -37,7 +37,7 @@ public class ForumModel extends  Model {
             Object obj=list.get(i);
             JSONObject json= (JSONObject) JSONObject.toJSON(obj);
             
-            json.put("imgurl", AppConfig.IMAGES_SITE +json.get("imgurl"));
+            json.put("imgurl", Help.image_site(json.get("imgurl")+""));
             String imgsdata=json.get("imgsdata")+"";
             String imgList[]=imgsdata.split(",");
             for(int ii=0;ii<imgList.length;ii++){

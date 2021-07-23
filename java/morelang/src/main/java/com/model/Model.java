@@ -79,6 +79,7 @@ public class Model {
     }
     public List getAll(String sql,Object... value){
         sql=String.format(sql,value);
+        System.out.println(sql);
         return  this.DB.queryForList(sql);
     }
     public Map getRow(String sql,Object... value){
@@ -236,7 +237,7 @@ public class Model {
 
     }
     public List Dselect(){
-        return new ArrayList();
+        return this.select();
     }
     
     public Map postData() {

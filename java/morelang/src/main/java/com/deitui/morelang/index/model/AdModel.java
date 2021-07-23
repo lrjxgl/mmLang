@@ -2,6 +2,7 @@ package com.deitui.morelang.index.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.model.AppConfig;
+import com.model.Help;
 import com.model.Model;
 
 import java.util.ArrayList;
@@ -36,4 +37,22 @@ public class AdModel extends Model {
         }
         return list;
     }
+    
+    public List Dselect() {
+		List list=this.select();
+		int len=list.size();
+        if(len==0) {
+        	return list;
+        }
+        for(int i=0;i<len;i++){
+            Object obj=list.get(i);
+            JSONObject json= (JSONObject) JSONObject.toJSON(obj);
+            
+            json.put("imgurl", Help.image_site(json.get("imgurl")+""));
+            json.put("imgurl2", Help.image_site(json.get("imgurl2")+""));
+            list.set(i,json);
+        }
+		return list;
+	}
+    
 }
