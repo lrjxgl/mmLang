@@ -3,8 +3,11 @@ namespace app\forum\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class ForumTags
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class ForumTags
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,85 +36,103 @@ class ForumTags
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("forum","ForumTags");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $tagid=intval($request->get("tagid"));
+        $row=[];
+        if($tagid){
+            $fm=DBS::MM("forum","ForumTags");
+            $row=$fm->find($tagid);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
+	public function save(Request $request){
+       
+
+        $tagid=intval($request->get("tagid"));
+        $data=[];
         $fm=DBS::MM("forum","ForumTags");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $indata=[];
+        //处理发布内容
+        
+$indata["title"]=$request->post("title","");
+$indata["status"]=intval($request->post("status","0"));
+$indata["total_num"]=intval($request->post("total_num","0"));
+$indata["gkey"]=$request->post("gkey","");
+$indata["gnum"]=intval($request->post("gnum","0"));
+        if($tagid){
+            $row=$fm->find($tagid);
+            
+        }
+        if($tagid){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("tagid",$tagid)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $tagid=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
+            "message" => "保存成功",
+            "insert_id"=>$tagid
         ];
 		return json($redata); 
     }
+
     /*@@status@@*/
     public function Status(Request $request){
-        $id=$request->get("id");
+		
+
+        $tagid=$request->get("tagid");
         $fm=DBS::MM("forum","ForumTags");
-        $row=$fm->where("id",$id)->first();
+        $row=$fm->where("tagid",$tagid)->first();
+		
         if($row->status==1){
             $status=2;
         }else{
             $status=1;
         }
-        $up=$fm->find($id);
+        $up=$fm->find($tagid);
         $up->status=$status;
         $up->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
-
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("forum","ForumTags");
-        
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
-        }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "success",
+            "status"=>$status
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
-        $id=$request->get("id");
+		
+
+        $tagid=$request->get("tagid");
         $fm=DBS::MM("forum","ForumTags");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($tagid); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

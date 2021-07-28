@@ -3,8 +3,11 @@ namespace app\index\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class WeixinReply
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class WeixinReply
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,36 +36,89 @@ class WeixinReply
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","WeixinReply");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $id=intval($request->get("id"));
+        $row=[];
+        if($id){
+            $fm=DBS::MM("index","WeixinReply");
+            $row=$fm->find($id);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
+	public function save(Request $request){
+       
+
+        $id=intval($request->get("id"));
+        $data=[];
         $fm=DBS::MM("index","WeixinReply");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $indata=[];
+        //处理发布内容
+        
+$indata["status"]=intval($request->post("status","0"));
+$indata["openid"]=$request->post("openid","");
+$indata["msgtype"]=$request->post("msgtype","");
+$indata["content"]=$request->post("content","");
+$indata["msgid"]=$request->post("msgid","");
+$indata["picurl"]=$request->post("picurl","");
+$indata["mediaid"]=$request->post("mediaid","");
+$indata["thumbmediaid"]=$request->post("thumbmediaid","");
+$indata["format"]=$request->post("format","");
+$indata["location_x"]=$request->post("location_x","");
+$indata["location_y"]=$request->post("location_y","");
+$indata["scale"]=intval($request->post("scale","0"));
+$indata["label"]=$request->post("label","");
+$indata["title"]=$request->post("title","");
+$indata["description"]=$request->post("description","");
+$indata["url"]=$request->post("url","");
+$indata["wid"]=intval($request->post("wid","0"));
+$indata["shopid"]=intval($request->post("shopid","0"));
+$indata["fromusername"]=$request->post("fromusername","");
+$indata["tousername"]=$request->post("tousername","");
+        if($id){
+            $row=$fm->find($id);
+            
+        }
+        if($id){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("id",$id)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $id=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
+            "message" => "保存成功",
             "insert_id"=>$id
         ];
 		return json($redata); 
     }
+
     /*@@status@@*/
     public function Status(Request $request){
+		
+
         $id=$request->get("id");
         $fm=DBS::MM("index","WeixinReply");
         $row=$fm->where("id",$id)->first();
+		
         if($row->status==1){
             $status=2;
         }else{
@@ -73,45 +129,25 @@ class WeixinReply
         $up->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
-
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","WeixinReply");
-        
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
-        }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "success",
+            "status"=>$status
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
+		
+
         $id=$request->get("id");
         $fm=DBS::MM("index","WeixinReply");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($id); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

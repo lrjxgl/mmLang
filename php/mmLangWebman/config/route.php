@@ -71,7 +71,7 @@ function toUnderScore($str){
 
  
 
-Route::any('/route-test', 'app\controller\Index@index');
+ 
 //应用命名
 RouteModuleDir("index");  
 RouteModuleDir("forum"); 

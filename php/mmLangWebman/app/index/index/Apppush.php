@@ -3,8 +3,11 @@ namespace app\index\index;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class Apppush
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class Apppush
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,85 +36,192 @@ class Apppush
          
 		   
     }
-    /*@@add@@*/
-    public function add(Request $request){
+
+	/*@@list@@*/    
+    public function list(Request $request)
+    {
+	    $start=$request->get("per_page");
+        $limit=4;
+        $fm=DBS::MM("index","Apppush");
+        $where=" 1 ";
+		$list=$fm
+                ->offset($start)
+                ->limit($limit)
+                ->whereRaw($where)
+                ->get();
+        $list=$fm->Dselect($list);
+        $rscount=$fm->whereRaw($where)->count();
+        $per_page=$start+$limit;
+        $per_page=$per_page>$rscount?0:$per_page;
+        $redata=[
+            "error" => 0, 
+            "message" => "success",
+            "list"=>$list,
+            "per_page"=>$per_page,
+            "rscount"=>$rscount
+
+        ];
+		return json($redata); 
+         
+		   
+    }
+
+	/*@@show@@*/
+    public function show(Request $request){
         $id=$request->get("id");
         $fm=DBS::MM("index","Apppush");
         $data=$fm->where("id",$id)->first();
+        if($data->status >1){
+            return Help::success(1,"数据不存在");
+        }
+        $data->imgurl=Help::images_site($data->imgurl);
+        $author=DBS::MM("index","user")->get($data->userid);
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$data,
+            "author"=>$author 
         ];
 		return json($redata);       
     } 
-    /*@@save@@*/
-    public function save(Request $request){
+
+	/*@@my@@*/    
+    public function my(Request $request)
+    {
+		
+			$ssuserid=UserAccess::checkAccess($request); 
+			if(!$ssuserid){
+				return Help::success(1000,"请先登录");
+			}
+		
+	    $start=$request->get("per_page");
+        $limit=4;
         $fm=DBS::MM("index","Apppush");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $where=" 1 ";
+		$where.=" AND userid=".$ssuserid;
+		$list=$fm
+                ->offset($start)
+                ->limit($limit)
+                ->whereRaw($where)
+                ->get();
+        $list=$fm->Dselect($list);
+        $rscount=$fm->whereRaw($where)->count();
+        $per_page=$start+$limit;
+        $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
+            "message" => "success",
+            "list"=>$list,
+            "per_page"=>$per_page,
+            "rscount"=>$rscount
+
         ];
 		return json($redata); 
-    }
-    /*@@status@@*/
-    public function Status(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Apppush");
-        $row=$fm->where("id",$id)->first();
-        if($row->status==1){
-            $status=2;
-        }else{
-            $status=1;
-        }
-        $up=$fm->find($id);
-        $up->status=$status;
-        $up->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
+         
+		   
     }
 
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","Apppush");
+    /*@@add@@*/
+	public function add(Request $request){
         
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
+			$ssuserid=UserAccess::checkAccess($request); 
+			if(!$ssuserid){
+				return Help::success(1000,"请先登录");
+			}
+		
+        $id=intval($request->get("id"));
+        $row=[];
+        if($id){
+            $fm=DBS::MM("index","Apppush");
+            $row=$fm->find($id);
+            
+			if(empty($row) || $row->userid!=$ssuserid){
+				return Help::success(1,"暂无权限");
+			}
+		
+
         }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "success",
+            "data"=>$row 
+        ];
+		return json($redata);       
+    } 
+    
+	
+    /*@@save@@*/
+	public function save(Request $request){
+       
+			$ssuserid=UserAccess::checkAccess($request); 
+			if(!$ssuserid){
+				return Help::success(1000,"请先登录");
+			}
+		
+        $id=intval($request->get("id"));
+        $data=[];
+        $fm=DBS::MM("index","Apppush");
+        $indata=[];
+        //处理发布内容
+        
+$indata["clientid"]=$request->post("clientid","");
+$indata["appname"]=$request->post("appname","");
+$indata["appid"]=$request->post("appid","");
+$indata["appkey"]=$request->post("appkey","");
+$indata["userid"]=intval($request->post("userid","0"));
+$indata["shopadmin"]=intval($request->post("shopadmin","0"));
+$indata["openid"]=$request->post("openid","");
+        if($id){
+            $row=$fm->find($id);
+            
+			if(empty($row) || $row->userid!=$ssuserid){
+				return Help::success(1,"暂无权限");
+			}
+		
+
+        }
+        if($id){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("id",$id)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $id=$fm->insertGetId($indata);
+        }
+      
+       
+        $redata=[
+            "error" => 0, 
+            "message" => "保存成功",
+            "insert_id"=>$id
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
+		
+			$ssuserid=UserAccess::checkAccess($request); 
+			if(!$ssuserid){
+				return Help::success(1000,"请先登录");
+			}
+		
         $id=$request->get("id");
         $fm=DBS::MM("index","Apppush");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($id); 
+        
+			if(empty($row) || $row->userid!=$ssuserid){
+				return Help::success(1,"暂无权限");
+			}
+		
+
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

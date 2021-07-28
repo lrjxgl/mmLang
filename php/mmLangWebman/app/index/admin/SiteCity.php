@@ -3,8 +3,11 @@ namespace app\index\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class SiteCity
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class SiteCity
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,85 +36,106 @@ class SiteCity
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","SiteCity");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $sc_id=intval($request->get("sc_id"));
+        $row=[];
+        if($sc_id){
+            $fm=DBS::MM("index","SiteCity");
+            $row=$fm->find($sc_id);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
+	public function save(Request $request){
+       
+
+        $sc_id=intval($request->get("sc_id"));
+        $data=[];
         $fm=DBS::MM("index","SiteCity");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $indata=[];
+        //处理发布内容
+        
+$indata["title"]=$request->post("title","");
+$indata["cityid"]=intval($request->post("cityid","0"));
+$indata["lat"]=floatval($request->post("lat","0"));
+$indata["lng"]=floatval($request->post("lng","0"));
+$indata["orderindex"]=intval($request->post("orderindex","0"));
+$indata["status"]=intval($request->post("status","0"));
+$indata["pid"]=intval($request->post("pid","0"));
+$indata["siteid"]=intval($request->post("siteid","0"));
+        if($sc_id){
+            $row=$fm->find($sc_id);
+            
+        }
+        if($sc_id){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("sc_id",$sc_id)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $sc_id=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
+            "message" => "保存成功",
+            "insert_id"=>$sc_id
         ];
 		return json($redata); 
     }
+
     /*@@status@@*/
     public function Status(Request $request){
-        $id=$request->get("id");
+		
+
+        $sc_id=$request->get("sc_id");
         $fm=DBS::MM("index","SiteCity");
-        $row=$fm->where("id",$id)->first();
+        $row=$fm->where("sc_id",$sc_id)->first();
+		
         if($row->status==1){
             $status=2;
         }else{
             $status=1;
         }
-        $up=$fm->find($id);
+        $up=$fm->find($sc_id);
         $up->status=$status;
         $up->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
-
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","SiteCity");
-        
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
-        }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "success",
+            "status"=>$status
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
-        $id=$request->get("id");
+		
+
+        $sc_id=$request->get("sc_id");
         $fm=DBS::MM("index","SiteCity");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($sc_id); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

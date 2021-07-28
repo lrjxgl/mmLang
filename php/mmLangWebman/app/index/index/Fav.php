@@ -3,118 +3,73 @@ namespace app\index\index;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class Fav
 { 
-	/*@@index@@*/    
-    public function index(Request $request)
-    {
-	    $start=$request->get("per_page");
-        $limit=4;
-        $fm=DBS::MM("index","Fav");
-        $where=" 1 ";
-		$list=$fm
-                ->offset($start)
-                ->limit($limit)
-                ->whereRaw($where)
-                ->get();
-        $list=$fm->Dselect($list);
-        $rscount=$fm->whereRaw($where)->count();
-        $per_page=$start+$limit;
-        $per_page=$per_page>$rscount?0:$per_page;
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "list"=>$list,
-            "per_page"=>$per_page,
-            "rscount"=>$rscount
+	 /*@@get@@*/
+     public function get(Request $request){
+        $userid=UserAccess::checkAccess($request);  
+        if($userid==0){
+            return Help::success(1,"请先登录");
+        }
+        $objectid=intval($request->get("objectid"));
+        $tablename=$request->get("tablename","");
+        $where=[
+            ["userid",$userid],
+            ["objectid",$objectid],
+            ["tablename",$tablename]
 
         ];
-		return json($redata); 
-         
-		   
-    }
-    /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Fav");
-        $data=$fm->where("id",$id)->first();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+        $action="delete";
+        $row=DBS::MM("index","fav")->where($where)->first();
+        if(!empty($row)){
+            $action="add";
+        }
+        $reData=[
+            "error"=>0,
+            "message"=>"success",
+            "action"=>$action
+
         ];
-		return json($redata);       
+        return json($reData);
+    }
+    /*@@toggle@@*/
+    public function toggle(Request $request){
+        $userid=UserAccess::checkAccess($request);  
+        if($userid==0){
+            return Help::success(1,"请先登录");
+        }
+        $objectid=intval($request->get("objectid"));
+        $tablename=$request->get("tablename","");
+        $where=[
+            ["userid",$userid],
+            ["objectid",$objectid],
+            ["tablename",$tablename]
+
+        ];
+        $indata=[
+            "userid"=>$userid,
+            "objectid"=>$objectid,
+            "tablename"=>$tablename
+        ];
+        $row=DBS::MM("index","fav")->where($where)->first();
+        if($row){
+            $action="delete";
+            DBS::MM("index","fav")->where($where)->delete();
+        }else{
+            DBS::MM("index","fav")->insert($indata);
+            $action="add";
+        }
+        $reData=[
+            "error"=>0,
+            "message"=>"success",
+            "action"=>$action
+
+        ]; 
+        return json($reData);
     } 
-    /*@@save@@*/
-    public function save(Request $request){
-        $fm=DBS::MM("index","Fav");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
-        $redata=[
-            "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
-        ];
-		return json($redata); 
-    }
-    /*@@status@@*/
-    public function Status(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Fav");
-        $row=$fm->where("id",$id)->first();
-        if($row->status==1){
-            $status=2;
-        }else{
-            $status=1;
-        }
-        $up=$fm->find($id);
-        $up->status=$status;
-        $up->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
-
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","Fav");
-        
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
-        }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
-        ];
-		return json($redata); 
-    }
-
-    /*@@delete@@*/
-    public function delete(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Fav");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok"
-        ];
-		return json($redata); 
-    }
+ 
       
 }
 

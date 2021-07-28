@@ -3,8 +3,11 @@ namespace app\index\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class Table
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class Table
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,85 +36,105 @@ class Table
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Table");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $tableid=intval($request->get("tableid"));
+        $row=[];
+        if($tableid){
+            $fm=DBS::MM("index","Table");
+            $row=$fm->find($tableid);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
+	public function save(Request $request){
+       
+
+        $tableid=intval($request->get("tableid"));
+        $data=[];
         $fm=DBS::MM("index","Table");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $indata=[];
+        //处理发布内容
+        
+$indata["title"]=$request->post("title","");
+$indata["tablename"]=$request->post("tablename","");
+$indata["description"]=$request->post("description","");
+$indata["status"]=intval($request->post("status","0"));
+$indata["showTpl"]=$request->post("showTpl","");
+$indata["listTpl"]=$request->post("listTpl","");
+$indata["addTpl"]=$request->post("addTpl","");
+        if($tableid){
+            $row=$fm->find($tableid);
+            
+        }
+        if($tableid){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("tableid",$tableid)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $tableid=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
+            "message" => "保存成功",
+            "insert_id"=>$tableid
         ];
 		return json($redata); 
     }
+
     /*@@status@@*/
     public function Status(Request $request){
-        $id=$request->get("id");
+		
+
+        $tableid=$request->get("tableid");
         $fm=DBS::MM("index","Table");
-        $row=$fm->where("id",$id)->first();
+        $row=$fm->where("tableid",$tableid)->first();
+		
         if($row->status==1){
             $status=2;
         }else{
             $status=1;
         }
-        $up=$fm->find($id);
+        $up=$fm->find($tableid);
         $up->status=$status;
         $up->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
-
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","Table");
-        
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
-        }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "success",
+            "status"=>$status
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
-        $id=$request->get("id");
+		
+
+        $tableid=$request->get("tableid");
         $fm=DBS::MM("index","Table");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($tableid); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

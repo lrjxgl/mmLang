@@ -1,0 +1,4 @@
+
+1.时间格式
+createtime datetime 发布时间
+updatetime datetime 修改时间

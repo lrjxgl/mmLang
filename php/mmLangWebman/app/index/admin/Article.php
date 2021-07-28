@@ -3,8 +3,11 @@ namespace app\index\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class Article
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class Article
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,36 +36,89 @@ class Article
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Article");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $id=intval($request->get("id"));
+        $row=[];
+        if($id){
+            $fm=DBS::MM("index","Article");
+            $row=$fm->find($id);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
+	public function save(Request $request){
+       
+
+        $id=intval($request->get("id"));
+        $data=[];
         $fm=DBS::MM("index","Article");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
+        $indata=[];
+        //处理发布内容
+        
+$indata["title"]=$request->post("title","");
+$indata["catid"]=intval($request->post("catid","0"));
+$indata["catid_top"]=intval($request->post("catid_top","0"));
+$indata["catid_2nd"]=intval($request->post("catid_2nd","0"));
+$indata["description"]=$request->post("description","");
+$indata["status"]=intval($request->post("status","0"));
+$indata["imgurl"]=$request->post("imgurl","");
+$indata["tpl"]=$request->post("tpl","");
+$indata["author"]=$request->post("author","");
+$indata["price"]=floatval($request->post("price","0"));
+$indata["market_price"]=floatval($request->post("market_price","0"));
+$indata["total_num"]=intval($request->post("total_num","0"));
+$indata["sold_num"]=intval($request->post("sold_num","0"));
+$indata["grade"]=intval($request->post("grade","0"));
+$indata["downurl"]=$request->post("downurl","");
+$indata["downsize"]=floatval($request->post("downsize","0"));
+$indata["orderindex"]=intval($request->post("orderindex","0"));
+$indata["videourl"]=$request->post("videourl","");
+$indata["tags"]=$request->post("tags","");
+$indata["imgsdata"]=$request->post("imgsdata","");
+        if($id){
+            $row=$fm->find($id);
+            
+        }
+        if($id){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("id",$id)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $id=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "save ok",
+            "message" => "保存成功",
             "insert_id"=>$id
         ];
 		return json($redata); 
     }
+
     /*@@status@@*/
     public function Status(Request $request){
+		
+
         $id=$request->get("id");
         $fm=DBS::MM("index","Article");
         $row=$fm->where("id",$id)->first();
+		
         if($row->status==1){
             $status=2;
         }else{
@@ -73,19 +129,21 @@ class Article
         $up->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
+            "message" => "success",
+            "status"=>$status
         ];
 		return json($redata); 
     }
 
     /*@@recommend@@*/
     public function recommend(Request $request){
+		
+
         $id=$request->get("id");
        $fm=DBS::MM("index","Article");
         
         $row=$fm->where("id",$id)->first();
+		
         if($row->isrecommend==1){
             $isrecommend=0;
         }else{
@@ -96,7 +154,7 @@ class Article
         $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "isrecommend"=>$isrecommend
         ];
 		return json($redata); 
@@ -104,14 +162,17 @@ class Article
 
     /*@@delete@@*/
     public function delete(Request $request){
+		
+
         $id=$request->get("id");
         $fm=DBS::MM("index","Article");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($id); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }

@@ -2,6 +2,7 @@
 namespace app\index\model;
 use support\Model;
 use ext\Help;
+use ext\DBS; 
 class TableDataModel extends Model{
 	const UPDATED_AT= null;
 	protected $table="table_data";
@@ -16,5 +17,18 @@ class TableDataModel extends Model{
 			}
 		}
 		return $list; 
-	} 
+	}
+	public function getListByIds($ids,$fields="*"){
+		if(empty($ids)) return [];
+		$list=$this->whereIn("id",$ids)->selectRaw($fields)->get();
+		$list=$this->Dselect($list);
+		$reList=[];
+		if($list){
+			foreach($list as $v){
+				$reList[$v->id]=$v;
+			}
+		}
+		return $reList;
+	}
+	
 }

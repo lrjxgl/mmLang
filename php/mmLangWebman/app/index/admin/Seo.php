@@ -3,8 +3,11 @@ namespace app\index\admin;
 use support\Request;
 use support\DB;
 use ext\DBS;
+use ext\UserAccess;
+use ext\Help;
 class Seo
-{ 
+{
+	
 	/*@@index@@*/    
     public function index(Request $request)
     {
@@ -23,7 +26,7 @@ class Seo
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
-            "message" => "ok",
+            "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
@@ -33,85 +36,81 @@ class Seo
          
 		   
     }
+
     /*@@add@@*/
-    public function add(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Seo");
-        $data=$fm->where("id",$id)->first();
+	public function add(Request $request){
+        
+
+        $id=intval($request->get("id"));
+        $row=[];
+        if($id){
+            $fm=DBS::MM("index","Seo");
+            $row=$fm->find($id);
+            
+        }
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "data"=>$data 
+            "message" => "success",
+            "data"=>$row 
         ];
 		return json($redata);       
     } 
+    
+	
     /*@@save@@*/
-    public function save(Request $request){
-        $fm=DBS::MM("index","Seo");
-        $fm->title="aaaa";  
-        $fm->save();
-        $id=$fm->id;
-        $redata=[
-            "error" => 0, 
-            "message" => "save ok",
-            "insert_id"=>$id
-        ];
-		return json($redata); 
-    }
-    /*@@status@@*/
-    public function Status(Request $request){
-        $id=$request->get("id");
-        $fm=DBS::MM("index","Seo");
-        $row=$fm->where("id",$id)->first();
-        if($row->status==1){
-            $status=2;
-        }else{
-            $status=1;
-        }
-        $up=$fm->find($id);
-        $up->status=$status;
-        $up->save();
-        $redata=[
-            "error" => 0, 
-            "message" => "ok",
-            "status"=>$status,
-            "row"=>$row
-        ];
-		return json($redata); 
-    }
+	public function save(Request $request){
+       
 
-    /*@@recommend@@*/
-    public function recommend(Request $request){
-        $id=$request->get("id");
-       $fm=DBS::MM("index","Seo");
+        $id=intval($request->get("id"));
+        $data=[];
+        $fm=DBS::MM("index","Seo");
+        $indata=[];
+        //处理发布内容
         
-        $row=$fm->where("id",$id)->first();
-        if($row->isrecommend==1){
-            $isrecommend=0;
-        }else{
-            $isrecommend=1;
+$indata["m"]=$request->post("m","");
+$indata["a"]=$request->post("a","");
+$indata["cname"]=$request->post("cname","");
+$indata["title"]=$request->post("title","");
+$indata["description"]=$request->post("description","");
+$indata["keywords"]=$request->post("keywords","");
+$indata["object_id"]=intval($request->post("object_id","0"));
+        if($id){
+            $row=$fm->find($id);
+            
         }
-         
-        $row->isrecommend=$isrecommend;
-        $row->save();
+        if($id){
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $fm->where("id",$id)->update($indata);
+        }else{       
+            
+            $indata["createtime"]=date("Y-m-d H:i:s");
+            $indata["updatetime"]=date("Y-m-d H:i:s");
+            $indata["status"]=0;      
+            $id=$fm->insertGetId($indata);
+        }
+      
+       
         $redata=[
             "error" => 0, 
-            "message" => "ok",
-            "isrecommend"=>$isrecommend
+            "message" => "保存成功",
+            "insert_id"=>$id
         ];
 		return json($redata); 
     }
 
     /*@@delete@@*/
     public function delete(Request $request){
+		
+
         $id=$request->get("id");
         $fm=DBS::MM("index","Seo");
-        $up=$fm->find($id);
-        $up->status=11;
-        $up->save();
+        $row=$fm->find($id); 
+        
+        $row->status=11;
+        $row->save();
         $redata=[
             "error" => 0, 
-            "message" => "ok"
+            "message" => "success"
         ];
 		return json($redata); 
     }
