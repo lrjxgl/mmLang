@@ -13,10 +13,11 @@ class forumSearch{
         if($keyword){
             $where.=" AND title like '%".$keyword."%' ";
         }else{
-            return Help::success(0,"success");
-        }
+
+            $where.=" AND isrecommend=1 ";
+        }  
         $start=intval($request->get("per_page"));
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","Forum");
        
 		$list=$fm

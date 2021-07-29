@@ -12,13 +12,14 @@ class SiteCity
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","SiteCity");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("sc_id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class SiteCity
 	public function save(Request $request){
        
 
-        $sc_id=intval($request->get("sc_id"));
+        $sc_id=intval($request->post("sc_id"));
         $data=[];
         $fm=DBS::MM("index","SiteCity");
         $indata=[];

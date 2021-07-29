@@ -9,13 +9,13 @@ class Cache{
         if(!empty($row)){
             $fm->where("k",$k)->update([
                     "v"=>$v,
-                    "expire"=>$expire
+                    "expire"=>time()+$expire
             ]);
         }else{
             $fm->insert([
                 "k"=>$k,
                 "v"=>$v,
-                "expire"=>$expire
+                "expire"=>time()+$expire
             ]);
         }
 
@@ -23,9 +23,17 @@ class Cache{
 
     public static function get($k){
         $fm=DBS::MM("index","dbcache");
-        $id=$fm->where("k",$k)->value("v");
-        
+        $row=$fm->where("k",$k)->first();
+        if(empty($row) || $row->expire<time()){
+            return 0;
+        }
+        $id=intval($row->v);
         return $id;
+    }
+
+    public static function del($k){
+        $fm=DBS::MM("index","dbcache");
+        $id=$fm->where("k",$k)->delete();
     }
 
 }

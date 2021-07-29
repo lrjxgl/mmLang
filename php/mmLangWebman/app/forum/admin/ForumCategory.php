@@ -12,13 +12,14 @@ class ForumCategory
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumCategory");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("catid","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class ForumCategory
 	public function save(Request $request){
        
 
-        $catid=intval($request->get("catid"));
+        $catid=intval($request->post("catid"));
         $data=[];
         $fm=DBS::MM("forum","ForumCategory");
         $indata=[];

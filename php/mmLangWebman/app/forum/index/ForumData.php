@@ -12,13 +12,14 @@ class ForumData
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumData");
         $where=" 1 ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("did","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -41,13 +42,14 @@ class ForumData
     public function list(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumData");
         $where=" 1 ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("did","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -68,10 +70,10 @@ class ForumData
 
 	/*@@show@@*/
     public function show(Request $request){
-        $id=$request->get("id");
+        $did=$request->get("did");
         $fm=DBS::MM("forum","ForumData");
-        $data=$fm->where("id",$id)->first();
-        if($data->status >1){
+        $data=$fm->where("did",$did)->first();
+        if(empty($data) || $data->status >1){
             return Help::success(1,"数据不存在");
         }
         $data->imgurl=Help::images_site($data->imgurl);

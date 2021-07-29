@@ -12,13 +12,14 @@ class ForumTags
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumTags");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("tagid","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class ForumTags
 	public function save(Request $request){
        
 
-        $tagid=intval($request->get("tagid"));
+        $tagid=intval($request->post("tagid"));
         $data=[];
         $fm=DBS::MM("forum","ForumTags");
         $indata=[];

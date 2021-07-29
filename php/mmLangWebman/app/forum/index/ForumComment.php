@@ -164,14 +164,14 @@ class ForumComment
         $indata=[];
         //处理发布内容
         
-$indata["userid"]=intval($request->post("userid","0"));
-$indata["status"]=intval($request->post("status","0"));
-$indata["gid"]=intval($request->post("gid","0"));
-$indata["objectid"]=intval($request->post("objectid","0"));
-$indata["pid"]=intval($request->post("pid","0"));
-$indata["content"]=$request->post("content","");
-$indata["ip"]=$request->post("ip","");
-$indata["ip_city"]=$request->post("ip_city","");
+        
+        $indata["status"]=intval($request->post("status","0"));
+        $indata["gid"]=intval($request->post("gid","0"));
+        $indata["objectid"]=intval($request->post("objectid","0"));
+        $indata["pid"]=intval($request->post("pid","0"));
+        $indata["content"]=$request->post("content","");
+        $indata["ip"]=$request->post("ip","");
+        $indata["ip_city"]=$request->post("ip_city","");
         if($id){
             $row=$fm->find($id);
             
@@ -182,12 +182,13 @@ $indata["ip_city"]=$request->post("ip_city","");
 
         }
         if($id){
+            $indata["userid"]=$ssuserid;
             $indata["updatetime"]=date("Y-m-d H:i:s");
             $fm->where("id",$id)->update($indata);
         }else{       
-            
+            $indata["userid"]=$ssuserid; 
             $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+         
             $indata["status"]=0;      
             $id=$fm->insertGetId($indata);
         }

@@ -12,13 +12,14 @@ class UserGroup
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","UserGroup");
         $where=" 1 ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("groupid","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class UserGroup
 	public function save(Request $request){
        
 
-        $groupid=intval($request->get("groupid"));
+        $groupid=intval($request->post("groupid"));
         $data=[];
         $fm=DBS::MM("index","UserGroup");
         $indata=[];

@@ -12,13 +12,14 @@ class KefuMsg
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","KefuMsg");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class KefuMsg
 	public function save(Request $request){
        
 
-        $id=intval($request->get("id"));
+        $id=intval($request->post("id"));
         $data=[];
         $fm=DBS::MM("index","KefuMsg");
         $indata=[];

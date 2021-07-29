@@ -12,13 +12,14 @@ class SiteCity
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","SiteCity");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("sc_id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -41,13 +42,14 @@ class SiteCity
     public function list(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","SiteCity");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("sc_id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -71,7 +73,7 @@ class SiteCity
         $sc_id=$request->get("sc_id");
         $fm=DBS::MM("index","SiteCity");
         $data=$fm->where("sc_id",$sc_id)->first();
-        if($data->status >1){
+        if(empty($data) || $data->status >1){
             return Help::success(1,"数据不存在");
         }
         $data->imgurl=Help::images_site($data->imgurl);

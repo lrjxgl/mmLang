@@ -4,6 +4,7 @@ use support\Model;
 use ext\Help;
 use ext\DBS; 
 class AdModel extends Model{
+	 
 	const UPDATED_AT= null;
 	protected $table="ad";
 	protected $primaryKey = "id";

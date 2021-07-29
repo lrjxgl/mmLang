@@ -12,13 +12,14 @@ class ForumGroup
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumGroup");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("gid","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -61,7 +62,7 @@ class ForumGroup
 	public function save(Request $request){
        
 
-        $gid=intval($request->get("gid"));
+        $gid=intval($request->post("gid"));
         $data=[];
         $fm=DBS::MM("forum","ForumGroup");
         $indata=[];

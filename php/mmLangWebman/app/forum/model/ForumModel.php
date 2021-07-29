@@ -26,6 +26,7 @@ class ForumModel extends Model{
 			}else{
 				$v["user"]=[];
 			}
+			$v->timeago=Help::timeago($v->createtime); 
 		}
 		return $list; 
 	} 

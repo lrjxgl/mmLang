@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2021-07-21 13:51:53
+Date: 2021-07-29 00:32:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `sky_ad`;
 CREATE TABLE `sky_ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_id` int(11) NOT NULL DEFAULT '0',
+  `tag_id_2nd` int(11) NOT NULL DEFAULT '0',
   `title` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '名称',
   `info` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '简介',
   `link1` varchar(400) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '链接1',
@@ -35,7 +36,6 @@ CREATE TABLE `sky_ad` (
   `dateline` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `price` decimal(9,2) NOT NULL DEFAULT '0.00' COMMENT '价格',
   `object_id` int(11) NOT NULL DEFAULT '0' COMMENT '具体对象id',
-  `tag_id_2nd` int(11) NOT NULL DEFAULT '0',
   `checkbox_attr` varchar(225) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tag_id` (`tag_id`) USING BTREE
@@ -44,19 +44,19 @@ CREATE TABLE `sky_ad` (
 -- ----------------------------
 -- Records of sky_ad
 -- ----------------------------
-INSERT INTO `sky_ad` VALUES ('3', '3', '首页轮显', '首页轮显', '', '', '1541239865', '1699006268', 'attach/2019/03/20/f878fc8e5382d5b9bce638409c3191a7.jpg', '', '0', '2', '1593568037', '0.00', '0', '4', '');
-INSERT INTO `sky_ad` VALUES ('4', '3', '首页2', '', '', '', '1541239888', '1572711060', 'attach/2019/03/20/62024d6ce76163e94bb1c796746630c1.jpg', '', '0', '2', '1593568044', '0.00', '0', '4', '');
-INSERT INTO `sky_ad` VALUES ('5', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/22d04c7230d068bf8172b7d7e42321a3.jpg', '', '0', '2', '1626756779', '0.00', '0', '5', '');
-INSERT INTO `sky_ad` VALUES ('6', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/7740e04f57e7e787c7c89a46d66f7fad.png', '', '0', '2', '1626756791', '0.00', '0', '6', '');
-INSERT INTO `sky_ad` VALUES ('7', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/3f3f1446862c6fbee48f80501f5bc1a0.png', '', '0', '2', '1626756801', '0.00', '0', '6', '');
-INSERT INTO `sky_ad` VALUES ('8', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/7ee8a1775892a947267da9ffb9d10c76.png', '', '0', '2', '1626756807', '0.00', '0', '6', '');
-INSERT INTO `sky_ad` VALUES ('9', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/8b6052176cb54e85568bda265eb83b45.png', '', '0', '2', '1626756814', '0.00', '0', '6', '');
-INSERT INTO `sky_ad` VALUES ('10', '3', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/ba7b1ec810d9419b044017c24dba553f.png', '', '0', '2', '1626756823', '0.00', '0', '6', '');
-INSERT INTO `sky_ad` VALUES ('11', '7', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/fd0bc27400419ff3041e8f5bd428bdef.jpg', '', '0', '2', '1626756922', '0.00', '0', '9', '');
-INSERT INTO `sky_ad` VALUES ('12', '7', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/594be75b52b2eac684f6bb207fae0a23.png', '', '0', '2', '1626756935', '0.00', '0', '8', '');
-INSERT INTO `sky_ad` VALUES ('13', '7', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/90bb70df5ea17db29352dd7a515dbb23.png', '', '0', '2', '1626756941', '0.00', '0', '8', '');
-INSERT INTO `sky_ad` VALUES ('14', '7', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/c9182fc051363a7e0c293532862339bf.png', '', '0', '2', '1626756947', '0.00', '0', '8', '');
-INSERT INTO `sky_ad` VALUES ('15', '7', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/521a773444326c906f439fab10fbf614.png', '', '0', '2', '1626756958', '0.00', '0', '8', '');
+INSERT INTO `sky_ad` VALUES ('3', '3', '4', '首页轮显', '首页轮显', '', '', '1541239865', '1699006268', 'attach/2019/03/20/f878fc8e5382d5b9bce638409c3191a7.jpg', '', '0', '2', '1593568037', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('4', '3', '4', '首页2', '', '', '', '1541239888', '1572711060', 'attach/2019/03/20/62024d6ce76163e94bb1c796746630c1.jpg', '', '0', '2', '1593568044', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('5', '3', '5', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/22d04c7230d068bf8172b7d7e42321a3.jpg', '', '0', '2', '1626756779', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('6', '3', '6', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/7740e04f57e7e787c7c89a46d66f7fad.png', '', '0', '2', '1626756791', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('7', '3', '6', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/3f3f1446862c6fbee48f80501f5bc1a0.png', '', '0', '2', '1626756801', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('8', '3', '6', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/7ee8a1775892a947267da9ffb9d10c76.png', '', '0', '2', '1626756807', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('9', '3', '6', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/8b6052176cb54e85568bda265eb83b45.png', '', '0', '2', '1626756814', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('10', '3', '6', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/ba7b1ec810d9419b044017c24dba553f.png', '', '0', '2', '1626756823', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('11', '7', '9', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/fd0bc27400419ff3041e8f5bd428bdef.jpg', '', '0', '2', '1626756922', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('12', '7', '8', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/594be75b52b2eac684f6bb207fae0a23.png', '', '0', '2', '1626756935', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('13', '7', '8', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/90bb70df5ea17db29352dd7a515dbb23.png', '', '0', '2', '1626756941', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('14', '7', '8', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/c9182fc051363a7e0c293532862339bf.png', '', '0', '2', '1626756947', '0.00', '0', '');
+INSERT INTO `sky_ad` VALUES ('15', '7', '8', '', '', '', '', '1563325381', '1878944581', 'attach/2021/07/20/521a773444326c906f439fab10fbf614.png', '', '0', '2', '1626756958', '0.00', '0', '');
 
 -- ----------------------------
 -- Table structure for sky_admin
@@ -117,7 +117,7 @@ CREATE TABLE `sky_ad_tags` (
 -- Records of sky_ad_tags
 -- ----------------------------
 INSERT INTO `sky_ad_tags` VALUES ('3', 'wap', '0', '0', '2', '1541240653', '', '', '0', '0', '');
-INSERT INTO `sky_ad_tags` VALUES ('4', 'wap-首页轮休', '0', '3', '2', '1541240867', '', '', '480', '320', 'wap-index');
+INSERT INTO `sky_ad_tags` VALUES ('4', 'wap-index', '0', '3', '2', '1541240867', '', '', '480', '320', 'wap-index');
 INSERT INTO `sky_ad_tags` VALUES ('5', 'wap-forum-index', '0', '3', '2', '1626756742', '', '', '0', '0', 'wap-forum-index');
 INSERT INTO `sky_ad_tags` VALUES ('6', 'wap-forum-nav', '0', '3', '2', '1626756758', '', '', '0', '0', 'wap-forum-nav');
 INSERT INTO `sky_ad_tags` VALUES ('7', 'uniapp', '0', '0', '2', '1626756885', '', '', '0', '0', 'uniapp');
@@ -181,7 +181,7 @@ CREATE TABLE `sky_article` (
   `fav_num` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
   `description` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '描述',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态 2显示 其他隐藏',
-  `is_recommend` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '是否推荐 1推荐 ',
+  `isrecommend` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '是否推荐 1推荐 ',
   `imgurl` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '图片',
   `createtime` datetime NOT NULL DEFAULT '2018-09-10 09:01:01' COMMENT '创建时间',
   `comment_num` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
@@ -204,12 +204,17 @@ CREATE TABLE `sky_article` (
   `imgsdata` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '图集',
   PRIMARY KEY (`id`),
   KEY `catid` (`catid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_article
 -- ----------------------------
-INSERT INTO `sky_article` VALUES ('1', '文章测试', '2', '0', '0', '12', '123', '文章测试文章测试文章测试文章测试文章测试文章测试', '1', '1', 'attach/2020/12/20/951bba72064758823610a235d01d5694.jpg', '2018-11-07 19:41:45', '3', '', '老雷', '0', '0', '83', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', 'attach/2019/03/05/4.jpg,attach/2019/03/05/6.jpg,attach/2019/03/05/5.jpg');
+INSERT INTO `sky_article` VALUES ('1', '文章测试', '2', '0', '0', '12', '123', '文章测试文章测试文章测试文章测试文章测试文章测试', '1', '1', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2018-11-07 19:41:45', '3', '', '老雷', '0', '0', '83', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', 'attach/2019/03/05/4.jpg,attach/2019/03/05/6.jpg,attach/2019/03/05/5.jpg');
+INSERT INTO `sky_article` VALUES ('2', 'man', '0', '0', '0', '0', '0', 'stu01@qq.com', '1', '0', '', '2018-09-10 09:01:01', '0', '', '', '0', '0', '0', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', '');
+INSERT INTO `sky_article` VALUES ('3', 'man', '0', '0', '0', '0', '0', 'stu01@qq.com', '1', '0', '', '2018-09-10 09:01:01', '0', '', '', '0', '0', '0', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', '');
+INSERT INTO `sky_article` VALUES ('4', 'man', '0', '0', '0', '0', '0', 'stu01@qq.com', '1', '0', '', '2018-09-10 09:01:01', '0', '', '', '0', '0', '0', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', '');
+INSERT INTO `sky_article` VALUES ('5', 'man', '0', '0', '0', '0', '0', 'stu01@qq.com', '1', '0', '', '2018-09-10 09:01:01', '0', '', '', '0', '0', '0', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', '');
+INSERT INTO `sky_article` VALUES ('6', 'man', '0', '0', '0', '0', '0', 'stu01@qq.com', '1', '0', '', '2018-09-10 09:01:01', '0', '', '', '0', '0', '0', '0.00', '0.00', '0', '0', '0', '', '0.00', '999', '', '0', '标签', '');
 
 -- ----------------------------
 -- Table structure for sky_article_comment
@@ -261,7 +266,7 @@ INSERT INTO `sky_article_data` VALUES ('1', '<p>文章测试文章测试文章�
 DROP TABLE IF EXISTS `sky_attach`;
 CREATE TABLE `sky_attach` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
+  `createtime` datetime NOT NULL DEFAULT '2021-07-28 23:59:01',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `userid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传用户',
   `file_name` varchar(64) NOT NULL DEFAULT '' COMMENT '文件名称',
@@ -271,42 +276,12 @@ CREATE TABLE `sky_attach` (
   `file_group` varchar(12) NOT NULL DEFAULT '' COMMENT '文件归类名称',
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='文件管理';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='文件管理';
 
 -- ----------------------------
 -- Records of sky_attach
 -- ----------------------------
-INSERT INTO `sky_attach` VALUES ('1', '1608383392', '1', '0', 'c03a6a1b961354f14c6e639c36b16e72.jpg', 'attach/2020/12/19/c03a6a1b961354f14c6e639c36b16e72.jpg', '85540.00', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('2', '1608383439', '1', '0', '8be8c580c90f5c252700a5ccd5b7af82.jpg', 'attach/2020/12/19/8be8c580c90f5c252700a5ccd5b7af82.jpg', '83.54', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('3', '1608383481', '1', '0', '161b028b11e894385cadc6ca74500823.jpg', 'attach/2020/12/19/161b028b11e894385cadc6ca74500823.jpg', '83.54', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('4', '1608383493', '1', '0', '37d5164afacd6594b463e1b4ba06b866.jpg', 'attach/2020/12/19/37d5164afacd6594b463e1b4ba06b866.jpg', '83.54', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('5', '1608431740', '1', '0', '13874abacfd8e749dca0ca1f0f2148f7.jpg', 'attach/2020/12/20/13874abacfd8e749dca0ca1f0f2148f7.jpg', '0.00', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('6', '1608431778', '1', '0', 'bf23cf6ae886a1a221da4c43c7c3bf3e.jpg', 'attach/2020/12/20/bf23cf6ae886a1a221da4c43c7c3bf3e.jpg', '83.54', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('7', '1608431993', '1', '4', '46.jpg', 'attach/2020/12/20/46.jpg', '11.58', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('8', '1608432002', '11', '4', '951bba72064758823610a235d01d5694.jpg', 'attach/2020/12/20/951bba72064758823610a235d01d5694.jpg', '83.54', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('9', '1608518729', '1', '4', '48.jpg', 'attach/2020/12/21/48.jpg', '11.58', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('10', '1609052351', '0', '4', '49.jpg', 'attach/2020/12/27/49.jpg', '34.86', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('11', '1626756288', '0', '0', 'de0c0710eb70e73c238a6f74a5f5f4f2.png', 'attach/2021/07/20/de0c0710eb70e73c238a6f74a5f5f4f2.png', '6.10', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('12', '1626756313', '0', '0', '318b86aed32444d15dd59e6c1b666962.png', 'attach/2021/07/20/318b86aed32444d15dd59e6c1b666962.png', '2.64', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('13', '1626756326', '0', '0', '23ba21f94ffdba17a8d7fb0f686d6876.png', 'attach/2021/07/20/23ba21f94ffdba17a8d7fb0f686d6876.png', '3.41', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('14', '1626756334', '0', '0', 'b49e50a60e766fd0567e70d421e951cf.png', 'attach/2021/07/20/b49e50a60e766fd0567e70d421e951cf.png', '3.85', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('15', '1626756341', '0', '0', 'ed7bc77439004e8e0121cc23bfd8755b.png', 'attach/2021/07/20/ed7bc77439004e8e0121cc23bfd8755b.png', '7.73', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('16', '1626756352', '0', '0', 'b71c2c29f89a6b4b2e45aafa9d42e7f4.png', 'attach/2021/07/20/b71c2c29f89a6b4b2e45aafa9d42e7f4.png', '5.74', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('17', '1626756359', '0', '0', 'a9644bbb770046197e1c06c9713a4742.png', 'attach/2021/07/20/a9644bbb770046197e1c06c9713a4742.png', '3.48', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('18', '1626756367', '0', '0', '1f7ec17db2f15b3ecfae0e7294a60f8f.png', 'attach/2021/07/20/1f7ec17db2f15b3ecfae0e7294a60f8f.png', '10.55', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('19', '1626756375', '0', '0', 'e82f70d71c136a52d1821499f90d8c5a.png', 'attach/2021/07/20/e82f70d71c136a52d1821499f90d8c5a.png', '3.53', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('20', '1626756386', '0', '0', '568f962210c7f821f85ab7f63a99e8cd.png', 'attach/2021/07/20/568f962210c7f821f85ab7f63a99e8cd.png', '6.34', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('21', '1626756778', '0', '0', '22d04c7230d068bf8172b7d7e42321a3.jpg', 'attach/2021/07/20/22d04c7230d068bf8172b7d7e42321a3.jpg', '24.16', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('22', '1626756790', '0', '0', '7740e04f57e7e787c7c89a46d66f7fad.png', 'attach/2021/07/20/7740e04f57e7e787c7c89a46d66f7fad.png', '2.64', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('23', '1626756800', '0', '0', '3f3f1446862c6fbee48f80501f5bc1a0.png', 'attach/2021/07/20/3f3f1446862c6fbee48f80501f5bc1a0.png', '6.85', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('24', '1626756806', '0', '0', '7ee8a1775892a947267da9ffb9d10c76.png', 'attach/2021/07/20/7ee8a1775892a947267da9ffb9d10c76.png', '7.73', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('25', '1626756813', '0', '0', '8b6052176cb54e85568bda265eb83b45.png', 'attach/2021/07/20/8b6052176cb54e85568bda265eb83b45.png', '3.69', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('26', '1626756822', '0', '0', 'ba7b1ec810d9419b044017c24dba553f.png', 'attach/2021/07/20/ba7b1ec810d9419b044017c24dba553f.png', '10.55', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('27', '1626756920', '0', '0', 'fd0bc27400419ff3041e8f5bd428bdef.jpg', 'attach/2021/07/20/fd0bc27400419ff3041e8f5bd428bdef.jpg', '22.94', 'jpg', 'img');
-INSERT INTO `sky_attach` VALUES ('28', '1626756934', '0', '0', '594be75b52b2eac684f6bb207fae0a23.png', 'attach/2021/07/20/594be75b52b2eac684f6bb207fae0a23.png', '2.64', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('29', '1626756940', '0', '0', '90bb70df5ea17db29352dd7a515dbb23.png', 'attach/2021/07/20/90bb70df5ea17db29352dd7a515dbb23.png', '7.30', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('30', '1626756946', '0', '0', 'c9182fc051363a7e0c293532862339bf.png', 'attach/2021/07/20/c9182fc051363a7e0c293532862339bf.png', '5.89', 'png', 'img');
-INSERT INTO `sky_attach` VALUES ('31', '1626756956', '0', '0', '521a773444326c906f439fab10fbf614.png', 'attach/2021/07/20/521a773444326c906f439fab10fbf614.png', '7.73', 'png', 'img');
+INSERT INTO `sky_attach` VALUES ('32', '2021-07-29 00:11:50', '0', '4', '6.png', '/attach/2021/07/29/6.png', '3.87', 'png', 'img');
 
 -- ----------------------------
 -- Table structure for sky_badip
@@ -502,13 +477,6 @@ DROP TABLE IF EXISTS `sky_config`;
 CREATE TABLE `sky_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `siteid` int(11) NOT NULL DEFAULT '1',
-  `qqid` varchar(22) CHARACTER SET utf8 NOT NULL,
-  `qqkey` varchar(32) CHARACTER SET utf8 NOT NULL,
-  `wbid` varchar(22) CHARACTER SET utf8 NOT NULL,
-  `wbkey` varchar(32) CHARACTER SET utf8 NOT NULL,
-  `tbid` varchar(22) CHARACTER SET utf8 NOT NULL,
-  `tbkey` varchar(32) CHARACTER SET utf8 NOT NULL,
-  `tbpid` varchar(32) CHARACTER SET utf8 NOT NULL,
   `phone_on` tinyint(4) NOT NULL DEFAULT '0',
   `phone_reg` tinyint(4) NOT NULL DEFAULT '0',
   `phone_user` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -531,42 +499,11 @@ CREATE TABLE `sky_config` (
   `spread_money` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `spread_type` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `grade_on` tinyint(4) NOT NULL DEFAULT '0',
-  `opentime` tinyint(4) NOT NULL DEFAULT '0',
-  `starthour` tinyint(4) NOT NULL DEFAULT '0',
-  `endhour` tinyint(4) NOT NULL DEFAULT '0',
-  `startminute` tinyint(4) NOT NULL DEFAULT '0',
-  `endminute` tinyint(4) NOT NULL DEFAULT '0',
-  `showweek` tinyint(4) NOT NULL DEFAULT '0',
-  `minprice` decimal(8,1) NOT NULL,
-  `alipay` tinyint(4) NOT NULL,
-  `wxpay` tinyint(4) NOT NULL DEFAULT '0',
-  `tenpay` tinyint(4) NOT NULL,
-  `rewrite_type` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `bdmapkey` varchar(64) CHARACTER SET utf8 NOT NULL,
-  `comment_status_check` tinyint(4) NOT NULL DEFAULT '0',
-  `activity_topic_status_check` tinyint(4) DEFAULT '0',
-  `ob_gzip` tinyint(4) DEFAULT '0',
-  `express_fee` smallint(6) DEFAULT '0',
-  `express_fee_add` smallint(6) DEFAULT '0',
-  `order_unpay` tinyint(4) DEFAULT '0',
   `hotsearch` varchar(225) CHARACTER SET utf8 DEFAULT NULL,
   `kf_qq` varchar(225) CHARACTER SET utf8 DEFAULT NULL,
   `kf_ww` varchar(225) CHARACTER SET utf8 DEFAULT NULL,
-  `order_first_discount` decimal(7,2) DEFAULT '0.00' COMMENT '首次折扣',
-  `order_first_money` decimal(7,2) DEFAULT '10000.00' COMMENT '首次满多少减多少',
-  `moneypay` tinyint(4) NOT NULL DEFAULT '0',
-  `fenqi` tinyint(1) NOT NULL DEFAULT '0',
-  `fenqi_lilv` decimal(7,2) DEFAULT '0.01' COMMENT '分期利率',
-  `shoplistshow` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '店铺列表展示',
-  `has_printer` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '开启打印机',
-  `plugin_kdyuan` tinyint(1) NOT NULL DEFAULT '0' COMMENT '校园快递',
-  `plugin_kdyuan_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '校园快递推广类型',
-  `plugin_kdyuan_mi` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '校园快递推广范围',
-  `rurl301` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '301跳转',
-  `bdmapkey_php` varchar(64) CHARACTER SET utf8 NOT NULL COMMENT '百度地图服务端',
   `sms_qianming` varchar(16) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '短信签名',
   `sms_type` varchar(32) CHARACTER SET utf8 DEFAULT NULL COMMENT '短信类型',
-  `reg_invitecode` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '邀请码',
   `s_bank_name` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `s_bank_user` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `s_bank_num` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
@@ -576,7 +513,7 @@ CREATE TABLE `sky_config` (
 -- ----------------------------
 -- Records of sky_config
 -- ----------------------------
-INSERT INTO `sky_config` VALUES ('2', '1', '', '', '', '', '', '', '', '1', '1', 'admin', '', '15985840591', '', '0', '', '', 'admin', '0', '0', '0', '', '', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.0', '1', '1', '0', 'pathinfo', 'F73283d678ec76619500152b1a0835c0', '0', '0', '0', '0', '0', '0', '', '', '', '0.00', '10000.00', '0', '0', '0.01', '0', '0', '0', '0', '3000', '', '99b0c7faf7c6bd62ecd70d4e0f1b315c', '得推网络', 'default', '0', '支付宝', '雷日锦', '362606856@qq.com');
+INSERT INTO `sky_config` VALUES ('2', '1', '1', '1', 'admin', '', '15985840591', 'sadasdasd', '0', '', '', 'admin', '0', '0', '0', '', '', '0', '1', '0', '0', '0', '0', '0', '', '', '', '得推网络', 'default', '支付宝', '雷日锦', '362606856@qq.com');
 
 -- ----------------------------
 -- Table structure for sky_coupon
@@ -656,11 +593,12 @@ CREATE TABLE `sky_dataapi` (
   `status` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `word` (`word`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_dataapi
 -- ----------------------------
+INSERT INTO `sky_dataapi` VALUES ('1', '关于我们', 'aboutus', '0', '0', '', '', '关于我们', '1');
 
 -- ----------------------------
 -- Table structure for sky_daysn
@@ -691,7 +629,7 @@ CREATE TABLE `sky_dbcache` (
   `expire` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `k` (`k`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_dbcache
@@ -700,8 +638,52 @@ INSERT INTO `sky_dbcache` VALUES ('2', 'aa', '%22%5Cu54c8%5Cu54c8mysql%22', '160
 INSERT INTO `sky_dbcache` VALUES ('3', 'a', '%22aaa%22', '1608881095');
 INSERT INTO `sky_dbcache` VALUES ('4', 'ax', '%22axaa%22', '1608881469');
 INSERT INTO `sky_dbcache` VALUES ('5', 'reg-sendsms-159858405918067', '8067', '1626732433');
-INSERT INTO `sky_dbcache` VALUES ('6', '4.12998f5d9683a781', '4', '1626991359');
-INSERT INTO `sky_dbcache` VALUES ('7', '4.24403b1f', '4', '1627941759');
+INSERT INTO `sky_dbcache` VALUES ('6', '4.12998f5d9683a781', '4', '1627306259');
+INSERT INTO `sky_dbcache` VALUES ('7', '4.24403b1f', '4', '1628256659');
+INSERT INTO `sky_dbcache` VALUES ('8', 'admin.token', '2.d3db0e557717865c', '1627574781');
+INSERT INTO `sky_dbcache` VALUES ('9', 'admin.refresh_token', '2.37418326', '1628525181');
+INSERT INTO `sky_dbcache` VALUES ('10', '2.d3db0e557717865c', '2', '1627575220');
+INSERT INTO `sky_dbcache` VALUES ('11', '2.37418326', '2', '1628525620');
+INSERT INTO `sky_dbcache` VALUES ('12', '2.admind3db0e557717865c', '2', '1627575935');
+INSERT INTO `sky_dbcache` VALUES ('13', '2.admin37418326', '2', '1628526335');
+INSERT INTO `sky_dbcache` VALUES ('14', '4.user8924bdd62db27da854931e25a108b587', '4', '1627689599');
+INSERT INTO `sky_dbcache` VALUES ('15', '4.user0839095bf7636e753d724638eb3e4d8a', '4', '1627689639');
+INSERT INTO `sky_dbcache` VALUES ('16', '4.usere37a05aade6e24a293561285b2dee2b2', '4', '1627689639');
+INSERT INTO `sky_dbcache` VALUES ('17', '4.user589f512ba336f2a89e29f460b5039d6f', '4', '1627689659');
+INSERT INTO `sky_dbcache` VALUES ('18', '4.user83d14e4d5dee378bc5ce8202d3ccfe0b', '4', '1627689659');
+INSERT INTO `sky_dbcache` VALUES ('19', '4.user60110d3f4c17eca93d66f24ff1a2715c', '4', '1627700631');
+INSERT INTO `sky_dbcache` VALUES ('20', '4.user14b0a565f4e0fb1899c8696253781efc', '4', '1627700631');
+INSERT INTO `sky_dbcache` VALUES ('21', '4.user224bef00764172a7300f8f6096f89e51', '4', '1627700688');
+INSERT INTO `sky_dbcache` VALUES ('22', '4.user23bc43d546eef79ed85c013d24b12dab', '4', '1627700688');
+INSERT INTO `sky_dbcache` VALUES ('23', '4.userfe5d93c3f67ed56bfeb16ec378bca483', '4', '1627700729');
+INSERT INTO `sky_dbcache` VALUES ('24', '4.userfe85017e876fab89ae07a92ca7188ffd', '4', '1627700729');
+INSERT INTO `sky_dbcache` VALUES ('25', '4.userc544972eb53ff82bce8f1d89f9ce1b8c', '4', '1627700732');
+INSERT INTO `sky_dbcache` VALUES ('26', '4.user68ab8ac79409e90edcf3f7378b5dcdb0', '4', '1627700732');
+INSERT INTO `sky_dbcache` VALUES ('27', '4.userfc8823ee7606953ef452ec3cdafd2cd3', '4', '1627700738');
+INSERT INTO `sky_dbcache` VALUES ('28', '4.user384309ecd3bbc675442428ba716670f2', '4', '1627700738');
+INSERT INTO `sky_dbcache` VALUES ('29', '4.userfcabbe996dab3b267663527e26d7118b', '4', '1627700757');
+INSERT INTO `sky_dbcache` VALUES ('30', '4.usercaf80f779686b3cc760ce5aa528b6c3f', '4', '1627700757');
+INSERT INTO `sky_dbcache` VALUES ('32', '4.user2e850e8c010949733f85295a88f75f73', '4', '1627700770');
+INSERT INTO `sky_dbcache` VALUES ('34', '4.user27304068c219a64e63b9c96816a87d3c', '4', '1627738647');
+INSERT INTO `sky_dbcache` VALUES ('35', 'smsUser', '6780', '3600');
+INSERT INTO `sky_dbcache` VALUES ('36', 'smsUser15985840591', '6662', '1627485722');
+INSERT INTO `sky_dbcache` VALUES ('37', 'smsUserExpire15985840591', '1', '1627485602');
+INSERT INTO `sky_dbcache` VALUES ('38', 'smsReg15985840591', '6142', '1627487955');
+INSERT INTO `sky_dbcache` VALUES ('39', 'smsRegExpire15985840591', '1', '1627486436');
+INSERT INTO `sky_dbcache` VALUES ('40', 'smsReg159858405912', '4113', '1627486683');
+INSERT INTO `sky_dbcache` VALUES ('41', 'smsRegExpire159858405912', '1', '1627486563');
+INSERT INTO `sky_dbcache` VALUES ('42', 'smsReg15985840593', '2786', '1627486891');
+INSERT INTO `sky_dbcache` VALUES ('43', 'smsRegExpire15985840593', '1', '1627486771');
+INSERT INTO `sky_dbcache` VALUES ('44', 'smsReg15985840594', '1565', '1627486911');
+INSERT INTO `sky_dbcache` VALUES ('45', 'smsRegExpire15985840594', '1', '1627486791');
+INSERT INTO `sky_dbcache` VALUES ('46', 'smsReg15985840595', '6685', '1627487074');
+INSERT INTO `sky_dbcache` VALUES ('47', 'smsRegExpire15985840595', '1', '1627486954');
+INSERT INTO `sky_dbcache` VALUES ('49', '53.user5f5d1b0c9fe54ce003054a8ac178d8e6', '53', '1627746099');
+INSERT INTO `sky_dbcache` VALUES ('50', 'smsLogin15985840595', '9514', '1627487445');
+INSERT INTO `sky_dbcache` VALUES ('51', 'smsLoginExpire15985840595', '1', '1627487325');
+INSERT INTO `sky_dbcache` VALUES ('53', '4.user9871e4913034dafbfb2c4c988e26fd9b', '4', '1627746507');
+INSERT INTO `sky_dbcache` VALUES ('54', '4.user856668b1f24ce08395f14c412541ce90', '4', '1627746983');
+INSERT INTO `sky_dbcache` VALUES ('55', '4.userab1b148d0e3ccbe80d8e059d9a4c785c', '4', '1627746983');
 
 -- ----------------------------
 -- Table structure for sky_dbsession
@@ -45988,11 +45970,15 @@ CREATE TABLE `sky_fav` (
   `userid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '收藏用户',
   PRIMARY KEY (`id`),
   KEY `t_o` (`tablename`,`objectid`,`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_fav
 -- ----------------------------
+INSERT INTO `sky_fav` VALUES ('16', 'mod_forum', '123549', '4');
+INSERT INTO `sky_fav` VALUES ('19', 'mod_forum', '123553', '4');
+INSERT INTO `sky_fav` VALUES ('22', 'mod_forum', '123551', '4');
+INSERT INTO `sky_fav` VALUES ('23', 'mod_forum', '123567', '4');
 
 -- ----------------------------
 -- Table structure for sky_follow
@@ -46006,11 +45992,12 @@ CREATE TABLE `sky_follow` (
   `dateline` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `uid` (`userid`,`t_userid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_follow
 -- ----------------------------
+INSERT INTO `sky_follow` VALUES ('46', '4', '4', '1', '0');
 
 -- ----------------------------
 -- Table structure for sky_followed
@@ -46024,11 +46011,12 @@ CREATE TABLE `sky_followed` (
   `dateline` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `uid` (`userid`,`t_userid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_followed
 -- ----------------------------
+INSERT INTO `sky_followed` VALUES ('9', '4', '4', '1', '0');
 
 -- ----------------------------
 -- Table structure for sky_friend
@@ -46186,17 +46174,19 @@ INSERT INTO `sky_invite` VALUES ('1', '4', '7', '1577175730', '0', '0');
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_invite_account`;
 CREATE TABLE `sky_invite_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(10) unsigned NOT NULL DEFAULT '0',
   `money` decimal(9,2) unsigned NOT NULL DEFAULT '0.00',
   `income` decimal(9,2) unsigned NOT NULL DEFAULT '0.00',
   `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邀请收入';
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='邀请收入';
 
 -- ----------------------------
 -- Records of sky_invite_account
 -- ----------------------------
-INSERT INTO `sky_invite_account` VALUES ('4', '0.00', '0.00', '0');
+INSERT INTO `sky_invite_account` VALUES ('1', '4', '0.00', '0.00', '0');
 
 -- ----------------------------
 -- Table structure for sky_invite_account_log
@@ -46230,7 +46220,7 @@ CREATE TABLE `sky_kefu_msg` (
   `tablename` varchar(12) CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='咨询索引';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='咨询索引';
 
 -- ----------------------------
 -- Records of sky_kefu_msg
@@ -46241,6 +46231,13 @@ INSERT INTO `sky_kefu_msg` VALUES ('3', '2020-12-21 11:26:14', '4', '复习资�
 INSERT INTO `sky_kefu_msg` VALUES ('4', '2020-12-21 11:26:17', '4', '复习资料', '1', 'kefu');
 INSERT INTO `sky_kefu_msg` VALUES ('5', '2020-12-21 11:26:22', '4', '复习资料', '1', 'kefu');
 INSERT INTO `sky_kefu_msg` VALUES ('6', '2020-12-21 11:28:30', '4', '复习资料', '1', 'kefu');
+INSERT INTO `sky_kefu_msg` VALUES ('7', '2021-07-22 15:56:59', '4', 'dsdasd', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('8', '2021-07-22 16:00:34', '4', 'cccccccccc', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('9', '2021-07-28 19:49:15', '0', 'qweqweqw', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('10', '2021-07-28 19:50:26', '4', 'wssssssss', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('11', '2021-07-28 19:52:06', '4', 'x', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('12', '2021-07-28 19:53:08', '4', 'aaa', '0', '');
+INSERT INTO `sky_kefu_msg` VALUES ('13', '2021-07-28 19:54:26', '4', 'xxxxxxxxxxx', '0', '');
 
 -- ----------------------------
 -- Table structure for sky_kefu_msgindex
@@ -46261,7 +46258,7 @@ CREATE TABLE `sky_kefu_msgindex` (
 -- ----------------------------
 -- Records of sky_kefu_msgindex
 -- ----------------------------
-INSERT INTO `sky_kefu_msgindex` VALUES ('1', '2020-12-21 11:28:30', '4', '复习资料', '0', '0', '1');
+INSERT INTO `sky_kefu_msgindex` VALUES ('1', '2021-07-22 16:00:34', '4', 'cccccccccc', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for sky_love
@@ -46275,11 +46272,15 @@ CREATE TABLE `sky_love` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`,`id`) USING BTREE,
   KEY `t_o` (`tablename`,`objectid`,`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_love
 -- ----------------------------
+INSERT INTO `sky_love` VALUES ('5', 'mod_forum', '123549', '4');
+INSERT INTO `sky_love` VALUES ('7', 'mod_forum', '123553', '4');
+INSERT INTO `sky_love` VALUES ('13', 'mod_forum', '123551', '4');
+INSERT INTO `sky_love` VALUES ('14', 'mod_forum', '123567', '4');
 
 -- ----------------------------
 -- Table structure for sky_maxid
@@ -46394,7 +46395,7 @@ CREATE TABLE `sky_module` (
   `show_tpl` varchar(50) CHARACTER SET utf8 NOT NULL,
   `module` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_module
@@ -46416,11 +46417,9 @@ CREATE TABLE `sky_mod_forum` (
   `forward_num` smallint(5) unsigned NOT NULL DEFAULT '0',
   `keywords` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `description` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `comment_num` int(11) unsigned NOT NULL DEFAULT '0',
   `imgurl` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `last_time` int(11) unsigned NOT NULL DEFAULT '0',
   `grade` int(11) unsigned NOT NULL DEFAULT '0',
   `isrecommend` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `view_num` int(11) unsigned NOT NULL DEFAULT '0',
@@ -46429,22 +46428,19 @@ CREATE TABLE `sky_mod_forum` (
   `videourl` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `money` decimal(3,1) unsigned NOT NULL DEFAULT '0.0',
   `gold` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '奖励',
-  `imgsdata` text CHARACTER SET utf8,
   `createtime` datetime NOT NULL DEFAULT '2021-07-21 09:22:23',
+  `updatetime` datetime NOT NULL DEFAULT '2021-07-21 09:22:23',
+  `imgsdata` varchar(520) CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `uid_id` (`userid`,`id`) USING BTREE,
   KEY `cat_id` (`catid`,`id`) USING BTREE,
   KEY `gid` (`gid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=123554 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=123568 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_mod_forum
 -- ----------------------------
-INSERT INTO `sky_mod_forum` VALUES ('123549', '内容为王', '4', '1', '5', '0', '0', '0', '', '', '1626845952', '12', '0', '', '0', '0', '1', '24', '0', '', '', '0.0', '0', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2021-07-21 09:22:23');
-INSERT INTO `sky_mod_forum` VALUES ('123550', '内容为王', '4', '1', '5', '0', '0', '0', '', '', '1626845401', '12', '0', '', '0', '0', '0', '0', '0', '', '', '0.0', '0', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2021-07-21 09:22:23');
-INSERT INTO `sky_mod_forum` VALUES ('123551', '内容为王', '4', '1', '5', '0', '0', '0', '', '', '1626845443', '0', '0', '', '0', '0', '0', '0', '0', '', '', '0.0', '0', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2021-07-21 09:22:23');
-INSERT INTO `sky_mod_forum` VALUES ('123552', '内容为王', '4', '1', '5', '0', '0', '0', '', '', '1626845487', '0', '0', '', '0', '0', '0', '0', '0', '', '', '0.0', '0', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2021-07-21 09:22:23');
-INSERT INTO `sky_mod_forum` VALUES ('123553', '内容为王', '4', '1', '5', '0', '0', '0', '', '', '1626845696', '0', '0', '', '0', '0', '0', '0', '0', '', '', '0.0', '0', 'attach/images/1626755644843f8f40bd616fe50a3d780c06c39c07fc8.png', '2021-07-21 09:22:23');
+INSERT INTO `sky_mod_forum` VALUES ('123567', 'adasdasd', '4', '6', '22', '0', '0', '0', '', '', '1', '0', '', '0', '1', '0', '0', '', '', '0.0', '0', '2021-07-28 18:34:13', '2021-07-28 18:35:44', '/attach/2021/07/28/4.png,/attach/2021/07/28/6.png,/attach/2021/07/28/5.png,/attach/2021/07/28/7.png');
 
 -- ----------------------------
 -- Table structure for sky_mod_forum_category
@@ -46519,33 +46515,31 @@ CREATE TABLE `sky_mod_forum_comment` (
   PRIMARY KEY (`id`),
   KEY `objectid` (`objectid`,`status`) USING BTREE,
   KEY `userid` (`userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=221 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_mod_forum_comment
 -- ----------------------------
-INSERT INTO `sky_mod_forum_comment` VALUES ('217', '4', '1', '0', '0', '0', '2018-07-02 18:52:01', 'asdas', '', '');
+INSERT INTO `sky_mod_forum_comment` VALUES ('217', '4', '11', '0', '0', '0', '2018-07-02 18:52:01', 'asdas', '', '');
 INSERT INTO `sky_mod_forum_comment` VALUES ('218', '4', '1', '1', '123549', '0', '2018-07-02 18:52:01', 'asdqweqwe', '', '');
+INSERT INTO `sky_mod_forum_comment` VALUES ('219', '4', '0', '0', '123567', '0', '2021-07-28 19:10:59', 'ssssssssssss', '', '');
+INSERT INTO `sky_mod_forum_comment` VALUES ('220', '4', '0', '0', '123567', '0', '2021-07-28 19:19:43', 'asdasdasd', '', '');
 
 -- ----------------------------
 -- Table structure for sky_mod_forum_data
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_mod_forum_data`;
 CREATE TABLE `sky_mod_forum_data` (
-  `id` bigint(20) NOT NULL,
+  `did` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `content` mediumtext CHARACTER SET utf8 NOT NULL,
-  `dateline` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`did`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_mod_forum_data
 -- ----------------------------
-INSERT INTO `sky_mod_forum_data` VALUES ('123549', '内容为王xxxx', '1626755714');
-INSERT INTO `sky_mod_forum_data` VALUES ('123550', 'asdasd', '1626845401');
-INSERT INTO `sky_mod_forum_data` VALUES ('123551', '', '1626845443');
-INSERT INTO `sky_mod_forum_data` VALUES ('123552', 'wqeqweqweqwe', '1626845487');
-INSERT INTO `sky_mod_forum_data` VALUES ('123553', '', '1626845696');
+INSERT INTO `sky_mod_forum_data` VALUES ('7', '123567', 'asdasdasdxxxxxxxx');
 
 -- ----------------------------
 -- Table structure for sky_mod_forum_feeds
@@ -46559,7 +46553,7 @@ CREATE TABLE `sky_mod_forum_feeds` (
   `dateline` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`,`objectid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=519 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_mod_forum_feeds
@@ -46610,29 +46604,10 @@ CREATE TABLE `sky_mod_forum_group_admin` (
   PRIMARY KEY (`id`),
   KEY `gid` (`gid`) USING BTREE,
   KEY `userid` (`userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='版主';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='版主';
 
 -- ----------------------------
 -- Records of sky_mod_forum_group_admin
--- ----------------------------
-
--- ----------------------------
--- Table structure for sky_mod_forum_img
--- ----------------------------
-DROP TABLE IF EXISTS `sky_mod_forum_img`;
-CREATE TABLE `sky_mod_forum_img` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `objectid` int(10) unsigned NOT NULL DEFAULT '0',
-  `shopid` int(10) unsigned DEFAULT '0',
-  `orderindex` int(10) unsigned NOT NULL DEFAULT '0',
-  `createtime` datetime NOT NULL DEFAULT '2018-06-10 10:05:01',
-  `imgurl` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `object_id` (`objectid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of sky_mod_forum_img
 -- ----------------------------
 
 -- ----------------------------
@@ -46671,22 +46646,7 @@ CREATE TABLE `sky_mod_forum_tags_index` (
 -- ----------------------------
 -- Records of sky_mod_forum_tags_index
 -- ----------------------------
-INSERT INTO `sky_mod_forum_tags_index` VALUES ('23', '2', '123549', '11');
-
--- ----------------------------
--- Table structure for sky_mod_gps
--- ----------------------------
-DROP TABLE IF EXISTS `sky_mod_gps`;
-CREATE TABLE `sky_mod_gps` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `latlng` point NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `latlng` (`latlng`(25)) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='gps';
-
--- ----------------------------
--- Records of sky_mod_gps
--- ----------------------------
+INSERT INTO `sky_mod_forum_tags_index` VALUES ('23', '2', '123567', '11');
 
 -- ----------------------------
 -- Table structure for sky_navbar
@@ -46706,12 +46666,12 @@ CREATE TABLE `sky_navbar` (
   `logo` varchar(225) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT 'logo',
   `icon` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '图标',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=330 DEFAULT CHARSET=utf8mb4 COMMENT='导航表';
+) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8mb4 COMMENT='导航表';
 
 -- ----------------------------
 -- Records of sky_navbar
 -- ----------------------------
-INSERT INTO `sky_navbar` VALUES ('256', '网站管理', '0', '', '_self', '0', '2', '', '', '1', 'attach/2018/11/03/4783c1360ba42b1298ee46e1bd6d3c22.jpg', 'icon-home');
+INSERT INTO `sky_navbar` VALUES ('256', '网站管理', '0', '', '', '0', '2', '', '', '1', 'attach/2018/11/03/4783c1360ba42b1298ee46e1bd6d3c22.jpg', 'icon-home');
 INSERT INTO `sky_navbar` VALUES ('258', '导航管理', '0', '?m=navbar', '', '256', '2', 'navbar', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('259', '用户管理', '2', '?m=user', '', '275', '2', 'user', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('260', '开放平台', '4', '', '_self', '0', '2', '', '', '1', '', 'icon-weixin_light');
@@ -46733,7 +46693,7 @@ INSERT INTO `sky_navbar` VALUES ('275', '用户管理', '2', '?m=user', '_self',
 INSERT INTO `sky_navbar` VALUES ('276', '分类管理', '0', '?m=category', '', '277', '2', 'category', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('277', '内容管理', '0', '', '_self', '0', '2', '', '', '1', '', 'icon-news');
 INSERT INTO `sky_navbar` VALUES ('278', '文章管理', '0', '?m=article', '', '277', '2', 'article', 'default', '1', '', '');
-INSERT INTO `sky_navbar` VALUES ('279', '评论管理', '0', '?m=comment', '', '277', '2', 'comment', 'default', '1', '', '');
+INSERT INTO `sky_navbar` VALUES ('279', '评论管理', '0', '?m=comment', '', '277', '2', 'article_comment', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('280', '金币日志', '0', '?m=gold_log', '', '265', '2', 'gold_log', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('281', '退款申请', '0', '?m=refund_apply', '', '265', '2', 'refund_apply', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('282', '退款记录', '0', '?m=refund', '', '265', '2', 'refund', 'default', '1', '', '');
@@ -46755,11 +46715,11 @@ INSERT INTO `sky_navbar` VALUES ('306', '站点区域', '0', '?m=site_city', '',
 INSERT INTO `sky_navbar` VALUES ('307', 'seo', '0', '?m=seo', '', '256', '2', 'seo', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('308', '阿里OSS', '6', '?m=open_alioss', '', '260', '2', 'open_alioss', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('309', '快递费用', '6', '?m=express_fee', '', '265', '2', 'express_fee', 'default', '1', '', '');
-INSERT INTO `sky_navbar` VALUES ('310', '客服咨询', '0', '?m=kefu', '', '256', '2', 'kefu', 'default', '1', '', '');
+INSERT INTO `sky_navbar` VALUES ('310', '客服咨询', '0', '?m=kefu', '', '256', '2', 'kefu_msgindex', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('311', '单页数据', '0', '?m=dataapi', '', '277', '2', 'dataapi', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('312', '虚拟表扩展', '0', '?m=table', '', '277', '2', 'table', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('313', '优惠券', '0', '?m=coupon', '', '277', '2', 'coupon', 'default', '1', '', '');
-INSERT INTO `sky_navbar` VALUES ('315', '收款银行账号', '0', '?m=config&amp;a=sbank', '', '256', '2', '', '', '1', '', '');
+INSERT INTO `sky_navbar` VALUES ('315', '收款银行账号', '0', '', '', '256', '2', 'config', 'index', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('316', '线下充值', '0', '?m=sgpay', '', '265', '2', '', '', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('317', '支付宝小程序', '7', '?m=open_alipay_mini', '', '260', '2', 'open_alipay_mini', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('318', '头条小程序', '6', '?m=open_toutiao', '', '260', '2', 'open_toutiao', 'default', '0', '', '');
@@ -46770,7 +46730,8 @@ INSERT INTO `sky_navbar` VALUES ('325', '留言板', '0', '?m=guest', '', '277',
 INSERT INTO `sky_navbar` VALUES ('326', '定时任务', '0', '?m=crontab', '', '256', '2', 'crontab', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('327', '页面模板', '0', '?m=pagetpl', '', '256', '2', 'pagetpl', 'default', '1', '', '');
 INSERT INTO `sky_navbar` VALUES ('328', '短信记录', '112', '?m=sms_log', '', '256', '2', 'sms_log', 'default', '1', '', '');
-INSERT INTO `sky_navbar` VALUES ('329', '论坛', '0', 'moduleadmin.php?m=forum&a=menu', '', '0', '1', '', '', '1', '', '');
+INSERT INTO `sky_navbar` VALUES ('329', '论坛', '0', 'moduleadmin.php?m=forum&a=menu', '', '0', '1', 'forum', '', '1', '', '');
+INSERT INTO `sky_navbar` VALUES ('330', 'xxxxxx', '0', '', '', '0', '2', '', '', '11', '', '');
 
 -- ----------------------------
 -- Table structure for sky_notice
@@ -46792,7 +46753,7 @@ CREATE TABLE `sky_notice` (
 -- ----------------------------
 -- Records of sky_notice
 -- ----------------------------
-INSERT INTO `sky_notice` VALUES ('1', '1542554321', '0', '0', '4', '', 'eyJwYXRoIjoiXC9pbmRleC5waHAiLCJtIjoiYXJ0aWNsZSIsImEiOiJzaG93IiwicGFyYW0iOiImaWQ9MSJ9', '通知');
+INSERT INTO `sky_notice` VALUES ('1', '1626845696', '0', '0', '4', 'asdasedasdaeqwesasd', 'eyJwYXRoIjoiXC9pbmRleC5waHAiLCJtIjoiYXJ0aWNsZSIsImEiOiJzaG93IiwicGFyYW0iOiImaWQ9MSJ9', '通知');
 
 -- ----------------------------
 -- Table structure for sky_openlogin
@@ -47130,20 +47091,65 @@ CREATE TABLE `sky_pm` (
   `userid` int(11) unsigned NOT NULL DEFAULT '0',
   `type_id` int(11) NOT NULL DEFAULT '0',
   `t_userid` int(11) NOT NULL DEFAULT '0',
-  `dateline` int(11) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `content` varchar(225) CHARACTER SET utf8 NOT NULL,
+  `createtime` datetime NOT NULL DEFAULT '2021-07-22 08:25:01',
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_pm
 -- ----------------------------
-INSERT INTO `sky_pm` VALUES ('1', '4', '2', '6', '1612006857', '2', 'aa');
-INSERT INTO `sky_pm` VALUES ('2', '6', '1', '4', '1612006857', '0', 'aa');
-INSERT INTO `sky_pm` VALUES ('3', '4', '2', '6', '1612006860', '2', 's');
-INSERT INTO `sky_pm` VALUES ('4', '6', '1', '4', '1612006860', '0', 's');
+INSERT INTO `sky_pm` VALUES ('1', '4', '2', '6', '2', 'aa', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('2', '6', '1', '4', '0', 'oooo', '2021-07-28 18:08:46');
+INSERT INTO `sky_pm` VALUES ('3', '4', '2', '6', '2', 's', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('4', '6', '1', '4', '0', 's', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('5', '4', '1', '6', '0', 'wqeqweqwe', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('6', '6', '2', '4', '0', 'wqeqweqwe', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('7', '4', '1', '6', '0', 'ddddddddddd', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('8', '6', '2', '4', '0', 'ddddddddddd', '2021-07-22 08:25:01');
+INSERT INTO `sky_pm` VALUES ('9', '4', '1', '6', '0', 'xxxxxxxxx', '2021-07-22 08:30:49');
+INSERT INTO `sky_pm` VALUES ('10', '6', '2', '4', '0', 'xxxxxxxxx', '2021-07-22 08:30:49');
+INSERT INTO `sky_pm` VALUES ('11', '4', '1', '6', '0', 'xxxxxxxxxxxxxxsssssa', '2021-07-22 08:36:29');
+INSERT INTO `sky_pm` VALUES ('12', '6', '2', '4', '0', 'xxxxxxxxxxxxxxsssssa', '2021-07-22 08:36:29');
+INSERT INTO `sky_pm` VALUES ('13', '4', '0', '6', '0', 'ssssssss', '2021-07-28 17:57:56');
+INSERT INTO `sky_pm` VALUES ('14', '4', '0', '6', '0', 'ssssssss', '2021-07-28 17:57:56');
+INSERT INTO `sky_pm` VALUES ('15', '6', '0', '4', '0', 'ssssssss', '2021-07-28 17:57:56');
+INSERT INTO `sky_pm` VALUES ('16', '4', '1', '6', '0', 'asdasd', '2021-07-28 17:58:03');
+INSERT INTO `sky_pm` VALUES ('17', '4', '0', '6', '0', 'asdasd', '2021-07-28 17:58:03');
+INSERT INTO `sky_pm` VALUES ('18', '6', '1', '4', '0', 'asdasd', '2021-07-28 17:58:03');
+INSERT INTO `sky_pm` VALUES ('19', '4', '0', '6', '0', 'sssssss', '2021-07-28 17:59:09');
+INSERT INTO `sky_pm` VALUES ('20', '4', '0', '6', '0', 'sssssss', '2021-07-28 17:59:09');
+INSERT INTO `sky_pm` VALUES ('21', '6', '0', '4', '0', 'sssssss', '2021-07-28 17:59:09');
+INSERT INTO `sky_pm` VALUES ('22', '4', '0', '6', '0', 'a', '2021-07-28 17:59:11');
+INSERT INTO `sky_pm` VALUES ('23', '4', '0', '6', '0', 'a', '2021-07-28 17:59:11');
+INSERT INTO `sky_pm` VALUES ('24', '6', '0', '4', '0', 'a', '2021-07-28 17:59:11');
+INSERT INTO `sky_pm` VALUES ('25', '4', '0', '6', '0', 'xxxxxxxxx', '2021-07-28 17:59:36');
+INSERT INTO `sky_pm` VALUES ('26', '4', '0', '6', '0', 'xxxxxxxxx', '2021-07-28 17:59:36');
+INSERT INTO `sky_pm` VALUES ('27', '6', '0', '4', '0', 'xxxxxxxxx', '2021-07-28 17:59:36');
+INSERT INTO `sky_pm` VALUES ('28', '4', '0', '6', '0', '111', '2021-07-28 18:01:52');
+INSERT INTO `sky_pm` VALUES ('29', '4', '0', '6', '0', '111', '2021-07-28 18:01:52');
+INSERT INTO `sky_pm` VALUES ('30', '6', '0', '4', '0', '111', '2021-07-28 18:01:52');
+INSERT INTO `sky_pm` VALUES ('31', '4', '0', '6', '0', 'oooo', '2021-07-28 18:08:46');
+INSERT INTO `sky_pm` VALUES ('32', '4', '0', '6', '0', 'oooo', '2021-07-28 18:08:46');
+INSERT INTO `sky_pm` VALUES ('33', '6', '0', '4', '0', 'oooo', '2021-07-28 18:08:46');
+INSERT INTO `sky_pm` VALUES ('34', '4', '0', '6', '0', 'sssssssssssss', '2021-07-28 18:09:39');
+INSERT INTO `sky_pm` VALUES ('35', '4', '0', '6', '0', 'ssssss', '2021-07-28 18:09:53');
+INSERT INTO `sky_pm` VALUES ('36', '4', '0', '6', '0', 'sssssss', '2021-07-28 18:10:26');
+INSERT INTO `sky_pm` VALUES ('37', '6', '0', '4', '0', 'sssssss', '2021-07-28 18:10:26');
+INSERT INTO `sky_pm` VALUES ('38', '4', '0', '6', '0', 'sssssssssssssssssssssssss', '2021-07-28 18:10:59');
+INSERT INTO `sky_pm` VALUES ('39', '6', '0', '4', '0', 'sssssssssssssssssssssssss', '2021-07-28 18:10:59');
+INSERT INTO `sky_pm` VALUES ('40', '4', '0', '6', '0', 'xxxx', '2021-07-28 18:11:26');
+INSERT INTO `sky_pm` VALUES ('41', '6', '0', '4', '0', 'xxxx', '2021-07-28 18:11:26');
+INSERT INTO `sky_pm` VALUES ('42', '4', '1', '6', '0', 'dddddddd', '2021-07-28 18:12:08');
+INSERT INTO `sky_pm` VALUES ('43', '6', '1', '4', '0', 'dddddddd', '2021-07-28 18:12:08');
+INSERT INTO `sky_pm` VALUES ('44', '4', '1', '6', '0', 'xxxx', '2021-07-28 18:14:51');
+INSERT INTO `sky_pm` VALUES ('45', '6', '1', '4', '0', 'xxxx', '2021-07-28 18:14:51');
+INSERT INTO `sky_pm` VALUES ('46', '4', '1', '6', '0', 'wwwww', '2021-07-28 18:15:03');
+INSERT INTO `sky_pm` VALUES ('47', '6', '1', '4', '0', 'wwwww', '2021-07-28 18:15:03');
+INSERT INTO `sky_pm` VALUES ('48', '4', '1', '6', '0', 'ssssss', '2021-07-28 18:15:45');
+INSERT INTO `sky_pm` VALUES ('49', '6', '1', '4', '0', 'ssssss', '2021-07-28 18:15:45');
 
 -- ----------------------------
 -- Table structure for sky_pm_index
@@ -47152,20 +47158,21 @@ DROP TABLE IF EXISTS `sky_pm_index`;
 CREATE TABLE `sky_pm_index` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `userid` int(11) unsigned NOT NULL DEFAULT '0',
-  `t_userid` int(11) NOT NULL,
-  `pm_num` int(11) NOT NULL,
-  `type_id` tinyint(4) NOT NULL,
-  `dateline` int(11) NOT NULL DEFAULT '0',
+  `t_userid` int(11) NOT NULL DEFAULT '0',
+  `pm_num` int(11) NOT NULL DEFAULT '0',
+  `type_id` tinyint(4) NOT NULL DEFAULT '1',
   `status` tinyint(4) NOT NULL DEFAULT '0',
+  `content` varchar(225) NOT NULL DEFAULT '',
+  `createtime` datetime NOT NULL DEFAULT '2021-07-22 08:25:01',
   PRIMARY KEY (`id`),
   KEY `id` (`id`,`t_userid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_pm_index
 -- ----------------------------
-INSERT INTO `sky_pm_index` VALUES ('1', '4', '6', '2', '2', '1612006860', '2');
-INSERT INTO `sky_pm_index` VALUES ('2', '6', '4', '2', '1', '1612006860', '0');
+INSERT INTO `sky_pm_index` VALUES ('1', '4', '6', '2', '1', '1', 'ssssss', '2021-07-28 18:15:45');
+INSERT INTO `sky_pm_index` VALUES ('2', '6', '4', '2', '1', '0', 'ssssss', '2021-07-28 18:15:45');
 
 -- ----------------------------
 -- Table structure for sky_pv
@@ -47656,7 +47663,7 @@ CREATE TABLE `sky_site` (
 -- ----------------------------
 -- Records of sky_site
 -- ----------------------------
-INSERT INTO `sky_site` VALUES ('1', 'deituiCMS', '', '1', 'deituiCMS，得推社区团购系统，得推分销系统，得推校园O2O系统，得推分类信息系统', '', 'deituiCMS，得推社区团购系统，得推分销系统，得推校园O2O系统，得推分类信息系统', '', 'attach/2019/03/20/82c516e7bfb4f944fae3d2542f74c98a.png', '', '0', 'index', '', '', 'wap', '');
+INSERT INTO `sky_site` VALUES ('1', 'deituiCMS', '', '1', 'deituiCMS，得推社区团购系统，得推分销系统，得推校园O2O系统，得推分类信息系统', '', 'deituiCMS，得推社区团购系统，得推分销系统，得推校园O2O系统，得推分类信息系统', '', 'attach/images/162703644329109dd8c2662b96ce14928333f055c5580.png', '', '0', 'index', '', '', 'wap', '');
 
 -- ----------------------------
 -- Table structure for sky_site_city
@@ -47925,16 +47932,28 @@ CREATE TABLE `sky_user` (
   PRIMARY KEY (`userid`),
   KEY `telephone` (`telephone`) USING BTREE,
   KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sky_user
 -- ----------------------------
-INSERT INTO `sky_user` VALUES ('4', 'lrjxgl', '15985840591', 'lrjxgl', '61.00', '246', '0', '2018-11-04 10:21:27', '2018-07-12 13:50:01', '1', '1', '0', 'attach/images/1626755978883fb5c81ed3a220004b71069645f112867.png', '0', '0', '0', '0', '2018-11-03', '');
-INSERT INTO `sky_user` VALUES ('5', 'laolei', '0', 'laolei', '0.00', '0', '0', '2019-10-09 09:03:00', '2019-10-09 09:03:00', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '0', '1', '2018-11-03', '');
-INSERT INTO `sky_user` VALUES ('6', 'laoleix', '0', 'laoleix', '0.00', '0', '0', '2019-10-09 09:03:50', '2019-10-09 09:03:50', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '0', '2', '2018-11-03', '');
-INSERT INTO `sky_user` VALUES ('7', '123', '123', '123', '0.00', '0', '0', '2019-12-24 16:22:10', '2019-12-24 16:22:10', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '0', '4', '2018-11-03', '');
-INSERT INTO `sky_user` VALUES ('8', '15985840592', '15985840592', '15985840592', '0.00', '0', '0', '2020-12-16 10:21:56', '2020-12-16 10:21:56', '1', '0', '0', '/static/images/user_head.jpg', '0', '0', '0', '0', '2018-11-03', '');
+INSERT INTO `sky_user` VALUES ('4', '', '15985840591', '枯藤xxxxx', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/attach/2021/07/28/9.png', '0', '0', '1', '0', '2018-11-03', 'dasdasdax');
+INSERT INTO `sky_user` VALUES ('6', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('39', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('40', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('41', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('42', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('43', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('44', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('45', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('46', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('47', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('48', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('49', '', '', '枯藤', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '1', '0', '/static/images/user_head.jpg', '0', '0', '1', '0', '2018-11-03', '篮球');
+INSERT INTO `sky_user` VALUES ('50', '159858405912', '159858405912', '159858405912', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '0', '0', '/static/images/user_head.jpg', '0', '0', '0', '0', '2018-11-03', '');
+INSERT INTO `sky_user` VALUES ('51', '15985840593', '15985840593', '15985840593', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '0', '0', '/static/images/user_head.jpg', '0', '0', '0', '0', '2018-11-03', '');
+INSERT INTO `sky_user` VALUES ('52', '15985840594', '15985840594', '15985840594', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '0', '0', '/static/images/user_head.jpg', '0', '0', '0', '0', '2018-11-03', '');
+INSERT INTO `sky_user` VALUES ('53', '15985840595', '15985840595', '15985840595', '0.00', '0', '0', '2018-01-24 08:54:01', '2018-07-12 13:50:01', '1', '0', '0', '/static/images/user_head.jpg', '0', '0', '0', '0', '2018-11-03', '');
 
 -- ----------------------------
 -- Table structure for sky_user_address
@@ -47970,6 +47989,7 @@ CREATE TABLE `sky_user_address` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_user_auth`;
 CREATE TABLE `sky_user_auth` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL DEFAULT '0',
   `truename` varchar(16) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '真实姓名',
   `user_card` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '身份证号码',
@@ -47983,7 +48003,8 @@ CREATE TABLE `sky_user_auth` (
   `content` mediumtext CHARACTER SET utf8 COMMENT '详细信息',
   `info` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '简介',
   `sky_info` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '简介',
-  PRIMARY KEY (`userid`)
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -47995,6 +48016,7 @@ CREATE TABLE `sky_user_auth` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_user_auth_new`;
 CREATE TABLE `sky_user_auth_new` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL DEFAULT '0',
   `truename` varchar(16) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '真实姓名',
   `user_card` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '身份证号码',
@@ -48007,13 +48029,14 @@ CREATE TABLE `sky_user_auth_new` (
   `content` mediumtext CHARACTER SET utf8 COMMENT '详细信息',
   `info` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '简介',
   `true_user_head` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '全身照',
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_user_auth_new
 -- ----------------------------
-INSERT INTO `sky_user_auth_new` VALUES ('4', 'asd', 'asdasd', '0', '0', '0', '', '1', '1', '', '', '');
+INSERT INTO `sky_user_auth_new` VALUES ('1', '4', 'asd', 'asdasd', '0', '0', '0', '', '1', '1', '', '', '');
 
 -- ----------------------------
 -- Table structure for sky_user_black
@@ -48122,21 +48145,27 @@ CREATE TABLE `sky_user_lastaddr` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_user_password`;
 CREATE TABLE `sky_user_password` (
-  `userid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` int(11) unsigned NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '登录密码',
   `paypwd` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '支付密码',
   `salt` varchar(6) NOT NULL DEFAULT '' COMMENT '密码串',
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='用户密码';
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='用户密码';
 
 -- ----------------------------
 -- Records of sky_user_password
 -- ----------------------------
-INSERT INTO `sky_user_password` VALUES ('4', 'e61290cdbc03cd1d486ce243cbaae849', '', '6742');
-INSERT INTO `sky_user_password` VALUES ('5', 'e28ad76df2fe92bbb3d6c86be2af26ed', '', '7641');
-INSERT INTO `sky_user_password` VALUES ('6', '4724a26446ce1167086c25decff4a78f', '', '5543');
-INSERT INTO `sky_user_password` VALUES ('7', '15a15890908320e640035b2de2f7861d', '', '5689');
-INSERT INTO `sky_user_password` VALUES ('8', '669f9d489fc8e532c2f1b329fa070b3f', '', '8833');
+INSERT INTO `sky_user_password` VALUES ('9', '4', 'f18049250c933a116c256e8092d978ca', '', '5326');
+INSERT INTO `sky_user_password` VALUES ('10', '5', 'e28ad76df2fe92bbb3d6c86be2af26ed', '', '7641');
+INSERT INTO `sky_user_password` VALUES ('11', '6', '4724a26446ce1167086c25decff4a78f', '', '5543');
+INSERT INTO `sky_user_password` VALUES ('12', '7', '15a15890908320e640035b2de2f7861d', '', '5689');
+INSERT INTO `sky_user_password` VALUES ('13', '8', '669f9d489fc8e532c2f1b329fa070b3f', '', '8833');
+INSERT INTO `sky_user_password` VALUES ('14', '50', 'f8402c374dde79006b245003c02aa5a4', '', '6441');
+INSERT INTO `sky_user_password` VALUES ('15', '51', 'c7939586c6e31ef06ea26534bb95b765', '', '7698');
+INSERT INTO `sky_user_password` VALUES ('16', '52', '435cd8a75b723bf38272d90b7c5df5eb', '', '3066');
+INSERT INTO `sky_user_password` VALUES ('17', '53', '34188062108cdf9760a95fe2811192f5', '', '8739');
 
 -- ----------------------------
 -- Table structure for sky_user_rank
@@ -48162,17 +48191,21 @@ INSERT INTO `sky_user_rank` VALUES ('1', 'aa', '12', '123', '1', 'attach/2018/11
 -- ----------------------------
 DROP TABLE IF EXISTS `sky_user_vip`;
 CREATE TABLE `sky_user_vip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) unsigned NOT NULL DEFAULT '0',
   `starttime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
   `firsttime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '首次购买',
   `endtime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
   `stype` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '类型',
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sky_user_vip
 -- ----------------------------
+INSERT INTO `sky_user_vip` VALUES ('1', '4', '123123123', '123123', '123123123', '1', '11');
 
 -- ----------------------------
 -- Table structure for sky_weixin

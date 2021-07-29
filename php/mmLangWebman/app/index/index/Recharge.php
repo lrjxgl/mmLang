@@ -12,13 +12,14 @@ class Recharge
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","Recharge");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -41,13 +42,14 @@ class Recharge
     public function list(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","Recharge");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -71,7 +73,7 @@ class Recharge
         $id=$request->get("id");
         $fm=DBS::MM("index","Recharge");
         $data=$fm->where("id",$id)->first();
-        if($data->status >1){
+        if(empty($data) || $data->status >1){
             return Help::success(1,"数据不存在");
         }
         $data->imgurl=Help::images_site($data->imgurl);
@@ -95,7 +97,7 @@ class Recharge
 			}
 		
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","Recharge");
         $where="status in(0,1,2) ";
 		$where.=" AND userid=".$ssuserid;
@@ -103,6 +105,7 @@ class Recharge
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -158,7 +161,7 @@ class Recharge
 				return Help::success(1000,"请先登录");
 			}
 		
-        $id=intval($request->get("id"));
+        $id=intval($request->post("id"));
         $data=[];
         $fm=DBS::MM("index","Recharge");
         $indata=[];

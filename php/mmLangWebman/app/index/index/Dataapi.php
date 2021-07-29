@@ -12,13 +12,14 @@ class Dataapi
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","Dataapi");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -41,13 +42,14 @@ class Dataapi
     public function list(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("index","Dataapi");
         $where="status in(0,1,2) ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("id","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -71,7 +73,26 @@ class Dataapi
         $id=$request->get("id");
         $fm=DBS::MM("index","Dataapi");
         $data=$fm->where("id",$id)->first();
-        if($data->status >1){
+        if(empty($data) || $data->status >1){
+            return Help::success(1,"数据不存在");
+        }
+        $data->imgurl=Help::images_site($data->imgurl);
+        $author=DBS::MM("index","user")->get($data->userid);
+        $redata=[
+            "error" => 0, 
+            "message" => "success",
+            "data"=>$data,
+            "author"=>$author 
+        ];
+		return json($redata);       
+    }
+    
+    /*@@aboutus@@*/
+    public function aboutus(Request $request){
+        $word="aboutus";
+        $fm=DBS::MM("index","Dataapi");
+        $data=$fm->where("word",$word)->first();
+        if(empty($data) || $data->status >1){
             return Help::success(1,"数据不存在");
         }
         $data->imgurl=Help::images_site($data->imgurl);

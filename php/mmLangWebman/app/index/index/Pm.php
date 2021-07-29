@@ -59,6 +59,9 @@ class Pm
             return Help::success(1000,"请先登录");
         }
         $userid=intval($request->get("t_userid"));
+        if($ssuserid==$userid){
+            return Help::success(1,"不能发给自发"); 
+        }
         $u=DBS::MM("index","user");
         $ssuser=$u->get($ssuserid);
         $user=$u->get($userid);

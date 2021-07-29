@@ -8,7 +8,15 @@ class SiteModel extends Model{
 	protected $table="site";
 	protected $primaryKey = "siteid";
 	protected $created_at="createtime"; 
-	 
+	
+	public function get(){
+		$row=$this->first();
+		if(empty($row)){
+			$this->insert(["sitename"=>"deituicms"]);
+			$row=$this->first();
+		}
+		return $row;
+	}
 	public  function Dselect($list){
 		if(empty($list)) return $list;
 		foreach($list as &$v){

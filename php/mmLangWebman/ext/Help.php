@@ -42,4 +42,36 @@ class Help{
         return $filename;
     }
 
+    public static function timeago($time){
+        if(!is_int($time)){
+            $time=strtotime($time);
+        }
+        $ee=time()-$time;
+        if($ee>3600*24){
+            $a=$ee/(3600*24);
+            $day=intval($a);
+            return $day."天前";
+        }elseif($ee>3600){
+            $h=$ee/3600;
+            $h=intval($h);
+            return $h."小时前";
+        }else{
+            $i=intval($ee/60);
+            $s=$ee-$s*60;
+            return $i."分".$s."秒";
+        }
+    }
+
+    public static function sql($str){
+        $str=addslashes($str);
+        return $str;
+    }
+    public static function _implode($array) {
+        if(!empty($array)) {
+            return "'".implode("','", is_array($array) ? $array : array($array))."'";
+        } else {
+            return '';
+        }
+    }
+
 }

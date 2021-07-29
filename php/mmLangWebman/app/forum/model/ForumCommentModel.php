@@ -4,7 +4,7 @@ use support\Model;
 use ext\Help;
 use ext\DBS; 
 class ForumCommentModel extends Model{
-	const UPDATED_AT= null;
+	const UPDATED_AT = null;  
 	protected $table="mod_forum_comment";
 	protected $primaryKey = "id";
 	protected $created_at="createtime"; 

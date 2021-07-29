@@ -104,6 +104,8 @@ class Forum
             return Help::success(1,"数据不存在");  
         }
         $data->imgurl=Help::images_site($data->imgurl);
+        $data->imgsList=Help::parseImgsData($data["imgsdata"]);
+        $data->content=DBS::MM("forum","forumData")->where("id",$id)->value("content"); 
         $author=DBS::MM("index","user")->get($data->userid);
         $redata=[
             "error" => 0, 
@@ -139,7 +141,8 @@ class Forum
             "message" => "ok",
             "list"=>$list,
             "per_page"=>$per_page,
-            "rscount"=>$rscount
+            "rscount"=>$rscount,
+            
 
         ];
 		return json($redata);
@@ -327,13 +330,19 @@ class Forum
         $ssuserid=UserAccess::checkAccess($request); 
         if(!$ssuserid){
             return Help::success(1000,"请先登录");
-        }
-        $user=DBS::MM("index","user")->get($ssuserid,"userid,nickname,user_head,follow_num,followed_num,description");
+        } 
+        $user=DBS::MM("index","user")->get($ssuserid,"userid,gold,money,grade,nickname,user_head,follow_num,followed_num,description");
+        $topic_num=DBS::MM("forum","forum")->where("userid",$ssuserid)->count();
+        $comment_num=DBS::MM("forum","forum")->where([
+            ["userid",$ssuserid]
+        ])->count();
         $redata=[
             
             "error" => 0, 
             "message" => "success",
-            "user"=>$user
+            "user"=>$user,
+            "topic_num"=>$topic_num,
+            "comment_num"=>$comment_num
         ];
 		return json($redata); 
     }

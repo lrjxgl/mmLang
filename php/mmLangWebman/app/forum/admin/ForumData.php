@@ -12,13 +12,14 @@ class ForumData
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=4;
+        $limit=12;
         $fm=DBS::MM("forum","ForumData");
         $where=" 1 ";
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
+				->orderBy("did","desc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -41,11 +42,11 @@ class ForumData
 	public function add(Request $request){
         
 
-        $id=intval($request->get("id"));
+        $did=intval($request->get("did"));
         $row=[];
-        if($id){
+        if($did){
             $fm=DBS::MM("forum","ForumData");
-            $row=$fm->find($id);
+            $row=$fm->find($did);
             
         }
         $redata=[
@@ -61,33 +62,34 @@ class ForumData
 	public function save(Request $request){
        
 
-        $id=intval($request->get("id"));
+        $did=intval($request->post("did"));
         $data=[];
         $fm=DBS::MM("forum","ForumData");
         $indata=[];
         //处理发布内容
         
+$indata["id"]=intval($request->post("id","0"));
 $indata["content"]=$request->post("content","");
-        if($id){
-            $row=$fm->find($id);
+        if($did){
+            $row=$fm->find($did);
             
         }
-        if($id){
+        if($did){
             $indata["updatetime"]=date("Y-m-d H:i:s");
-            $fm->where("id",$id)->update($indata);
+            $fm->where("did",$did)->update($indata);
         }else{       
             
             $indata["createtime"]=date("Y-m-d H:i:s");
             $indata["updatetime"]=date("Y-m-d H:i:s");
             $indata["status"]=0;      
-            $id=$fm->insertGetId($indata);
+            $did=$fm->insertGetId($indata);
         }
       
        
         $redata=[
             "error" => 0, 
             "message" => "保存成功",
-            "insert_id"=>$id
+            "insert_id"=>$did
         ];
 		return json($redata); 
     }
@@ -96,9 +98,9 @@ $indata["content"]=$request->post("content","");
     public function delete(Request $request){
 		
 
-        $id=$request->get("id");
+        $did=$request->get("did");
         $fm=DBS::MM("forum","ForumData");
-        $row=$fm->find($id); 
+        $row=$fm->find($did); 
         
         $row->status=11;
         $row->save();

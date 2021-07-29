@@ -8,9 +8,9 @@ class UserModel extends Model{
 	protected $primaryKey = "userid";
 	protected $created_at="createtime"; 
 	
-	public function get($userid,$field="userid,nickname,user_head"){
+	public function get($userid,$field=""){
 		if($field==""){
-			$field="userid,nickname,user_head";   
+			$field="userid,nickname,user_head,follow_num,followed_num"; 
 		}
 		$row=$this->where("userid",$userid)->selectRaw($field)->first();
 		if(empty($row)){

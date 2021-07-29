@@ -24,16 +24,19 @@ class UserAccess{
         $salt=rand(1000,9999);
         $password=\md5($password.$salt);
         $token=$userid.".user".$password;
-        $token_expire=time()+3600*24*3;
+        $token_expire=3600*24*3;
         $refresh_token=$userid.".user".\md5($password.$salt);
-        $refresh_token_expire=time()+3600*24*3;
+        $refresh_token_expire=3600*24*3;
         Cache::set($token,$userid,$token_expire);
         Cache::set($refresh_token,$userid,$refresh_token_expire);
         return [
             "token"=>$token,
-            "token_expire"=>$token_expire,
+            "token_expire"=>time()+$token_expire,
             "refresh_token"=>$refresh_token,
-            "refresh_token_expire"=>$refresh_token_expire
+            "refresh_token_expire"=>time()+$refresh_token_expire
         ];
+    }
+    public static function del($key){
+        Cache::del($key);
     }
 }
