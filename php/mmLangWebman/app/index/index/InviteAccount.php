@@ -133,10 +133,10 @@ class InviteAccount
 			}
 		
         $id=intval($request->get("id"));
-        $row=[];
+        $data=[];
         if($id){
             $fm=DBS::MM("index","InviteAccount");
-            $row=$fm->find($id);
+            $data=$fm->find($id);
             
 			if(empty($row) || $row->userid!=$ssuserid){
 				return Help::success(1,"暂无权限");
@@ -147,7 +147,7 @@ class InviteAccount
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -180,13 +180,13 @@ $indata["income"]=floatval($request->post("income","0"));
 
         }
         if($id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("id",$id)->update($indata);
         }else{       
-            
+            $indata["userid"]=$ssuserid;
             $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+			
             $id=$fm->insertGetId($indata);
         }
       

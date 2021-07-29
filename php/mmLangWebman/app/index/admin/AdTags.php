@@ -12,7 +12,7 @@ class AdTags
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=1200;  
+        $limit=12;
         $fm=DBS::MM("index","AdTags");
         $where="status in(0,1,2) ";
 		$list=$fm
@@ -22,49 +22,13 @@ class AdTags
 				->orderBy("tag_id","desc")
                 ->get();
         $list=$fm->Dselect($list);
-        $parent=[];
-        if(!empty($list)){
-            
-            foreach($list as $k=>$v){
-                if($v->pid==0){
-                    $parent[]=$v;
-                    unset($list[$k]);
-                }
-            }
-            foreach($parent as $k=>$v){
-                $child=[];
-                foreach($list as $kk=>$vv){
-                    if($v->tag_id==$vv->pid){
-                        $child[]=$vv;
-                        unset($list[$kk]);
-                    }
-
-                }
-                $v["child"]=$child;
-                $parent[$k]=$v;
-            }
-
-        }
-        if(!empty($list)){
-            $ids=[]; 
-            foreach($list as $v){
-                $ids[]=$v["pid"];
-                
-            }
-            $tags=DBS::MM("index","adTags")->getListByIds($ids,"tag_id,title");
-            foreach($list as $k=>$v){
-                $v->pid_name=$tags[$v->pid]->title;
-                
-                $list[$k]=$v; 
-            }
-        }
         $rscount=$fm->whereRaw($where)->count();
         $per_page=$start+$limit;
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "list"=>$parent,
+            "list"=>$list,
             "per_page"=>$per_page,
             "rscount"=>$rscount
 
@@ -85,13 +49,10 @@ class AdTags
             $data=$fm->find($tag_id);
             
         }
-        $fm2=DBS::MM("index","adTags");
-        $tagList=$fm2->whereRaw("status=1 AND pid=0")->get();
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$data,
-            "tagList"=>$tagList 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -121,13 +82,13 @@ $indata["tagno"]=$request->post("tagno","");
             
         }
         if($tag_id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("tag_id",$tag_id)->update($indata);
         }else{       
             
             $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+			
             $tag_id=$fm->insertGetId($indata);
         }
       

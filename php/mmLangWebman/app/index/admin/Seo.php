@@ -43,16 +43,16 @@ class Seo
         
 
         $id=intval($request->get("id"));
-        $row=[];
+        $data=[];
         if($id){
             $fm=DBS::MM("index","Seo");
-            $row=$fm->find($id);
+            $data=$fm->find($id);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -80,13 +80,13 @@ $indata["object_id"]=intval($request->post("object_id","0"));
             
         }
         if($id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("id",$id)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $id=$fm->insertGetId($indata);
         }
       

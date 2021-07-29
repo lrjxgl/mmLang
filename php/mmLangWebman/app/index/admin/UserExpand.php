@@ -43,16 +43,16 @@ class UserExpand
         
 
         $uid=intval($request->get("uid"));
-        $row=[];
+        $data=[];
         if($uid){
             $fm=DBS::MM("index","UserExpand");
-            $row=$fm->find($uid);
+            $data=$fm->find($uid);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -74,13 +74,13 @@ $indata["content"]=$request->post("content","");
             
         }
         if($uid){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("uid",$uid)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $uid=$fm->insertGetId($indata);
         }
       

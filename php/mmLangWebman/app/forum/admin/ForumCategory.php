@@ -43,16 +43,16 @@ class ForumCategory
         
 
         $catid=intval($request->get("catid"));
-        $row=[];
+        $data=[];
         if($catid){
             $fm=DBS::MM("forum","ForumCategory");
-            $row=$fm->find($catid);
+            $data=$fm->find($catid);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -79,13 +79,13 @@ $indata["imgurl"]=$request->post("imgurl","");
             
         }
         if($catid){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("catid",$catid)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $catid=$fm->insertGetId($indata);
         }
       

@@ -43,16 +43,16 @@ class Dbcache
         
 
         $id=intval($request->get("id"));
-        $row=[];
+        $data=[];
         if($id){
             $fm=DBS::MM("index","Dbcache");
-            $row=$fm->find($id);
+            $data=$fm->find($id);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -76,13 +76,13 @@ $indata["expire"]=intval($request->post("expire","0"));
             
         }
         if($id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("id",$id)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $id=$fm->insertGetId($indata);
         }
       

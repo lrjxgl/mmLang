@@ -43,16 +43,16 @@ class SiteCity
         
 
         $sc_id=intval($request->get("sc_id"));
-        $row=[];
+        $data=[];
         if($sc_id){
             $fm=DBS::MM("index","SiteCity");
-            $row=$fm->find($sc_id);
+            $data=$fm->find($sc_id);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -81,13 +81,13 @@ $indata["siteid"]=intval($request->post("siteid","0"));
             
         }
         if($sc_id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("sc_id",$sc_id)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $sc_id=$fm->insertGetId($indata);
         }
       

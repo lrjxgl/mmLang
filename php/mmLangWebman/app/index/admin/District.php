@@ -14,12 +14,13 @@ class District
 	    $start=$request->get("per_page");
         $limit=12;
         $fm=DBS::MM("index","District");
-        $where=" 1 ";
+        $upid=intval($request->get("upid"));
+        $where=" upid=".$upid;  
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)
                 ->whereRaw($where)
-				->orderBy("id","desc")
+				->orderBy("displayorder","asc")
                 ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
@@ -30,7 +31,8 @@ class District
             "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
-            "rscount"=>$rscount
+            "rscount"=>$rscount,
+            "limit"=>$limit
 
         ];
 		return json($redata); 
@@ -43,16 +45,16 @@ class District
         
 
         $id=intval($request->get("id"));
-        $row=[];
+        $data=[];
         if($id){
             $fm=DBS::MM("index","District");
-            $row=$fm->find($id);
+            $data=$fm->find($id);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -78,13 +80,13 @@ $indata["displayorder"]=intval($request->post("displayorder","0"));
             
         }
         if($id){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("id",$id)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $id=$fm->insertGetId($indata);
         }
       

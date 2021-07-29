@@ -43,16 +43,16 @@ class UserGroup
         
 
         $groupid=intval($request->get("groupid"));
-        $row=[];
+        $data=[];
         if($groupid){
             $fm=DBS::MM("index","UserGroup");
-            $row=$fm->find($groupid);
+            $data=$fm->find($groupid);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -75,13 +75,13 @@ $indata["access"]=$request->post("access","");
             
         }
         if($groupid){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("groupid",$groupid)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $groupid=$fm->insertGetId($indata);
         }
       

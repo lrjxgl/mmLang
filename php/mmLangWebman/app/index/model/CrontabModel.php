@@ -4,11 +4,11 @@ use support\Model;
 use ext\Help;
 use ext\DBS; 
 class CrontabModel extends Model{
-	const UPDATED_AT= null;
+	 
 	protected $table="crontab";
 	protected $primaryKey = "id";
-	protected $created_at="createtime"; 
-	 
+	const CREATED_AT= null;
+	const UPDATED_AT= null;  
 	public  function Dselect($list){
 		if(empty($list)) return $list;
 		foreach($list as &$v){

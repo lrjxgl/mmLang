@@ -20,7 +20,7 @@ class ForumGroup
                 ->limit($limit)
                 ->whereRaw($where)
 				->orderBy("gid","desc")
-                ->get(); 
+                ->get();
         $list=$fm->Dselect($list);
         $rscount=$fm->whereRaw($where)->count();
         $per_page=$start+$limit;

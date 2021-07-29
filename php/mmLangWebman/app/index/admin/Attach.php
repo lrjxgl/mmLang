@@ -30,7 +30,8 @@ class Attach
             "message" => "success",
             "list"=>$list,
             "per_page"=>$per_page,
-            "rscount"=>$rscount
+            "rscount"=>$rscount,
+            "limit"=>$limit 
 
         ];
 		return json($redata); 

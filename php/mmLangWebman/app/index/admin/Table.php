@@ -43,16 +43,16 @@ class Table
         
 
         $tableid=intval($request->get("tableid"));
-        $row=[];
+        $data=[];
         if($tableid){
             $fm=DBS::MM("index","Table");
-            $row=$fm->find($tableid);
+            $data=$fm->find($tableid);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -80,13 +80,13 @@ $indata["addTpl"]=$request->post("addTpl","");
             
         }
         if($tableid){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("tableid",$tableid)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $tableid=$fm->insertGetId($indata);
         }
       

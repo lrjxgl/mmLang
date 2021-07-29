@@ -16,5 +16,13 @@ class NavbarModel extends Model{
 			}
 		}
 		return $list; 
-	} 
+	}
+	public function groupList(){
+		return [
+			1=>["gid"=>1,"title"=>"后台顶部"],
+			2=>["gid"=>2,"title"=>"后台左边"]
+		];
+
+	}
+	
 }

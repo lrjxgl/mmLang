@@ -43,16 +43,16 @@ class ForumGroup
         
 
         $gid=intval($request->get("gid"));
-        $row=[];
+        $data=[];
         if($gid){
             $fm=DBS::MM("forum","ForumGroup");
-            $row=$fm->find($gid);
+            $data=$fm->find($gid);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -79,13 +79,13 @@ $indata["topic_num"]=intval($request->post("topic_num","0"));
             
         }
         if($gid){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("gid",$gid)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $gid=$fm->insertGetId($indata);
         }
       

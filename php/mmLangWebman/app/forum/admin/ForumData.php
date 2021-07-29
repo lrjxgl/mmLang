@@ -43,16 +43,16 @@ class ForumData
         
 
         $did=intval($request->get("did"));
-        $row=[];
+        $data=[];
         if($did){
             $fm=DBS::MM("forum","ForumData");
-            $row=$fm->find($did);
+            $data=$fm->find($did);
             
         }
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$row 
+            "data"=>$data 
         ];
 		return json($redata);       
     } 
@@ -75,13 +75,13 @@ $indata["content"]=$request->post("content","");
             
         }
         if($did){
-            $indata["updatetime"]=date("Y-m-d H:i:s");
+            
             $fm->where("did",$did)->update($indata);
         }else{       
             
-            $indata["createtime"]=date("Y-m-d H:i:s");
-            $indata["updatetime"]=date("Y-m-d H:i:s");
-            $indata["status"]=0;      
+            
+            
+			
             $did=$fm->insertGetId($indata);
         }
       
