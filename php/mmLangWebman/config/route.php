@@ -49,7 +49,14 @@ function RouteModuleDir($module){
 					$routeLog="";
 					$routeLog.=$ph."  ".$routePath;
 					file_put_contents("log.txt",$routeLog."\r\n",FILE_APPEND);
-					Route::any($routePath,$ph);   
+					if($appDir=="admin"){
+						Route::any($routePath,$ph)->middleware([
+							app\middleware\AdminAccessMiddleware::class
+						]);
+					}else{
+						Route::any($routePath,$ph);
+					}
+					  
 				}
 			}  
 			unset($c);

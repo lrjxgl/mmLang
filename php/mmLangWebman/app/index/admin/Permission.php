@@ -12,9 +12,9 @@ class Permission
     public function index(Request $request)
     {
 	    $start=$request->get("per_page");
-        $limit=12;
+        $limit=1234;
         $fm=DBS::MM("index","Permission");
-        $where=" 1 ";
+        $where=" 1 "; 
 		$list=$fm
                 ->offset($start)
                 ->limit($limit)

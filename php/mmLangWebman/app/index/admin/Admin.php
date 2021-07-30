@@ -68,10 +68,8 @@ class Admin
         $indata=[];
         //处理发布内容
         
-$indata["username"]=$request->post("username","");
-$indata["password"]=$request->post("password","");
-$indata["salt"]=intval($request->post("salt","0"));
-$indata["group_id"]=intval($request->post("group_id","0"));
+        $indata["username"]=$request->post("username","");
+        $indata["group_id"]=intval($request->post("group_id","0"));
         if($id){
             $row=$fm->find($id);
             

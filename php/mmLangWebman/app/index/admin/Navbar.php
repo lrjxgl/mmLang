@@ -3,7 +3,8 @@ namespace app\index\admin;
 
 use ext\DBS;
 use support\Request;
-
+use ext\AdminAccess; 
+use ext\Help; 
 class Navbar
 {
     /*@@index@@*/
@@ -167,13 +168,25 @@ class Navbar
     /*@@get@@*/
     public function get(Request $request)
     {
+        $adminid=AdminAccess::checkAccess($request);
+        if(!$adminid){
+            return Help::success(1000,"暂无权限"); 
+        }
+        $admin=DBS::MM("index","admin")->where("id",$adminid)->first();
+        $adminGroup=DBS::MM("index","adminGroup")->where("id",$admin->group_id)->first();
+        $access=json_decode($adminGroup->content,true);
         $group_id = $request->get("group_id");
         $fm = DBS::MM("index", "Navbar");
         $list = $fm->whereRaw("group_id=" . $group_id)->orderBy("orderindex", "ASC")->get();
-        $parent = [];
+        $parent = []; 
         if (!empty($list)) {
-
             foreach ($list as $k => $v) {
+                if(!isset($access[$v->m][$v->a]) && $admin->isfounder!=1 && $v->pid!=0){
+                    unset($list[$k]);
+                }
+            }
+            foreach ($list as $k => $v) {
+
                 if ($v->pid == 0) {
                     $parent[] = $v;
                     unset($list[$k]);
@@ -190,6 +203,11 @@ class Navbar
                 }
                 $v["child"] = $child;
                 $parent[$k] = $v;
+                if(empty($child) && $group_id==2){
+                    unset($parent[$k]);
+
+                } 
+               
             }
 
         }

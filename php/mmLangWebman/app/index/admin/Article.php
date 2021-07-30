@@ -4,13 +4,17 @@ namespace app\index\admin;
 use ext\DBS;
 use ext\Help;
 use support\Request;
-
+use ext\AdminAccess;
 class Article
 {
 
     /*@@index@@*/
     public function index(Request $request)
     {
+        $adminid=AdminAccess::checkAccess($request);
+        if(!$adminid){
+            return Help::success(1000,"暂无权限"); 
+        } 
         $start = $request->get("per_page");
         $limit = 12;
         $fm = DBS::MM("index", "Article");

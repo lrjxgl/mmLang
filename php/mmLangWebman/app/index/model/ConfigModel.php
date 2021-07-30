@@ -8,7 +8,15 @@ class ConfigModel extends Model{
 	protected $table="config";
 	protected $primaryKey = "id";
 	protected $created_at="createtime"; 
-	 
+	
+	public function get(){
+		$row=$this->first();
+		if(empty($row)){
+			$this->insert(["phone_on"=>1]);
+			$row=$this->first();
+		}
+		return $row;
+	}
 	public  function Dselect($list){
 		if(empty($list)) return $list;
 		foreach($list as &$v){

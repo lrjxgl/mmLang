@@ -44,15 +44,34 @@ class AdminGroup
 
         $id=intval($request->get("id"));
         $data=[];
+        $permissionList=DBS::MM("index","permission")->get();
+        $uAccess=[];
         if($id){
             $fm=DBS::MM("index","AdminGroup");
             $data=$fm->find($id);
+            $uAccess=explode(",",$data->pids);
             
         }
+        if(!empty($permissionList)){
+            foreach($permissionList as $k=>$v){
+                if(!empty($uAccess)){
+                    if(in_array($v->id,$uAccess)){
+                        $v->checked=true;
+                    }else{
+                        $v->checked=false;
+                    }
+                }else{
+                    $v->checked=false;
+                }
+                $permissionList[$k]=$v;
+            }
+        }
+        
         $redata=[
             "error" => 0, 
             "message" => "success",
-            "data"=>$data 
+            "data"=>$data,
+            "permissionList"=>$permissionList 
         ];
 		return json($redata);       
     } 
@@ -66,11 +85,34 @@ class AdminGroup
         $data=[];
         $fm=DBS::MM("index","AdminGroup");
         $indata=[];
-        //处理发布内容
-        
-$indata["title"]=$request->post("title","");
-$indata["orderindex"]=intval($request->post("orderindex","0"));
-$indata["content"]=$request->post("content","");
+        //处理发布内容   
+        $indata["title"]=$request->post("title","");
+        $indata["orderindex"]=intval($request->post("orderindex","0"));
+        $pids=$request->post("pids","");
+        $arr=explode(",",$pids);
+        foreach($arr as $k=>$v){
+            
+            $arr[$k]=intval($v);
+            if($arr[$k]==0){
+                unset($arr[$k]);
+            }
+        }
+        //处理权限
+        $pers=DBS::MM("index","permission")->getListByIds($arr);
+        $access=[];
+        if(!empty($pers)){
+            foreach($pers as $per){
+                if(isset($access[$per->m])){
+                    $access[$per->m]+=explode(",",$per->access);
+                }else{
+                    $access[$per->m]=explode(",",$per->access);
+                }
+                
+            }
+        }
+        $indata["content"]=json_encode($access);
+        $pids=implode(",",$arr);
+        $indata["pids"]=$pids;
         if($id){
             $row=$fm->find($id);
             

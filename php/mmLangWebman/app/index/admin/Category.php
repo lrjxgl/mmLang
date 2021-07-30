@@ -14,15 +14,13 @@ class Category
 	    $start=$request->get("per_page");
         $limit=12;
         $fm=DBS::MM("index","Category");
-        $where="status in(0,1,2) ";
-		$list=$fm
-                ->offset($start)
-                ->limit($limit)
-                ->whereRaw($where)
-				->orderBy("catid","desc")
-                ->get();
-        $list=$fm->Dselect($list);
-        $rscount=$fm->whereRaw($where)->count();
+        $pid=$request->get("pid","0");
+        $tablename=$request->get("tablename","");
+        if($tablename==''){
+            $tablename="article";
+        }
+        $list=$fm->children($pid,Help::sql($tablename),0);
+        $rscount=0;
         $per_page=$start+$limit;
         $per_page=$per_page>$rscount?0:$per_page;
         $redata=[
